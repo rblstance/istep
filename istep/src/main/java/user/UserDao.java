@@ -2,5 +2,5 @@ package user;
 
 public class UserDao {
 
-	// ¹ÚÁø±Ô
+	// ë°•ì§„ê·œ ë°•ì§„ê·œ
 }
