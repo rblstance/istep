@@ -10,6 +10,8 @@ public class BoardDto {
 	private Timestamp regdate;
 	private int check;
 	
+	
+	
 	public BoardDto(int no, String user_id, String title, String content, Timestamp regdate, int check) {
 		super();
 		this.no = no;
