@@ -8,11 +8,11 @@
 </head>
 <body>
 	<div>
-		<input type="text" name="phoneNumber" title ="전화번호 입력" placeholder="핸드폰 번호를 입력해주세요">
+		<input type="text" name="phoneNumber" placeholder="핸드폰 번호를 입력해주세요">
 		<input type="submit" value="입력">
 		
 		<input type="text" name="phone" placeholder="인증번호를 입력해주세요">
-		<input type="submit" value="인증확인">
+		<input type="submit" id="" value="인증확인">
 	</div>
 </body>
 </html>
