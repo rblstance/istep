@@ -176,7 +176,7 @@ public class UserDao {
 		return result;
 	}
 	
-	// Update
+	// Update 정보수정
 	public void updateUserInfo(UserDto user) {
 		String sql = "update user set password=?,name=?,nickname=?,phone=?,birth=?,registration=?,email=?,grade=? where id = ?;";
 
@@ -214,5 +214,42 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	// delete 정보삭제
+	public int deleteuser(String id, String password) {
+		int result = 0;
+		String sql = "SELECT password FROM user WHERE `id`=?";
+
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			
+			this.rs = this.pstmt.executeQuery();
+
+			if (this.rs.next()) {
+				if (password.equals(rs.getString("password"))) {
+					String delsql = "DELETE FROM user WHERE id=?";
+					this.pstmt = this.conn.prepareStatement(delsql);
+					this.pstmt.setString(1, id);
+					this.pstmt.executeUpdate();
+					result = 1;
+				} else {
+					result = 0;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 }
