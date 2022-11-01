@@ -55,6 +55,8 @@ public class BoardDto {
 	public void setCheck(int check) {
 		this.check = check;
 	}
+	
+	
 //	public void setNo(int no) {
 //		this.no = no;
 //	}
