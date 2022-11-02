@@ -9,18 +9,19 @@ import java.util.ArrayList;
 import util.DBManager;
 
 public class SubjectDao {
-	private String url = "jdbc:mysql://localhost:3306/";
-	private String user = "root";
-	private String password = "root";
+	
+	private String url;
+	private String user;
+	private String password;
 
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
 	private SubjectDao() {
-		this.url = "";
-		this.user = "";
-		this.password = "";
+		this.url = "jdbc:mysql://localhost:3306/istep";
+		this.user = "root";
+		this.password = "root";
 
 		this.conn = null;
 		this.pstmt = null;
@@ -36,13 +37,39 @@ public class SubjectDao {
 	// CRUD
 	
 	// 1. Create
+	public void addSubject(SubjectDto subject){
+		String sql = "INSERT INTO subject values(?,?,?,?)";
+		
+		int code = subject.getCode();
+		String name = subject.getName();
+		String teacher = subject.getTeacher();
+		String explain = subject.getExplain();
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, code);
+			this.pstmt.setString(2, name);
+			this.pstmt.setString(3, teacher);
+			this.pstmt.setString(4, explain);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	// 2. Read
 	// Read ALL
 	public ArrayList<SubjectDto> getSubjectAll(){
 		ArrayList<SubjectDto> sbjList = new ArrayList<SubjectDto>();
-		String sql = "SELECT * FROM subject";
-		
+		String sql = "SELECT * FROM `subject`";
+		System.out.println("dddd");
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -53,8 +80,9 @@ public class SubjectDao {
 				String name = this.rs.getString(2);
 				String teacher = this.rs.getString(3);
 				String explain = this.rs.getString(4);
+				String kind = this.rs.getString(5);
 				
-				SubjectDto subject = new SubjectDto(code, name, teacher, explain);
+				SubjectDto subject = new SubjectDto(code, name, teacher, explain, kind);
 				sbjList.add(subject);
 			}
 		} catch (Exception e) {
@@ -74,7 +102,7 @@ public class SubjectDao {
 	
 	public SubjectDto getSubjectByCode(int code){
 		SubjectDto subject = null;
-		String sql = "SELECT * FROM subject	WHERE code=?";
+		String sql = "SELECT * FROM `subject` WHERE `code`=`?`";
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
@@ -82,12 +110,13 @@ public class SubjectDao {
 			this.pstmt.setInt(1, code);
 			this.rs = this.pstmt.executeQuery();
 			
-			while(this.rs.next()) {
+			if(this.rs.next()) {
 				String name = this.rs.getString(2);
 				String teacher = this.rs.getString(3);
 				String explain = this.rs.getString(4);
+				String kind = this.rs.getString(5);
 				
-				subject = new SubjectDto(code, name, teacher, explain);
+				subject = new SubjectDto(code, name, teacher, explain, kind);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,6 +133,52 @@ public class SubjectDao {
 		return subject;
 	}
 	// 3. Update
+	public void updSubject(SubjectDto subject){
+		String sql = "UPDATE subject name=?, teacher=?, explain=?, kind=? WHERE code=?";
+		
+		int code = subject.getCode();
+		String name = subject.getName();
+		String teacher = subject.getTeacher();
+		String explain = subject.getExplain();
+		String kind = subject.getKind();
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, code);
+			this.pstmt.setString(2, name);
+			this.pstmt.setString(3, teacher);
+			this.pstmt.setString(4, explain);
+			this.pstmt.setString(5, kind);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	// 4. Delete
+	public void delSubject(int code){
+		String sql = "DELETE subject WHERE code=?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, code);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

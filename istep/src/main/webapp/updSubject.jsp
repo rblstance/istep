@@ -8,12 +8,12 @@
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-    	<form method="POST" action="addSubject">
+    	<form method="POST" action="updSubject">
     		<p>과목명 : </p> <input type="text" name="subject" />
     		<p>강사 : </p> <input type="text" name="teacher" placeholder=",로 여러명 추가"/>		
     		<p>과목설명 : </p> <textarea name="explain"></textarea>
     		<p>과목분야 :</p>
-    		<select>
+    		<select name="kind">
     			<option>JAVA</option>
     			<option>JavaScript</option>
     			<option>Python</option>
@@ -22,7 +22,7 @@
     			<option>HTML</option>
     			<option>CSS</option>
     		</select>  
-    		<input type="submit" value="과목 생성" />
+    		<input type="submit" value="과목 수정" />
     	</form>
     </section>
 	<jsp:include page="footer.jsp"/>
