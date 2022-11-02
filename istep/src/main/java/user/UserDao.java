@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import util.DBManager;
 
 public class UserDao {
-	private String url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
-	private String user = "admin";
-	private String password = "H77LtnHvcj6uYsgEv3ZT";
+	private String url;
+	private String user;
+	private String password;
 
 	private Connection conn;
 	private PreparedStatement pstmt;
