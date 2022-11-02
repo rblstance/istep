@@ -8,8 +8,8 @@
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-    	<input type="text" class="search" />
-    	
+    	<div>	
+    	</div>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>

@@ -8,8 +8,7 @@
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-    	<form method="POST" action="addSubject">
-    		<p>과목명 : </p> <input type="text" name="subject" />
+    	<p>과목명 : </p> <input type="text" name="subject" />
     		<p>강사 : </p> <input type="text" name="teacher" placeholder=",로 여러명 추가"/>		
     		<p>과목설명 : </p> <textarea name="explain"></textarea>
     		<p>과목분야 :</p>
@@ -22,8 +21,9 @@
     			<option>HTML</option>
     			<option>CSS</option>
     		</select>  
-    		<input type="submit" value="과목 생성" />
-    	</form>
+    		<input type="button" value="과목 수정" onclick="location.href='updSubject.jsp'"/>
+    		<input type="button" value="과목 삭제" onclick="location.href='delSubject'"/>
+    		<input type="button" value="돌아가기" onclick="location.href='subjectM.jsp'"/>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>

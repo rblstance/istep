@@ -5,15 +5,15 @@ public class SubjectDto {
 	private String name;
 	private String teacher;
 	private String explain;
+	private String kind;
 	
-	
-	
-	public SubjectDto(int code, String name, String teacher, String explain) {
+	public SubjectDto(int code, String name, String teacher, String explain, String kind) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.teacher = teacher;
 		this.explain = explain;
+		this.kind = kind;
 	}
 	
 	public int getCode() {
@@ -39,5 +39,11 @@ public class SubjectDto {
 	}
 	public void setExplain(String explain) {
 		this.explain = explain;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 }
