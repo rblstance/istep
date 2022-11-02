@@ -30,4 +30,7 @@ public class Chat_logDao {
 		return instance;
 	}
 	
+	// CREATE
+	
+	
 }

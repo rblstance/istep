@@ -4,6 +4,7 @@ public class ChatDto {
 
 	private String code;
 	private String name;
+	// 멤버를 String 말고 String[]으로 담는 것도 좋을 거 같은디 . . . .. . . . .
 	private String member;
 	private String host_id;
 	

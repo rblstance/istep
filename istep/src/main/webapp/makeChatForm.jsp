@@ -10,20 +10,28 @@
 <body>
 <%
 UserDao dao = UserDao.getInstance();
-UserDto dto = null;
+UserDto member = null;
+String user = (String)session.getAttribute("log");
 %>
 	<jsp:include page="header.jsp"/>
     <section>
     	<div>
             <form method="post" action="">
-                <table>
+            	<input type="hidden" name="code" id="code" value="">
+				<input type="hidden" name="host_id" id="host_id" value="<%=user%>">
+				<table>
                 	<tbody>
-                		<td><input type="hidden" name="code" id="code" value=""></td>
-                		<td><input type="hidden" name="host_id" id="host_id" value=""></td>
-                		<td><label for="name">채팅방 이름</label><br><input type="text" name="name" id="name"></td>
-                		<td><label for="code">멤버 초대</label><br><input type="button" value="아이디 조회" name="" id="" onclick="openPop()"></td>
-                		<td><input type="submit" value="생성하기"></td>
-                		<td></td>
+                		<tr>
+                			<td>채팅방 이름</td>
+                			<td><input type="text" name="name" id="name"></td>
+                		</tr>
+                		<tr>
+                			<td>멤버 초대</td>
+                			<td><input type="button" value="아이디 조회" name="user_id" id="user_id" onclick="openPop()"></td>
+                		</tr>
+                		<tr>
+                			<td><input type="submit" value="생성하기"></td>
+                		</tr>
                 	</tbody>
                 </table>
             </form>
@@ -37,13 +45,13 @@ UserDto dto = null;
                     <label>아이디 검색</label><br><input type="text" name="user_id" id="user_id"><br>
                     <%
                     // 이거를 onclick했을 때만 작동하도록
-                    UserDto user = dao.getUserById("user_id");
-                    if(user != null){
+                    //member = dao.getUserById("user_id");
+                    //if(user != null){
                     	// 검색 결과 보여주기
                     	// 아이디 검색 결과 옆에 추가 버튼
-                    } else {
+                    //} else {
                     	// 존재하지 않는 아이디입니다.
-                    }
+                    //}
                     %>
                     <input type="button" value="검색" onclick="">
                     <div name="s_result">
