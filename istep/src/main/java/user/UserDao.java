@@ -141,7 +141,32 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+	public int duplecateId(String id) {
+		int cnt = 0;
+		
+		String sql = "SELECT count(`id`) as cnt FROM user WHERE `id` = ?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = this.rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 	// id, pw 값을 받아서 맞으면 로그인 가능
 	public int loginCheck(String id, String password) {
 		int result = 0;

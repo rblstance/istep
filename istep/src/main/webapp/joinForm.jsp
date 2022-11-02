@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 	<%
@@ -16,7 +16,7 @@
 		<table border="1">
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="id" id="id" size="15">
+				<td><input type="text" name="id" id="id" size="15" readonly>
 					<input type="button" value="ID중복확인" onclick="idCheck()"></td>
 			</tr>
 			<tr>
@@ -50,7 +50,7 @@
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" id="email" size="30"
-					readonly> <input type="button" value="Email 중복확인"
+					readonly> <input type="button" value="Email 인증"
 					onclick="emailCheck()"></td>
 			</tr>
 			<tr>
@@ -78,14 +78,13 @@
 function idCheck(){
   //새창 만들기
   //window.open("파일명", "새 창 이름", "다양한 옵션");
-  window.open("idCheckForm.jsp", "idcheck", "width=400, height=350");
+  window.open("idDuplCheck.jsp", "idcheck", "width=400, height=350");
 }
-
 
 //email 중복체크
 function emailCheck(){
 	//새창 만들기
-    window.open("emailCheckForm.jsp", "emailcheck", "width=400, height=350");
+    window.open("emailCheck.jsp", "emailcheck", "width=400, height=350");
 }//emailCheck() end
 </script>
 </body>
