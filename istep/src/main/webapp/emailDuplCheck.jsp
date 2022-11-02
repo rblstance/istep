@@ -10,7 +10,7 @@
 	<div>  
 		<h3>* 이메일 중복확인 *</h3>
 		<form method="post" action="emailDuplOk.jsp">
-			이메일 : <input type="text" name="email" maxlength="20" autofocus>
+			이메일 : <input type="text" name="email" maxlength="30" autofocus>
 			<input type="submit" value="중복확인">
 		</form>
 	</div>

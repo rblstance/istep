@@ -44,17 +44,19 @@ public class SignUpAction extends HttpServlet {
 		String grade = request.getParameter("grade");
 		Date regdate = now; 
 		
-		if(id != null && password != null && name != null && phone != null&& email != null && grade != null && regdate !=null) {
+		if(id != null && password != null && name != null && phone != null && email != null && grade != null && regdate !=null) {
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 			dao.createUser(user);
 		}
+		request.getRequestDispatcher("index").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

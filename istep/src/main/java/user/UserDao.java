@@ -17,9 +17,9 @@ public class UserDao {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-
+	
 	private UserDao() {
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
@@ -143,6 +143,7 @@ public class UserDao {
 		}
 		return user;
 	}
+	// 아이디 중복 확인
 	public int duplecateId(String id) {
 		int cnt = 0;
 		
@@ -169,6 +170,7 @@ public class UserDao {
 		}
 		return cnt;
 	}
+	// 이메일 중복확인
 	public int duplecateEmail(String email) {
 		int cnt = 0;
 		

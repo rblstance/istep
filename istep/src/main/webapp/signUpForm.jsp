@@ -11,12 +11,12 @@
 </head>
 <body>
 	<h1>회원가입</h1>  
-	<form name="regForm" method="post" action="">
+	<form name="regForm" method="post" action="SignUp">
 		<table border="1">
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="id" id="id" size="15" readonly>
-					<input type="button" value="ID중복확인" onclick="idCheck()"></td>
+					<input type="button" value="ID중복확인" onclick="idCheck()" required></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -34,8 +34,7 @@
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td><input type="text" name="nickname" id="nickname" size="15"
-					required></td>
+				<td><input type="text" name="nickname" id="nickname" size="15"></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
@@ -49,12 +48,12 @@
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" id="email" size="30"
-					readonly> <input type="button" value="Email 중복"
+					readonly> <input type="button" value="Email 중복확인"
 					onclick="emailCheck()"></td>
 			</tr>
 			<tr>
 				<th>등급[A:학생, B:강사]</th>
-				<td><select name="job" id="job">
+				<td><select name="grade" id="grade">
 						<option value="A">A</option>
 						<option value="B">B</option>
 				</select></td>
