@@ -8,22 +8,21 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-
 import util.DBManager;
 
 public class BoardDao {
-	private String url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
-	private String user = "admin";
-	private String password = "H77LtnHvcj6uYsgEv3ZT";
-
+	private String url;
+	private String user;
+	private String password;
+	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
 	private BoardDao() {
-		this.url = "";
-		this.user = "";
-		this.password = "";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.user = "admin";
+		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
 		this.conn = null;
 		this.pstmt = null;
@@ -97,7 +96,7 @@ public class BoardDao {
 	}
 	// Read all
 	public ArrayList<BoardDto> getBoardAll(){
-		ArrayList<BoardDto> list = new ArrayList<>();
+		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		String sql = "SELECT * FROM board ORDER BY `no` DESC";
 		
 		try {
