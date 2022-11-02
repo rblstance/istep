@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-        메인페이지입니당
+    	<div id="player"></div>
+        <a href="lectureView.jsp?code=MzXxHCdFClw">비디오 보기</a>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>

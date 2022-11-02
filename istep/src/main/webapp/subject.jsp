@@ -7,7 +7,8 @@
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-        과목 목록이 쭈르륵 나옵니다
+        
+        
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>
