@@ -6,14 +6,15 @@
 
 </head>
 <body>
+<%
+String subject = request.getParameter("sbj");
+%>
 	<jsp:include page="header.jsp"/>
     <section>
-   	<div>
-   		<h2 class="">자바 JAVA</h2>
-   		<p>content</p>
-   		<input type="button" value="강의 검색" onclick="location.href='lecturePage.jsp?sbj=자바강의'"/>
-   	</div>
+    	<input type="hidden" class="subject" value="<%=subject %>" />
+    	<div class="lecture_container"></div>
     </section>
 	<jsp:include page="footer.jsp"/>
+	<script src="resources/loadLectures.js"></script>
 </body>
 </html>

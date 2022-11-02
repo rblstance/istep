@@ -1,3 +1,6 @@
+<%@page import="subject.SubjectDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="subject.SubjectDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,13 +9,13 @@
 
 </head>
 <body>
+<%
+	SubjectDao sbjDao = SubjectDao.getInstance();
+	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
+%>
 	<jsp:include page="header.jsp"/>
     <section>
-   	<div>
-   		<h2 class="">자바 JAVA</h2>
-   		<p>content</p>
-   		<input type="button" value="강의 검색" onclick="location.href='lecturePage.jsp?sbj=자바강의'"/>
-   	</div>
+    	
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>
