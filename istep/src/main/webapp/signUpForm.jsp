@@ -21,12 +21,15 @@
 			<tr>
 				<th>비밀번호</th>
 				<td><input type="password" name="password" id="password"
-					size="15" required></td>
+					size="15" required>
+				</td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
 				<td><input type="password" name="passwordCheck"
-					id="passwordCheck" size="15" required></td>
+					id="passwordCheck" size="15" required>
+					<font id="checkPw" size="2"></font>
+				</td>
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -67,19 +70,6 @@
 		</table>
 	</form>
 
-<script>
-//id 중복체크
-function idCheck(){
-  //새창 만들기
-  //window.open("파일명", "새 창 이름", "다양한 옵션");
-  window.open("idDuplCheck.jsp", "idcheck", "width=400, height=350");
-}
-
-//email 중복체크
-function emailCheck(){
-	//새창 만들기
-    window.open("emailDuplCheck.jsp", "emailcheck", "width=400, height=350");
-}//emailCheck() end
-</script>
+<script src="resources/signUpForm.js"></script>
 </body>
 </html>

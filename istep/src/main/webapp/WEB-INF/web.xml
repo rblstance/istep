@@ -20,6 +20,14 @@
 		<servlet-name>SignUp</servlet-name>
 		<url-pattern>/SignUp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>user.LoginAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
 	
 	<!-- jsp -->
 	<servlet>
@@ -69,5 +77,13 @@
 	<servlet-mapping>
 		<servlet-name>subject</servlet-name>
 		<url-pattern>/subject</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<jsp-file>/logout.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
 </web-app>
