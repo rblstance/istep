@@ -8,11 +8,8 @@
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
-   	<div>
-   		<h2 class="">자바 JAVA</h2>
-   		<p>content</p>
-   		<input type="button" value="강의 검색" onclick="location.href='lecturePage.jsp?sbj=자바강의'"/>
-   	</div>
+    	<input type="text" class="search" />
+    	
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>
