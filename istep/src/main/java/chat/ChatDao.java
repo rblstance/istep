@@ -20,7 +20,7 @@ public class ChatDao {
 	private ResultSet rs;
 	
 	private ChatDao() {
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
@@ -36,15 +36,16 @@ public class ChatDao {
 	}
 	
 	// CREATE CHAT
-	public void createChat(String name, String member, String host_id) {
-		String sql = "INSERT INTO chat VALUES(?, ?, ?, ?)";
+	public void createChat() {
+		String sql = "INSERT INTO chat VALUES(`?`, `?`, `?`, `?`)";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			String code = createCode(host_id);
-			this.pstmt.setString(1, code);
-			this.pstmt.setString(2, member);
-			this.pstmt.setString(3, host_id);
+			//String code = createCode(host_id);
+			this.pstmt.setString(1, "test");
+			this.pstmt.setString(2, "name");
+			this.pstmt.setString(3, "member");
+			this.pstmt.setString(4, "id");
 			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +61,7 @@ public class ChatDao {
 	
 	// CREATE CODE
 	public String createCode(String host_id) {
-		String code = null;
+		String code = "";
 		code += host_id.substring(0, 4);
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String time = now.toString();

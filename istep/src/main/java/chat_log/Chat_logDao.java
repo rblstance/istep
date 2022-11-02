@@ -3,6 +3,7 @@ package chat_log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Chat_logDao {
 
@@ -15,7 +16,7 @@ public class Chat_logDao {
 	private ResultSet rs;
 	
 	private Chat_logDao() {
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
@@ -31,6 +32,10 @@ public class Chat_logDao {
 	}
 	
 	// CREATE
+	
+	// READ ALL LOG
+	//public ArrayList<Chat_>
+	// READ ONE LOG
 	
 	
 }

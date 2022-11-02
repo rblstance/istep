@@ -20,7 +20,7 @@ public class MemberDao {
 	private ResultSet rs;
 	
 	private MemberDao() {
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
@@ -37,7 +37,7 @@ public class MemberDao {
 	
 	// CREATE
 	public void createMember(String user_id, String c_code) {
-		String sql = "INSERT INTO member VALUES(user_id=?, c_code=?, regdate=?)";
+		String sql = "INSERT INTO member VALUES(?, ?, ?)";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
