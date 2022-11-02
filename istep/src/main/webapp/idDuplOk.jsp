@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>* 아이디 중복 확인 결과 *</h3>
-	<%
+	<% 
 	//1) 사용가능한 아이디일 경우, 아이디 입력 폼에 넣기 위함
 	UserDao dao = UserDao.getInstance();
 	String id = request.getParameter("id");

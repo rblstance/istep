@@ -7,8 +7,8 @@
 <title>ID 중복확인 체크</title>
 </head>
 <body>
-	<div>
-		<h3>* 아이디 중복확인 *</h3>
+	<div> 
+		<h3>*아이디 중복확인*</h3>
 		<form method="post" action="idDuplOk.jsp"
 			onsubmit="return blankCheck(this)">
 			아이디 : <input type="text" name="id" maxlength="10" autofocus>

@@ -10,7 +10,7 @@
 <title>회원가입</title>
 </head>
 <body>
-	<h1>회원가입</h1>
+	<h1>회원가입</h1>  
 	<form name="regForm" method="post" action="">
 		<table border="1">
 			<tr>

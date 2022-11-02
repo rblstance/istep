@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>* 이메일 중복 확인 결과 *</h3>
-	<%
+	<%  
 	//1) 사용가능한 이메일 경우, 이메일 입력 폼에 넣기 위함
 	UserDao dao = UserDao.getInstance();
 	String email = request.getParameter("email");
