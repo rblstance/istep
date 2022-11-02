@@ -37,13 +37,11 @@ public class SubjectDao {
 	// CRUD
 	
 	// 1. Create
-	public void addSubject(SubjectDto subject){
-		String sql = "INSERT INTO subject values(?,?,?,?)";
+	public void addSubject(String name,String teacher,String explain, String kind){
+		String sql = "INSERT INTO `subject` values(?,?,?,?,?)";
 		
-		int code = subject.getCode();
-		String name = subject.getName();
-		String teacher = subject.getTeacher();
-		String explain = subject.getExplain();
+		int code = getCode();
+		System.out.println(code);
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -51,6 +49,7 @@ public class SubjectDao {
 			this.pstmt.setString(2, name);
 			this.pstmt.setString(3, teacher);
 			this.pstmt.setString(4, explain);
+			this.pstmt.setString(5, kind);
 			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +68,6 @@ public class SubjectDao {
 	public ArrayList<SubjectDto> getSubjectAll(){
 		ArrayList<SubjectDto> sbjList = new ArrayList<SubjectDto>();
 		String sql = "SELECT * FROM `subject`";
-		System.out.println("dddd");
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -102,7 +100,7 @@ public class SubjectDao {
 	
 	public SubjectDto getSubjectByCode(int code){
 		SubjectDto subject = null;
-		String sql = "SELECT * FROM `subject` WHERE `code`=`?`";
+		String sql = "SELECT * FROM `subject` WHERE `code`=?";
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
@@ -132,6 +130,7 @@ public class SubjectDao {
 			
 		return subject;
 	}
+	
 	// 3. Update
 	public void updSubject(SubjectDto subject){
 		String sql = "UPDATE subject name=?, teacher=?, explain=?, kind=? WHERE code=?";
@@ -164,7 +163,7 @@ public class SubjectDao {
 	
 	// 4. Delete
 	public void delSubject(int code){
-		String sql = "DELETE subject WHERE code=?";
+		String sql = "DELETE FROM subject WHERE code=?";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -180,5 +179,37 @@ public class SubjectDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	// Other
+	
+	public int getCode() {
+		int code = 0; 
+		try {
+			while(true) {
+				code = (int) Math.floor((Math.random()*900000000)+100000000);
+				String sql = "SELECT * FROM `subject` WHERE code=?";
+				this.conn = DBManager.getConnection(this.url, this.user, this.password);
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, code);
+				this.pstmt.execute();
+				this.rs = this.pstmt.executeQuery();
+				
+				if(!this.rs.next()) {
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return code;
 	}
 }

@@ -8,7 +8,6 @@ public class DBManager {
 	public static Connection getConnection(String url, String user, String password) {
 		Connection conn = null;
 		
-		System.out.println(url+"/"+user+"/"+password);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);

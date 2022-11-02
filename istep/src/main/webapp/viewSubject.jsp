@@ -1,3 +1,5 @@
+<%@page import="subject.SubjectDto"%>
+<%@page import="subject.SubjectDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,24 +8,26 @@
 
 </head>
 <body>
+<%
+request.setCharacterEncoding("UTF-8");
+
+int code = Integer.parseInt(request.getParameter("code"));
+SubjectDao sbjDao = SubjectDao.getInstance();
+SubjectDto sbj = sbjDao.getSubjectByCode(code);
+System.out.println(sbj.getName());
+%>
 	<jsp:include page="header.jsp"/>
     <section>
-    	<p>과목명 : </p> <input type="text" name="subject" />
-    		<p>강사 : </p> <input type="text" name="teacher" placeholder=",로 여러명 추가"/>		
-    		<p>과목설명 : </p> <textarea name="explain"></textarea>
+    	<form method="POST" action="updSubject.jsp">
+    		<p>과목명 : </p> <input type="text" name="subject" value="<%=sbj.getName() %>" readonly/>
+    		<p>강사 : </p> <input type="text" name="teacher" value="<%=sbj.getTeacher() %>" readonly/>		
+    		<p>과목설명 : </p> <textarea name="explain" readonly><%=sbj.getExplain() %></textarea>
     		<p>과목분야 :</p>
-    		<select>
-    			<option>JAVA</option>
-    			<option>JavaScript</option>
-    			<option>Python</option>
-    			<option>C#</option>
-    			<option>C++</option>
-    			<option>HTML</option>
-    			<option>CSS</option>
-    		</select>  
-    		<input type="button" value="과목 수정" onclick="location.href='updSubject.jsp'"/>
-    		<input type="button" value="과목 삭제" onclick="location.href='delSubject'"/>
+    		<input type="text" name="kind" value="<%=sbj.getKind()%>" readonly></input>  
+    		<input type="submit" value="과목 수정" />
+    		<input type="button" value="과목 삭제" onclick="location.href='delSubject?code=<%=code%>'"/>
     		<input type="button" value="돌아가기" onclick="location.href='subjectM.jsp'"/>
+    	</form>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>

@@ -20,7 +20,31 @@
 		<servlet-name>SignUp</servlet-name>
 		<url-pattern>/SignUp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>addSubject</servlet-name>
+		<servlet-class>subject.addSubjectAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addSubject</servlet-name>
+		<url-pattern>/addSubject</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>delSubject</servlet-name>
+		<servlet-class>subject.delSubjectAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delSubject</servlet-name>
+		<url-pattern>/delSubject</url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>sendSbjCode</servlet-name>
+		<servlet-class>subject.sendSbjCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sendSbjCode</servlet-name>
+		<url-pattern>/sendSbjCode</url-pattern>
+	</servlet-mapping>
 	<!-- jsp -->
 	<servlet>
 		<servlet-name>index</servlet-name>
