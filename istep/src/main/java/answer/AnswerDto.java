@@ -7,7 +7,6 @@ public class AnswerDto {
 	private String content;
 	private String regdate;
 	
-	
 	public AnswerDto(int code, int b_num, String user_id, String content, String regdate) {
 		super();
 		this.code = code;
@@ -16,6 +15,7 @@ public class AnswerDto {
 		this.content = content;
 		this.regdate = regdate;
 	}
+	
 	public int getCode() {
 		return code;
 	}

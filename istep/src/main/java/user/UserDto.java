@@ -1,6 +1,6 @@
 package user;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class UserDto {
 	private String id;
@@ -9,27 +9,12 @@ public class UserDto {
 	private String nickname;
 	private String phone;
 	private String birth;
-	private String registration;
 	private String email;
 	private String grade;
-	private Timestamp regdate;
-	
-	
-	
-	public UserDto(String id, String password, String name, String phone, String email, String grade,
-			Timestamp regdate) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-		this.grade = grade;
-		this.regdate = regdate;
-	}
+	private Date regdate;
 
 	public UserDto(String id, String password, String name, String nickname, String phone, String birth,
-			String registration, String email, String grade, Timestamp regdate) {
+			 String email, String grade, Date regdate) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -37,7 +22,6 @@ public class UserDto {
 		this.nickname = nickname;
 		this.phone = phone;
 		this.birth = birth;
-		this.registration = registration;
 		this.email = email;
 		this.grade = grade;
 		this.regdate = regdate;
@@ -79,12 +63,7 @@ public class UserDto {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getRegistration() {
-		return registration;
-	}
-	public void setRegistration(String registration) {
-		this.registration = registration;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -97,12 +76,10 @@ public class UserDto {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public Timestamp getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-//	public void setRegdate(Timestamp regdate) {
-//		this.regdate = regdate;
-//	}
+
 	
 	
 }
