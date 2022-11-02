@@ -42,7 +42,7 @@
 
     	</tbody>
     </table>
-    
+    <button onclick="location.href='boardWriteForm.jsp'">글쓰기</button>
 	<jsp:include page="footer.jsp"/>
 </body>
 </body>

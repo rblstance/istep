@@ -69,7 +69,7 @@ public class BoardDao {
 		}
 	}
 	
-	private int noGenerator() {
+	public int noGenerator() {
 		String sql = "SELECT MAX(`no`) FROM board;";
 		int no = 0;
 		
