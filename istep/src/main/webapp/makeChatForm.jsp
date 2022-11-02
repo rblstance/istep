@@ -40,9 +40,14 @@ String user = (String)session.getAttribute("log");
         <div class="popup" id="popup" style="display: none; position: fixed;">
             <div class="popup_box">
                 <div style="height: 10px; width: 375px; float: top;"></div>
-                <input type="button" onclick="closePop()" value="여기 닫는 버튼 있으면 좋겠다">
+                <input type="button" onclick="closePop()" value="상단 닫는 버튼 아이콘,,">
                 <div class="popup_content">
                     <label>아이디 검색</label><br><input type="text" name="user_id" id="user_id"><br>
+                    <input type="button" value="검색" onclick="">
+                    <%//if %>
+                    <div>
+                    	
+                    </div>
                     <%
                     // 이거를 onclick했을 때만 작동하도록
                     //member = dao.getUserById("user_id");
@@ -53,7 +58,6 @@ String user = (String)session.getAttribute("log");
                     	// 존재하지 않는 아이디입니다.
                     //}
                     %>
-                    <input type="button" value="검색" onclick="">
                     <div name="s_result">
                     	여기 검색 결과를 노출합시다
 	                    입력 안 했을 때는 노출하지 맙시다~

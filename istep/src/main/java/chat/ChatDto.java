@@ -4,15 +4,18 @@ public class ChatDto {
 
 	private String code;
 	private String name;
-	// 멤버를 String 말고 String[]으로 담는 것도 좋을 거 같은디 . . . .. . . . .
-	private String member;
 	private String host_id;
 	
-	public ChatDto(String code, String name, String member, String host_id) {
+	public ChatDto(String code, String name, String host_id) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.member = member;
+		this.host_id = host_id;
+	}
+	
+	public ChatDto(String name, String host_id) {
+		super();
+		this.name = name;
 		this.host_id = host_id;
 	}
 	
@@ -30,14 +33,6 @@ public class ChatDto {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getMember() {
-		return member;
-	}
-	
-	public void setMember(String member) {
-		this.member = member;
 	}
 	
 	public String getHost_id() {

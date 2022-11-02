@@ -57,30 +57,8 @@ public class MemberDao {
 			}
 		}
 	}
-	// READ ALL MEMBERS - 필요한가?
-	public ArrayList<MemberDto> getMemberAll(){
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		MemberDto member = null;
-		String sql = "SELECT * FROM member";
-		try {
-			this.conn = DBManager.getConnection(this.url, this.user, this.password);
-			this.pstmt = this.conn.prepareStatement(sql);
-			this.rs = this.pstmt.executeQuery();
-			
-			while(this.rs.next()) {
-				String user_id = this.rs.getString(1);
-				String c_code = this.rs.getString(2);
-				Timestamp regdate = this.rs.getTimestamp(3);
-				
-				member = new MemberDto(user_id, c_code, regdate);
-				list.add(member);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	// READ MEMBERS BY C_CODE
+
+	// READ MEMBERS BY C_CODE (채팅방 전체 회원 확인)
 	public ArrayList<MemberDto> getMemberByC_code(String c_code){
 		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 		MemberDto member = null;
@@ -136,7 +114,7 @@ public class MemberDao {
 	
 	// DELETE MEMBER
 	public void deleteMember(String user_id, String c_code) {
-		String sql = "DELETE * FROM member WHERE user_id=? AND c_code=?";
+		String sql = "DELETE FROM member WHERE user_id=? AND c_code=?";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);

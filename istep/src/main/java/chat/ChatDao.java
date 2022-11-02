@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import util.DBManager;
@@ -36,16 +35,15 @@ public class ChatDao {
 	}
 	
 	// CREATE CHAT
-	public void createChat() {
-		String sql = "INSERT INTO chat VALUES(`?`, `?`, `?`, `?`)";
+	public void createChat(ChatDto chat) {
+		String sql = "INSERT INTO chat VALUES(`?`, `?`, `?`)";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			//String code = createCode(host_id);
-			this.pstmt.setString(1, "test");
-			this.pstmt.setString(2, "name");
-			this.pstmt.setString(3, "member");
-			this.pstmt.setString(4, "id");
+			String code = createCode(chat.getHost_id());
+			this.pstmt.setString(1, code);
+			this.pstmt.setString(2, chat.getName());
+			this.pstmt.setString(3, chat.getHost_id());
 			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,12 +61,41 @@ public class ChatDao {
 	public String createCode(String host_id) {
 		String code = "";
 		code += host_id.substring(0, 4);
-		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String time = now.toString();
-		code += time.substring(time.length()-4, time.length());
+		code += String.valueOf(getRnum());
 
 		return code;
 	}
+	
+	public int getRnum() {
+		int code = 0;
+		try {
+			while(true) {
+				String sql = "SELECT * FROM `chat` WHERE code=?";
+				this.conn = DBManager.getConnection(this.url, this.user, this.password);
+				this.pstmt = this.conn.prepareStatement(sql);
+				int temp = (int)Math.floor(Math.random()*99999);
+				this.pstmt.setInt(1, temp);
+				this.rs = this.pstmt.executeQuery();
+				
+				if(!this.rs.next()) {
+					code = temp;
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return code;
+	}
+	
 	
 	// READ ALL
 	public ArrayList<ChatDto> getChatAll(){
@@ -82,10 +109,9 @@ public class ChatDao {
 			while(this.rs.next()) {
 				String code = this.rs.getString(1);
 				String name = this.rs.getString(2);
-				String member = this.rs.getString(3);
-				String host_id = this.rs.getString(4);
+				String host_id = this.rs.getString(3);
 				
-				ChatDto chat = new ChatDto(code, name, member, host_id);
+				ChatDto chat = new ChatDto(code, name, host_id);
 				list.add(chat);
 			}
 		} catch (Exception e) {
@@ -114,9 +140,8 @@ public class ChatDao {
 			while(this.rs.next()) {
 				String code = this.rs.getString(1);
 				String name = this.rs.getString(2);
-				String member = this.rs.getString(3);
 				
-				ChatDto chat = new ChatDto(code, name, member, host_id);
+				ChatDto chat = new ChatDto(code, name, host_id);
 				list.add(chat);
 			}
 		} catch (Exception e) {
@@ -144,10 +169,9 @@ public class ChatDao {
 			
 			if(this.rs.next()) {
 				String name = this.rs.getString(2);
-				String member = this.rs.getString(3);
-				String host_id = this.rs.getString(4);
+				String host_id = this.rs.getString(3);
 				
-				chat = new ChatDto(code, name, member, host_id);
+				chat = new ChatDto(code, name, host_id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -162,7 +186,24 @@ public class ChatDao {
 		}
 		return chat;
 	}
-	// UPDATE - MEMBER
 	
-	// DELETE
+	// DELETE BY CODE
+	public void deleteChat(String code) {
+		String sql = "DELETE FROM chat WHERE code=?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, code);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
