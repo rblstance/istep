@@ -1,3 +1,5 @@
+<%@page import="user.UserDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,11 +10,8 @@
 <title>회원가입</title>
 </head>
 <body>
-	<%
-	UserDao dao = UserDao.getInstance();
-	%>
-	<h1>회원가입</h1>
-	<form method="post" action="">
+	<h1>회원가입</h1>  
+	<form name="regForm" method="post" action="">
 		<table border="1">
 			<tr>
 				<th>아이디</th>
@@ -50,7 +49,7 @@
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" id="email" size="30"
-					readonly> <input type="button" value="Email 인증"
+					readonly> <input type="button" value="Email 중복"
 					onclick="emailCheck()"></td>
 			</tr>
 			<tr>
@@ -59,10 +58,6 @@
 						<option value="A">A</option>
 						<option value="B">B</option>
 				</select></td>
-			</tr>
-			<tr>
-			<th>만든날짜</th>
-				<td><input type="text" name="regdate" id="regdate" size="30" readonly></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -84,7 +79,7 @@ function idCheck(){
 //email 중복체크
 function emailCheck(){
 	//새창 만들기
-    window.open("emailCheck.jsp", "emailcheck", "width=400, height=350");
+    window.open("emailDuplCheck.jsp", "emailcheck", "width=400, height=350");
 }//emailCheck() end
 </script>
 </body>

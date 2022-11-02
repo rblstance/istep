@@ -9,13 +9,12 @@
 </head>
 <body>
 	<h3>* 아이디 중복 확인 결과 *</h3>
-	<%
+	<% 
 	//1) 사용가능한 아이디일 경우, 아이디 입력 폼에 넣기 위함
 	UserDao dao = UserDao.getInstance();
 	String id = request.getParameter("id");
 	int cnt = dao.duplecateId(id);
 	
-	out.println("입력 ID : <strong>" + id + "</stong>");
 	if (cnt == 0) {
 		out.println("<p>사용 가능한 아이디입니다.</p>");
 		out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");

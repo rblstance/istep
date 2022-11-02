@@ -9,11 +9,12 @@ public class UserDto {
 	private String nickname;
 	private String phone;
 	private String birth;
+	private String registrations;
 	private String email;
 	private String grade;
 	private Date regdate;
 
-	public UserDto(String id, String password, String name, String nickname, String phone, String birth,
+	public UserDto(String id, String password, String name, String nickname, String phone, String birth, String registrations,
 			 String email, String grade, Date regdate) {
 		super();
 		this.id = id;
@@ -22,6 +23,7 @@ public class UserDto {
 		this.nickname = nickname;
 		this.phone = phone;
 		this.birth = birth;
+		this.registrations = registrations;
 		this.email = email;
 		this.grade = grade;
 		this.regdate = regdate;
@@ -63,7 +65,13 @@ public class UserDto {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
+	public String getRegistrations() {
+		return registrations;
+	}
 
+	public void setRegistrations(String registrations) {
+		this.registrations = registrations;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -75,6 +83,9 @@ public class UserDto {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	public Date getRegdate() {
 		return regdate;

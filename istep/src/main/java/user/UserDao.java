@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import util.DBManager;
@@ -38,7 +37,7 @@ public class UserDao {
 	
 	// Create 계정 생성 
 	public void createUser(UserDto user) {
-		String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
@@ -49,9 +48,10 @@ public class UserDao {
 			this.pstmt.setString(4, user.getNickname());
 			this.pstmt.setString(5, user.getPhone());
 			this.pstmt.setString(6, user.getBirth());
-			this.pstmt.setString(7, user.getEmail());
-			this.pstmt.setString(8, user.getGrade());
-			this.pstmt.setDate(9, user.getRegdate());;
+			this.pstmt.setString(7, user.getRegistrations());
+			this.pstmt.setString(8, user.getEmail());
+			this.pstmt.setString(9, user.getGrade());
+			this.pstmt.setDate(10, user.getRegdate());;
 
 			this.pstmt.execute();
 
@@ -84,11 +84,12 @@ public class UserDao {
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
 				String birth = this.rs.getString(6);
-				String email = this.rs.getString(7);
-				String grade = this.rs.getString(8);
-				Date regdate = this.rs.getDate(9);
+				String registrations = this.rs.getString(7);
+				String email = this.rs.getString(8);
+				String grade = this.rs.getString(9);
+				Date regdate = this.rs.getDate(10);
 
-				UserDto user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
+				UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 				list.add(user);
 			}
 		} catch (Exception e) {
@@ -122,11 +123,12 @@ public class UserDao {
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
 				String birth = this.rs.getString(6);
-				String email = this.rs.getString(7);
-				String grade = this.rs.getString(8);
-				Date regdate = this.rs.getDate(9);
+				String registrations = this.rs.getString(7);
+				String email = this.rs.getString(8);
+				String grade = this.rs.getString(9);
+				Date regdate = this.rs.getDate(10);
 
-				user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
+				user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,6 +151,32 @@ public class UserDao {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, id);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = this.rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	public int duplecateEmail(String email) {
+		int cnt = 0;
+		
+		String sql = "SELECT count(`email`) as cnt FROM user WHERE `email` = ?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, email);
 			this.rs = this.pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -201,7 +229,7 @@ public class UserDao {
 	
 	// Update 정보수정
 	public void updateUserInfo(UserDto user) {
-		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,email=?,grade=? where id = ?;";
+		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,registrations=?,email=?,grade=? where `id` = ?;";
 
 		String id = user.getId();
 		String password = user.getPassword();
@@ -209,6 +237,7 @@ public class UserDao {
 		String nickname = user.getNickname();
 		String phone = user.getPhone();
 		String birth = user.getBirth();
+		String registrations = user.getRegistrations();
 		String email = user.getEmail();
 		String grade = user.getGrade();
 		
@@ -220,9 +249,10 @@ public class UserDao {
 			this.pstmt.setString(3, nickname);
 			this.pstmt.setString(5, phone);
 			this.pstmt.setString(6, birth);
-			this.pstmt.setString(7, email);
-			this.pstmt.setString(8, grade);
-			this.pstmt.setString(9, id);
+			this.pstmt.setString(7, registrations);
+			this.pstmt.setString(8, email);
+			this.pstmt.setString(9, grade);
+			this.pstmt.setString(10, id);
 			
 			this.pstmt.execute();
 		} catch (Exception e) {
