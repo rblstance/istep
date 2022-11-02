@@ -12,7 +12,7 @@
 <!-- 관리자만 접근 가능한 페이지-->
 <%
 	SubjectDao sbjDao = SubjectDao.getInstance();
-	//ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
+	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 %> 
 	<jsp:include page="header.jsp"/>
     <section>
