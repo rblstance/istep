@@ -1,10 +1,10 @@
-package answer;
+package subject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class AnswerDao {
+public class SubjectDao {
 	private String url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 	private String user = "admin";
 	private String password = "H77LtnHvcj6uYsgEv3ZT";
@@ -13,7 +13,7 @@ public class AnswerDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private AnswerDao() {
+	private SubjectDao() {
 		this.url = "";
 		this.user = "";
 		this.password = "";
@@ -23,9 +23,9 @@ public class AnswerDao {
 		this.rs = null;
 	}
 	
-	private static AnswerDao instance = new AnswerDao();
+	private static SubjectDao instance = new SubjectDao();
 	
-	public static AnswerDao getInstance() {
+	public static SubjectDao getInstance() {
 		return instance;
 	}
 }

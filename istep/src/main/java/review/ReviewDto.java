@@ -1,35 +1,43 @@
-package board;
+package review;
 
 import java.security.Timestamp;
 
-public class BoardDto {
+public class ReviewDto {
 	private int no;
-	private String user_id;
+	private int sbj_code;
+	private String id;
 	private String title;
 	private String content;
 	private Timestamp regdate;
-	private int check;
 	
 	
-	
-	public BoardDto(int no, String user_id, String title, String content, Timestamp regdate, int check) {
+	public ReviewDto(int no, int sbj_code, String id, String title, String content, Timestamp regdate) {
 		super();
 		this.no = no;
-		this.user_id = user_id;
+		this.sbj_code = sbj_code;
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.regdate = regdate;
-		this.check = check;
 	}
 	
 	public int getNo() {
 		return no;
 	}
-	public String getUser_id() {
-		return user_id;
+//	public void setNo(int no) {
+//		this.no = no;
+//	}
+	public int getSbj_code() {
+		return sbj_code;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setSbj_code(int sbj_code) {
+		this.sbj_code = sbj_code;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getTitle() {
 		return title;
@@ -49,18 +57,6 @@ public class BoardDto {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public int getCheck() {
-		return check;
-	}
-	public void setCheck(int check) {
-		this.check = check;
-	}
 	
 	
-//	public void setNo(int no) {
-//		this.no = no;
-//	}
-
-
-
 }
