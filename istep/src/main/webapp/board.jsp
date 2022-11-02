@@ -21,23 +21,24 @@
     BoardDao dao = BoardDao.getInstance(); 
     ArrayList<BoardDto> list = dao.getBoardAll();
     %>
-    <table border="1">
+    <table border="1" width="700" height="100">
     	<thead>
     		<tr>
-    			<th>번호</th>
-    			<th>제목</th>
-    			<th>게시일</th>
-    			<th>해결여부</th>
+    			<th width="50">번호</th>
+    			<th width="400">제목</th>
+    			<th width="200">게시일</th>
+    			<th width="50">해결여dd부</th>
     		</tr>
     	</thead>
     	<tbody>
- 
+    	<%for(BoardDto board : list) {%>
     		<tr>
-    			<td>번호</td>
-    			<td>제목</td>
-    			<td>게시일</td>
-    			<td>o/x</td>
+    			<td><%=board.getNo() %></td>
+    			<td><a href="boardView.jsp?no=<%=board.getNo()%>"><%=board.getTitle() %></a></td>
+    			<td><%=board.getRegdate() %></td>
+    			<td><%=board.getCheck() %></td>
     		</tr>
+    	<%} %>
 
     	</tbody>
     </table>
