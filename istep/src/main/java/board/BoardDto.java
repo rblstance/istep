@@ -1,6 +1,6 @@
 package board;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class BoardDto {
 	private int no;
