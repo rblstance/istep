@@ -7,7 +7,7 @@
 <title>ID 중복확인 체크</title>
 </head>
 <body>
-	<div style="text-align: center">
+	<div>
 		<h3>* 아이디 중복확인 *</h3>
 		<form method="post" action="idDuplOk.jsp"
 			onsubmit="return blankCheck(this)">
@@ -20,8 +20,8 @@
 		function blankCheck(f) {
 			var id = f.id.value;
 			id = id.trim();
-			if (id.length < 1) {
-				alert("아이디는 1자 이상 입력해주십시오.");
+			if (id.length < 5) {
+				alert("아이디는 5글자 이상 입력해주십시오.");
 				return false;
 			}//if end
 			return true;

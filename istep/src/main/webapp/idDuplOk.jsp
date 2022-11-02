@@ -15,7 +15,6 @@
 	String id = request.getParameter("id");
 	int cnt = dao.duplecateId(id);
 	
-	out.println("입력 ID : <strong>" + id + "</stong>");
 	if (cnt == 0) {
 		out.println("<p>사용 가능한 아이디입니다.</p>");
 		out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
