@@ -3,6 +3,8 @@ package chat_log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import util.DBManager;
@@ -35,19 +37,73 @@ public class Chat_logDao {
 	
 	// CREATE
 	public void createChat_log(Chat_logDto log) {
-		String sql = "INSERT INTO chat_log VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO chat_log(`user_id`, `c_code`, `content`, `regdate`) VALUES(?,?,?,?)";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			//this.pstmt.setInt(); //번호매기깅 1부터...........
-			
+			this.pstmt.setString(1, log.getUser_id());
+			this.pstmt.setString(2, log.getC_code());
+			this.pstmt.setString(3, log.getContent());
+			this.pstmt.setTimestamp(4, log.getRegdate());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	// READ ALL LOG
-	//public ArrayList<Chat_>
+	// READ ALL LOG BY C_CODE (채팅방 내 모든 로그)
+	public ArrayList<Chat_logDto> getAllChat_logByC_code(String c_code){
+		ArrayList<Chat_logDto> list = new ArrayList<Chat_logDto>();
+		String sql = "SELECT * FROM chat_log WHERE c_code=?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, c_code);
+			this.rs = this.pstmt.executeQuery();
+			
+			while(this.rs.next()) {
+				int no = this.rs.getInt(1);
+				String user_id = this.rs.getString(2);
+				String content = this.rs.getString(4);
+				Timestamp regdate = this.rs.getTimestamp(5);
+				
+				Chat_logDto chat_log = new Chat_logDto(no, user_id, c_code, content, regdate);
+				list.add(chat_log);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 	// READ ONE LOG
+	public Chat_logDto getChat_logByNo(int no) {
+		Chat_logDto chat_log = null;
+		String sql = "SELECT * FROM chat_log WHERE no=?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return chat_log;
+	}
+	// UPDATE
 	
+	// DELETE
 	
 }

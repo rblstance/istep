@@ -8,15 +8,15 @@ public class Chat_logDto {
 	private String user_id;
 	private String c_code;
 	private String content;
-	private Timestamp rogdate;
+	private Timestamp regdate;
 	
-	public Chat_logDto(int no, String user_id, String c_code, String content, Timestamp rogdate) {
+	public Chat_logDto(int no, String user_id, String c_code, String content, Timestamp regdate) {
 		super();
 		this.no = no;
 		this.user_id = user_id;
 		this.c_code = c_code;
 		this.content = content;
-		this.rogdate = rogdate;
+		this.regdate = regdate;
 	}
 
 	public int getNo() {
@@ -51,12 +51,12 @@ public class Chat_logDto {
 		this.content = content;
 	}
 
-	public Timestamp getRogdate() {
-		return rogdate;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
 
-//	public void setRogdate(Timestamp rogdate) {
-//		this.rogdate = rogdate;
+//	public void setRogdate(Timestamp regdate) {
+//		this.rogdate = regdate;
 //	}
 	
 	
