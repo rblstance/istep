@@ -14,7 +14,10 @@ SubjectDao dao = SubjectDao.getInstance();
 ArrayList<SubjectDto> sbjList = dao.getSubjectAll();
 request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
-String selSbj = request.getParameter("subject");
+int selSbj = 0;
+if(request.getParameter("selSbj")!=""){
+	selSbj = Integer.parseInt(request.getParameter("selSbj"));
+}
 %>
 	<jsp:include page="header.jsp"/>
     <section>
@@ -22,7 +25,7 @@ String selSbj = request.getParameter("subject");
 	    <input type="hidden" id="selSbj" value="<%=selSbj %>" />
 	    <div class="search_box">
 	    	<form method="POST" action="lectureM.jsp">
-	    		<input type="hidden" id="subject" name="subject" />
+	    		<input type="hidden" id="subject" name="checkSbj" />
 	    		<input type="text" placeholder="검색" id="search" name="keyword" />
 	    		<input type="submit" value="검색"/>
 	    	</form>
@@ -30,11 +33,11 @@ String selSbj = request.getParameter("subject");
 	   	<div class="selSbj">
 	   		<fieldset>
 	   		<%for(int i=0;i<sbjList.size();i++) { 
-	   			int code = sbjList.get(i).getCode();
-	   			if(i==0){%>
-		   			<input type="radio" id="<%=code%>" value="<%=code%>" name="subject" onclick="getSbjCode(event)" checked />
+	   			SubjectDto sbj = sbjList.get(i);
+	   			if(sbj.getCode()==selSbj){ %>
+		   			<input type="radio" id="<%=sbj.getCode()%>" value="<%=sbj.getCode()%>" name="subject" onclick="getSbjCode(event)" checked />
 		   		<%} else{%>
-		   			<input type="radio" id="<%=code%>" value="<%=code%>" name="subject" onclick="getSbjCode(event)"/>
+		   			<input type="radio" id="<%=sbj.getCode()%>" value="<%=sbj.getCode()%>" name="subject" onclick="getSbjCode(event)"/>
 	   			<%}%>
 	   			<label for="subject"><%=sbjList.get(i).getName()%></label>
 	   		<%} %>
@@ -45,6 +48,6 @@ String selSbj = request.getParameter("subject");
 	   	</div>
     </section>
 	<jsp:include page="footer.jsp"/>
-	<script src="resources/loadLecture.js?ver=1"></script>
+	<script src="resources/loadLecture.js?ver=2"></script>
 </body>
 </html>
