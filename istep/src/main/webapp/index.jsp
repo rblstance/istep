@@ -6,6 +6,9 @@
 
 </head>
 <body>
+	<%
+	String log = (String)session.getAttribute("log");
+	%>
 	<jsp:include page="header.jsp"/>
     <section>
     

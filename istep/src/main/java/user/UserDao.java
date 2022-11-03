@@ -35,7 +35,7 @@ public class UserDao {
 	public static UserDao getInstance() {
 		return instance;
 	}
-	
+
 	// Create 계정 생성 
 	public void createUser(UserDto user) {
 		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
@@ -107,6 +107,34 @@ public class UserDao {
 		return list;
 	}
 	
+	// id를 받아서 유저 이름만 출력
+	public String getUserName(String id) {
+		String name = null;
+		
+		String sql = "SELECT name FROM user WHERE `id` = ?";
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(this.rs.next()) {
+				name = this.rs.getString("name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return name;
+	}
 	// id를 받아서 유저 한명 정보 출력
 	public UserDto getUserById(String id) {
 		UserDto user = null;

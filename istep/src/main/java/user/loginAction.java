@@ -1,24 +1,25 @@
 package user;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SignUpAction
+ * Servlet implementation class LoginAction
  */
-//@WebServlet("/SignUpAction")
-public class SignUpAction extends HttpServlet {
+//@WebServlet("/LoginAction")
+public class loginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /** 
+    /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUpAction() {
+    public loginAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,26 +30,26 @@ public class SignUpAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		Date now = new Date(System.currentTimeMillis());
-		
-		UserDao dao = UserDao.getInstance();
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String name = request.getParameter("name");
-		String nickname = request.getParameter("nickname");
-		String phone = request.getParameter("phone");
-		String birth = request.getParameter("birth");
-		String registrations = "";
-		String email = request.getParameter("email");
-		String grade = request.getParameter("grade");
-		Date regdate = now; 
 		
-		if(id != null && password != null && name != null && phone != null && email != null && grade != null && regdate !=null) {
-			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
-			dao.createUser(user);
+		UserDao dao = UserDao.getInstance();
+		int result = dao.loginCheck(id, password);
+		
+		HttpSession session = request.getSession();
+		
+		if(result == 1) {
+			session.setAttribute("log", id);
+			 out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
+			//request.getRequestDispatcher("index").forward(request, response);			
+		}else {
+			session.removeAttribute("log");
+			 out.println("<script>alert('아이디 또는 패스워드가 틀립니다.');location.href='loginForm';</script>");
+			//response.sendRedirect("loginForm");
 		}
-		request.getRequestDispatcher("index").forward(request, response);
 	}
 
 	/**

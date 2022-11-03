@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LoginAction
+ * Servlet implementation class logoutAction
  */
-//@WebServlet("/LoginAction")
-public class LoginAction extends HttpServlet {
+//@WebServlet("/logoutAction")
+public class logoutAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginAction() {
+    public logoutAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +33,13 @@ public class LoginAction extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		
-		UserDao dao = UserDao.getInstance();
-		int result = dao.loginCheck(id, password);
-		
 		HttpSession session = request.getSession();
+		String log = (String)session.getAttribute("log");
 		
-		if(result == 1) {
-			session.setAttribute("log", id);
-			 out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
-			//request.getRequestDispatcher("index").forward(request, response);			
-		}else {
-			session.removeAttribute("log");
-			 out.println("<script>alert('아이디 또는 패스워드가 틀립니다.');location.href='loginForm';</script>");
-			//response.sendRedirect("loginForm");
+		if(log != null) {
+			session.invalidate();
+			out.println("<script>alert('로그아웃 되었습니다.');location.href='index';</script>");
+		//response.sendRedirect("index");
 		}
 	}
 

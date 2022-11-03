@@ -11,25 +11,20 @@
 </head>
 <body>
 	<h1>회원가입</h1>  
-	<form name="regForm" method="post" action="SignUp">
-		<table border="1">
+	<form name="regForm" method="post" action="signUp">
+		<table border=1>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="id" id="id" size="15" readonly>
-					<input type="button" value="ID중복확인" onclick="idCheck()" required></td>
+				<td><input type="text" name="id" id="id" size="15" readonly required>
+					<input type="button" value="ID중복확인" onclick="idCheck()"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password" id="password"
-					size="15" required>
-				</td>
+				<td><input type="password" name="password" id="password" size="15" onkeyup="isSame()" required/>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="password" name="passwordCheck"
-					id="passwordCheck" size="15" required>
-					<font id="checkPw" size="2"></font>
-				</td>
+				<td><input type="password" name="passwordCheck" id="passwordCheck" size="15" size="15" onkeyup="isSame()" required/>&nbsp;&nbsp;<font id="same"></font></td>
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -64,7 +59,7 @@
 			<tr>
 				<td colspan="2">
 				<input type="submit" value="회원가입" /> 
-				<input type="reset" value="취소" />
+				<input type="button" onclick="location.href='index'" value="취소" />
 				</td>
 			</tr>
 		</table>
