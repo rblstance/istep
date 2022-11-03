@@ -10,7 +10,7 @@
     <section>
     	<form method="POST" action="addSubject">
     		<p>과목명 : </p> <input type="text" name="subject" />
-    		<p>강사 : </p> <input type="text" name="teacher" placeholder=",로 여러명 추가"/>		
+    		<p>강사 : </p> <input type="text" name="teacher"/>		
     		<p>과목설명 : </p> <textarea name="explain"></textarea>
     		<p>과목분야 :</p>
     		<select name="kind">

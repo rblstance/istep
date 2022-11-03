@@ -13,6 +13,14 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
+		<servlet-name>access</servlet-name>
+		<servlet-class>util.AccessAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>access</servlet-name>
+		<url-pattern>/access</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>signUp</servlet-name>
 		<servlet-class>user.signUpAction</servlet-class>
 	</servlet>
@@ -36,6 +44,14 @@
 		<servlet-name>addSubject</servlet-name>
 		<url-pattern>/addSubject</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>updSubject</servlet-name>
+		<servlet-class>subject.updSubjectAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updSubject</servlet-name>
+		<url-pattern>/updSubject</url-pattern>
+	</servlet-mapping>	
 	<servlet>
 		<servlet-name>delSubject</servlet-name>
 		<servlet-class>subject.delSubjectAction</servlet-class>
@@ -143,7 +159,7 @@
 		<servlet-name>subject</servlet-name>
 		<url-pattern>/subject</url-pattern>
 	</servlet-mapping>
-
+	
 	<servlet>
 		<servlet-name>subjectM</servlet-name>
 		<jsp-file>/subjectM.jsp</jsp-file>
@@ -152,6 +168,23 @@
 		<servlet-name>subjectM</servlet-name>
 		<url-pattern>/subjectM</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>addSubjectForm</servlet-name>
+		<jsp-file>/addSubject.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addSubjectForm</servlet-name>
+		<url-pattern>/addSubjectForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>updSubjectForm</servlet-name>
+		<jsp-file>/updSubject.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updSubjectForm</servlet-name>
+		<url-pattern>/updSubjectForm</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>lectureM</servlet-name>
 		<jsp-file>/lectureM.jsp</jsp-file>

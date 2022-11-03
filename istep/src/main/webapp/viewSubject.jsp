@@ -18,7 +18,8 @@ System.out.println(sbj.getName());
 %>
 	<jsp:include page="header.jsp"/>
     <section>
-    	<form method="POST" action="updSubject.jsp">
+    	<form method="POST" action="updSubjectForm">
+    		<input type="hidden" name="code" value="<%=code %>" />
     		<p>과목명 : </p> <input type="text" name="subject" value="<%=sbj.getName() %>" readonly/>
     		<p>강사 : </p> <input type="text" name="teacher" value="<%=sbj.getTeacher() %>" readonly/>		
     		<p>과목설명 : </p> <textarea name="explain" readonly><%=sbj.getExplain() %></textarea>

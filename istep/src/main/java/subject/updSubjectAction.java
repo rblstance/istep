@@ -1,4 +1,4 @@
-package lecture;
+package subject;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class loadLectureAction
+ * Servlet implementation class updSubjectAction
  */
-//@WebServlet("/loadLectureAction")
-public class loadLectureAction extends HttpServlet {
+//@WebServlet("/updSubjectAction")
+public class updSubjectAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loadLectureAction() {
+    public updSubjectAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +28,17 @@ public class loadLectureAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String sel = request.getParameter("sbjCode");
-		String code = request.getParameter("code");
-		System.out.print(sel + "/");
-		System.out.println(code);
-		if(sel!=null && code!=null) {
-			request.getRequestDispatcher("lectureView.jsp").forward(request, response);
-		}
+			int code = Integer.parseInt(request.getParameter("code"));
+			String name = request.getParameter("subject");
+			String teacher = request.getParameter("teacher");
+			String explain = request.getParameter("explain");
+			String kind = request.getParameter("kind");
+			
+			SubjectDto subject = new SubjectDto(code, name, teacher, explain, kind);
+			SubjectDao dao = SubjectDao.getInstance();
+			dao.updSubject(subject);
+			
+			response.sendRedirect("subjectM.jsp");	
 	}
 
 	/**
