@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class LectureDto {
 	
 	// Member
-	private int no;
+	private String code;
 	private int sbjCode;
 	private String name;
 	private String thumbnail;
@@ -14,9 +14,9 @@ public class LectureDto {
 	private Timestamp regDate;
 	
 	// All Arguments Constructor
-	public LectureDto(int no, int sbjCode, String name, String thumbnail, String url, int time, Timestamp regDate) {
+	public LectureDto(String code, int sbjCode, String name, String thumbnail, String url, int time, Timestamp regDate) {
 		super();
-		this.no = no;
+		this.code = code;
 		this.sbjCode = sbjCode;
 		this.name = name;
 		this.thumbnail = thumbnail;
@@ -26,8 +26,8 @@ public class LectureDto {
 	}
 
 	// Getter & Setter
-	public int getNo() {
-		return no;
+	public String getCode() {
+		return code;
 	}
 
 	public int getSbjCode() {

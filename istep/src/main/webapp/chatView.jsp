@@ -10,7 +10,7 @@
 <%
 // test
 ChatDao dao = ChatDao.getInstance();
-dao.createChat();
+//dao.createChat();
 %>
 	<jsp:include page="header.jsp"/>
     <section>

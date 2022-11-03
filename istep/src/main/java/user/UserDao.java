@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import util.DBManager;
 
 public class UserDao {
+	
 	private String url;
 	private String user;
 	private String password;

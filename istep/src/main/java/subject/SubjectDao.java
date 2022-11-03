@@ -19,9 +19,9 @@ public class SubjectDao {
 	private ResultSet rs;
 	
 	private SubjectDao() {
-		this.url = "jdbc:mysql://localhost:3306/istep";
-		this.user = "root";
-		this.password = "root";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.user = "admin";
+		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
 		this.conn = null;
 		this.pstmt = null;

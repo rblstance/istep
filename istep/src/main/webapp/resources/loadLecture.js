@@ -1,14 +1,19 @@
 const container = document.body.querySelector(".lecture_container");
-const subject = document.body.querySelector(".subject");
+const search = document.body.querySelector("#keyword");
 getDate();
 
 function getDate(){
+	let keyword = "자바의 정석";
+	if(search.value!="null" && search.value!=""){
+		keyword = search.value; 
+	}
     $('.lecture_container').empty();
+	console.log(keyword);
     $.ajax({
         method : "GET",
         url : "https://dapi.kakao.com/v2/search/vclip",
         data : {
-            query : subject.value,
+            query : keyword,
             page : 1,
             size : 20
         },
@@ -23,14 +28,17 @@ function getDate(){
             const datetime = e.datetime.substring(0,10);
             const thumbnail = e.thumbnail;
             const author = e.author;
+			const code = url.split('=')[1];
             
             if(url.split('.')[1]==='youtube'){
-                const content = document.createElement("article");
+				// String 값으로 append 이벤트만 javasript 처리
+                /*const content = document.createElement("article");
                 content.setAttribute('class','content');
 
                 const formtag = document.createElement("form");
+                formtag.setAttribute('class', "sendLecture");
                 formtag.setAttribute('method', "post");
-                formtag.setAttribute('action', "lectureView.jsp");
+                formtag.setAttribute('action', "loadLecture");
 
                 const code = url.split('=')[1];
                 const codetag = document.createElement("input");
@@ -68,12 +76,22 @@ function getDate(){
                 formtag.append(imgtag);
                 formtag.append(authortag);
                 formtag.append(datetimetag);
-                formtag.append(sendBtn);
-
-                content.append(formtag);
+                formtag.append(sendBtn);*/
+                
 
                 
-                container.append(content);
+                container.append(`
+					<article class="content">
+						<form class="sendLecture" method="post" action="loadLecture">
+							<p class="title" name="title">${title}</p>
+							<input class="code" name="code" type="hidden" value="${code}">
+							<img class="thumbnail" name="thumbnail" src="${url}">
+							<p class="author">${author}</p>
+							<p class="datetime" name="datetime">${datetime}</p>
+							<input class="view" type="submit" value="영상보기">
+						</form>
+					</article>
+				`);
             }
         });
     })

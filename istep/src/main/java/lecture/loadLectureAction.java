@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class sendSbjCodeAction
+ * Servlet implementation class loadLectureAction
  */
-//@WebServlet("/sendSbjCodeAction")
-public class sendSbjCodeAction extends HttpServlet {
+//@WebServlet("/loadLectureAction")
+public class loadLectureAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sendSbjCodeAction() {
+    public loadLectureAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +27,13 @@ public class sendSbjCodeAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		if(request.getParameter("code")!=null) {
-			request.getRequestDispatcher("selLectureM.jsp").forward(request, response);
-		}else {
-			response.sendRedirect("lectureM.jsp");
+		
+		String sel = request.getParameter("subject");
+		String code = request.getParameter("code");
+		System.out.print(sel + "/");
+		System.out.println(code);
+		if(sel!=null && code!=null) {
+			request.getRequestDispatcher("lectureView.jsp").forward(request, null);
 		}
 	}
 

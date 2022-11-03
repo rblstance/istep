@@ -11,22 +11,22 @@ import util.DBManager;
 
 public class LectureDao {
 
+	private String url;
+	private String user;
+	private String password;
+
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private String url;
-	private String user;
-	private String password;
-	
 	private LectureDao() {
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.user = "admin";
+		this.password = "H77LtnHvcj6uYsgEv3ZT";
+
 		this.conn = null;
 		this.pstmt = null;
 		this.rs = null;
-		
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306";
-		this.user = "admin";
-		this.password = "H77LtnHvcj6uYsgEv3ZT";
 	}
 	
 	private static LectureDao instance = new LectureDao();
@@ -47,7 +47,7 @@ public class LectureDao {
 			this.rs = this.pstmt.executeQuery();
 			
 			while(this.rs.next()) {
-				int no = this.rs.getInt(1);
+				String code = this.rs.getString(1);
 				int sbjCode = this.rs.getInt(2);
 				String name = this.rs.getString(3);
 				String thumbnail = this.rs.getString(4);
@@ -55,7 +55,7 @@ public class LectureDao {
 				int time = this.rs.getInt(6);
 				Timestamp regDate = this.rs.getTimestamp(7);
 				
-				LectureDto lecture = new LectureDto(no, sbjCode, name, thumbnail,url, time, regDate);
+				LectureDto lecture = new LectureDto(code, sbjCode, name, thumbnail,url, time, regDate);
 				lectureList.add(lecture);
 			}
 		} catch (Exception e) {
@@ -74,14 +74,14 @@ public class LectureDao {
 	}
 	
 	// Read One
-	public LectureDto getLectureByNo(int no) {
+	public LectureDto getLectureByCode(String code) {
 		LectureDto lecture = null;
-		String sql = "SELECT * FROM lecture WHERE `no`=?";
+		String sql = "SELECT * FROM `lecture` WHERE `code`=?";
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			this.pstmt.setInt(1, no);
+			this.pstmt.setString(1, code);
 			this.rs = this.pstmt.executeQuery();
 			
 			if(this.rs.next()) {
@@ -92,8 +92,7 @@ public class LectureDao {
 				int time = this.rs.getInt(6);
 				Timestamp regDate = this.rs.getTimestamp(7);
 				
-//				LectureDto lecture = new LectureDto(no, sbjCode, name, thumbnail,url, time, regDate);
-//				lectureList.add(lecture);
+				lecture = new LectureDto(code, sbjCode, name, thumbnail,url, time, regDate);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

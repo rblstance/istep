@@ -35,16 +35,7 @@
 	<servlet-mapping>
 		<servlet-name>delSubject</servlet-name>
 		<url-pattern>/delSubject</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Login</servlet-name>
-		<servlet-class>user.LoginAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>
-	
+	</servlet-mapping>	
 	<servlet>
 		<servlet-name>sendSbjCode</servlet-name>
 		<servlet-class>subject.sendSbjCode</servlet-class>
@@ -52,6 +43,25 @@
 	<servlet-mapping>
 		<servlet-name>sendSbjCode</servlet-name>
 		<url-pattern>/sendSbjCode</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>loadLecture</servlet-name>
+		<servlet-class>lecture.loadLectureAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loadLecture</servlet-name>
+		<url-pattern>/loadLecture</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>user.LoginAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
 	</servlet-mapping>
 	<!-- jsp -->
 	<servlet>
@@ -101,6 +111,22 @@
 	<servlet-mapping>
 		<servlet-name>subject</servlet-name>
 		<url-pattern>/subject</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>subjectM</servlet-name>
+		<jsp-file>/subjectM.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>subjectM</servlet-name>
+		<url-pattern>/subjectM</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>lectureM</servlet-name>
+		<jsp-file>/lectureM.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lectureM</servlet-name>
+		<url-pattern>/lectureM</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>logout</servlet-name>
