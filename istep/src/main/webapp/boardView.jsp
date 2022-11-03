@@ -1,4 +1,6 @@
 
+<%@page import="answer.AnswerDto"%>
+<%@page import="answer.AnswerDao"%>
 <%@page import="board.BoardDto"%>
 <%@page import="board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,12 +19,14 @@
     <%
     BoardDao dao = BoardDao.getInstance();
     BoardDto board = null;
-
+    AnswerDao ans = AnswerDao.getInstance();
+    AnswerDto aboard = null;
     
     request.setCharacterEncoding("utf-8");
     if(request.getParameter("no")!=null){
     	int no = Integer.parseInt(request.getParameter("no"));
     	board = dao.getBoardByNo(no);
+    	aboard = ans.get
     }
 
     %>
@@ -38,7 +42,11 @@
     		<input type="hidden" name="no" value="<%=board.getNo() %>">
             <input type="submit" value="글삭제">
     	</form>
-    		
+    </div>
+    <div>
+    	<form>
+    		<div><input type="text" value="<%= %>"</div>
+    	</form>
     </div>
     
     </section>

@@ -1,13 +1,15 @@
 package answer;
 
+import java.sql.Date;
+
 public class AnswerDto {
 	private int code;
 	private int b_num;
 	private String user_id;
 	private String content;
-	private String regdate;
+	private Date regdate;
 	
-	public AnswerDto(int code, int b_num, String user_id, String content, String regdate) {
+	public AnswerDto(int code, int b_num, String user_id, String content, Date regdate) {
 		super();
 		this.code = code;
 		this.b_num = b_num;
@@ -40,10 +42,10 @@ public class AnswerDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	
