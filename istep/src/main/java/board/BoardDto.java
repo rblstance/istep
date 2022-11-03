@@ -1,5 +1,6 @@
 package board;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class BoardDto {
@@ -7,12 +8,12 @@ public class BoardDto {
 	private String user_id;
 	private String title;
 	private String content;
-	private Timestamp regdate;
+	private Date regdate;
 	private int check;
 	
 	
 	
-	public BoardDto(int no, String user_id, String title, String content, Timestamp regdate, int check) {
+	public BoardDto(int no, String user_id, String title, String content, Date regdate, int check) {
 		super();
 		this.no = no;
 		this.user_id = user_id;
@@ -43,10 +44,10 @@ public class BoardDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Timestamp getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	public int getCheck() {

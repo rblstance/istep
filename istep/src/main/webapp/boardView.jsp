@@ -18,12 +18,14 @@
     <%
     BoardDao dao = BoardDao.getInstance();
     BoardDto board = null;
+
     
     request.setCharacterEncoding("utf-8");
     if(request.getParameter("no")!=null){
     	int no = Integer.parseInt(request.getParameter("no"));
     	board = dao.getBoardByNo(no);
     }
+
     %>
     
     <div>

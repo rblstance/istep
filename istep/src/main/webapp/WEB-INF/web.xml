@@ -20,6 +20,14 @@
 		<servlet-name>SignUp</servlet-name>
 		<url-pattern>/SignUp</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>BoardWrite</servlet-name>
+		<servlet-class>board.BoardWriteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardWrite</servlet-name>
+		<url-pattern>/BoardWrite</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>addSubject</servlet-name>
 		<servlet-class>subject.addSubjectAction</servlet-class>

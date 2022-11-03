@@ -3,6 +3,9 @@ package answer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import util.DBManager;
 
 public class AnswerDao {
 	private String url;
@@ -27,5 +30,47 @@ public class AnswerDao {
 	
 	public static AnswerDao getInstance() {
 		return instance;
+	}
+	
+	//CRED
+	// 댓글 만들기
+	public void createAnswer(AnswerDto answer) {
+		String sql = "insert into answer values(?,?,?,?,?);";
+		int no = noAnswerGenerator();
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	public int noAnswerGenerator() {
+		String sql = "SELECT MAX(`code`) FROM board;";
+		int no = 0;
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(this.rs.next()) {
+				no = this.rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ++no;
 	}
 }

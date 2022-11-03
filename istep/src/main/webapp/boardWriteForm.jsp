@@ -11,10 +11,10 @@
 <body>
 	<h1>글 작성</h1>
 	<div>
-		<form name="writeForm" method="post" action="BoardWriteAction">
+		<form name="writeForm" method="post" action="BoardWrite">
 			<input type="text" name="title" required>
 			<textarea name="content" row="20" required></textarea>
-			<input type="submit" value="작성">
+			<input type="submit"  value="작성" >
 		</form>
 	</div>
 
