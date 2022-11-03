@@ -10,8 +10,18 @@ public class BoardDto {
 	private String content;
 	private Date regdate;
 	private int check;
+	private int sbj_code;
 	
-	
+	public BoardDto(int no, String user_id, String title, String content, Date regdate, int check, int sbj_code) {
+		super();
+		this.no = no;
+		this.user_id = user_id;
+		this.title = title;
+		this.content = content;
+		this.regdate = regdate;
+		this.check = check;
+		this.sbj_code = sbj_code;
+	}
 	
 	public BoardDto(int no, String user_id, String title, String content, Date regdate, int check) {
 		super();
@@ -27,7 +37,6 @@ public class BoardDto {
 		this.no = no;
 		this.title = title;
 		this.content = content;
-
 	}
 	
 	public int getNo() {
@@ -62,6 +71,12 @@ public class BoardDto {
 	}
 	public void setCheck(int check) {
 		this.check = check;
+	}
+	public int getSbj_code() {
+		return sbj_code;
+	}
+	public void setSbj_code(int sbj_code) {
+		this.sbj_code = sbj_code;
 	}
 	
 	

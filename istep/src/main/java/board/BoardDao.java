@@ -39,7 +39,7 @@ public class BoardDao {
 	//CRED
 	//create
 	public void createBoard(BoardDto board) {
-		String sql = "insert into board values(?,?,?,?,?,?);";
+		String sql = "insert into board values(?,?,?,?,?,?,?);";
 		int no = noGenerator();
 		
 		try {
@@ -53,7 +53,7 @@ public class BoardDao {
 			Date now = new Date(System.currentTimeMillis());
 			this.pstmt.setDate(5, now);
 			this.pstmt.setInt(6, board.getCheck());
-			
+			this.pstmt.setInt(7, board.getSbj_code());
 			this.pstmt.execute();
 			
 		} catch (Exception e) {
@@ -112,8 +112,9 @@ public class BoardDao {
 				String content = this.rs.getString(4);
 				Date regdate = this.rs.getDate(5);
 				int check = this.rs.getInt(6);
+				int sbj_code = this.rs.getInt(7);
 				
-				BoardDto board = new BoardDto(no, user_id, title, content, regdate, check);
+				BoardDto board = new BoardDto(no, user_id, title, content, regdate, check, sbj_code);
 				list.add(board);
 			}
 			
@@ -149,8 +150,9 @@ public class BoardDao {
 				String content = this.rs.getString(4);
 				Date regdate = this.rs.getDate(5);
 				int check = this.rs.getInt(6);
+				int sbj_code = this.rs.getInt(7);
 				
-				board = new BoardDto(no, user_id,title,content,regdate,check);
+				board = new BoardDto(no, user_id,title,content,regdate,check,sbj_code);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
