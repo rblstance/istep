@@ -1,3 +1,5 @@
+<%@page import="member.MemberDto"%>
+<%@page import="member.MemberDao"%>
 <%@page import="chat.ChatDao"%>
 <%@page import="chat.ChatDto"%>
 <%@page import="user.UserDto"%>
@@ -12,11 +14,26 @@
 </head>
 <body>
 <%
-String id = (String)session.getAttribute("log");
-UserDao uDao = UserDao.getInstance();
-UserDto user = uDao.getUserById(id);
-
+String user_id = (String)session.getAttribute("log");
+MemberDao mDao = MemberDao.getInstance();
 ChatDao cDao = ChatDao.getInstance();
+ArrayList<String> list = mDao.getCodeByUser_id(user_id);
+ArrayList<ChatDto> chatList = null;
+ChatDto chat = null;
+try {
+	for(int i=0; i<list.size(); i++){
+		chat = cDao.getChatByCode(list.get(i));
+		chatList.add(chat);
+	}
+} catch (Exception e) {
+	e.printStackTrace();
+}
+
+%>
+<%
+UserDao uDao = UserDao.getInstance();
+UserDto user = uDao.getUserById(user_id);
+
 //MemberDto 
 //<ArrayList> 
 %>
@@ -24,23 +41,42 @@ ChatDao cDao = ChatDao.getInstance();
 	<section>
 		<div>
 			<ul>
-				<li><a href="myChatList.jsp">내 채팅방?</a></li>
-				<li><a href="makeChatForm.jsp">채팅방 생성하기</a></li>
-				<li><a href="">채팅방 관리 > 여기 두지 말고 채팅방 리스트에서 확인?</a></li>
-				<li><a href="">채팅방 검색해보기,,,</a></li>
+				<li><a href="makeChatForm.jsp">채팅방 생성</a></li>
+				<li><a href="">채팅방 검색</a></li>
 				<li><a href=""></a></li>
 				<li><a href=""></a></li>
 			</ul>
 		</div>
 		<div>
-			개설된 채팅방 있으면 여기 쭈르륵 리스트로 입장할 수 있게
-			<%//for() %>
-			<div>
-				<ul>
-					<li></li>
-				</ul>
-			</div>
+		<%if(chatList != null){%>
+			<table>
+				<tbody>
+					<%for(ChatDto c : chatList){ %>
+					<tr>
+						<td>이름</td>
+						<td><%=c.getName() %></td>
+					</tr>
+					<tr>
+						<td>코드</td>
+						<td><%=c.getCode() %></td>
+					</tr>
+					<tr>
+						<td>호스트</td>
+						<td><%=c.getHost_id() %></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="입장" onclick=""></td>
+					</tr>
+					<%} %>
+				</tbody>
+			</table>
 		</div>
+		<%} else {%>
+		<div>
+			가입한 채팅방이 없습니다.
+		</div>
+		<%
+		}%>
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>

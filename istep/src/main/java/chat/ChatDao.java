@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import member.MemberDao;
 import util.DBManager;
 
 public class ChatDao {
@@ -36,11 +37,12 @@ public class ChatDao {
 	
 	// CREATE CHAT
 	public void createChat(ChatDto chat) {
-		String sql = "INSERT INTO chat VALUES(`?`, `?`, `?`)";
+		
+		String sql = "INSERT INTO chat VALUES(?, ?, ?)";
+		String code = createCode(chat.getHost_id());
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			String code = createCode(chat.getHost_id());
 			this.pstmt.setString(1, code);
 			this.pstmt.setString(2, chat.getName());
 			this.pstmt.setString(3, chat.getHost_id());
@@ -55,12 +57,14 @@ public class ChatDao {
 				e.printStackTrace();
 			}
 		}
+		MemberDao mDao = MemberDao.getInstance();
+		mDao.createMember(chat.getHost_id(), code);
 	}
 	
 	// CREATE CODE
 	public String createCode(String host_id) {
 		String code = "";
-		code += host_id.substring(0, 4);
+		code += host_id.substring(0, 5);
 		code += String.valueOf(getRnum());
 
 		return code;
@@ -84,14 +88,6 @@ public class ChatDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				this.rs.close();
-				this.pstmt.close();
-				this.conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return code;
 	}

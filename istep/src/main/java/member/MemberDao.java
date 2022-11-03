@@ -89,22 +89,20 @@ public class MemberDao {
 		}
 		return list;
 	}
-	// READ MEMBER BY USER_ID (회원이 가입한 전체 채팅방 확인하기)
-	public ArrayList<MemberDto> getMemberByUser_id(String user_id) {
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		MemberDto member = null;
-		String sql = "SELECT * FROM member WHERE user_id=?";
+	// READ c_code BY USER_ID (회원이 가입한 전체 채팅방[] 확인하기)
+	public ArrayList<String> getCodeByUser_id(String user_id) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = "SELECT c_code FROM member WHERE user_id=?";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, user_id);
 			this.rs = this.pstmt.executeQuery();
 			
 			while(this.rs.next()) {
-				String c_code = this.rs.getString(2);
-				Timestamp regdate = this.rs.getTimestamp(3);
+				String c_code = this.rs.getString(1);
 				
-				member = new MemberDto(user_id, c_code, regdate);
-				list.add(member);
+				list.add(c_code);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
