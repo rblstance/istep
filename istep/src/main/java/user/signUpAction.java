@@ -1,6 +1,7 @@
 package user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SignUpAction
  */
-//@WebServlet("/SignUpAction")
+//@WebServlet("/signUpAction")
 public class signUpAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,6 +30,9 @@ public class signUpAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		Date now = new Date(System.currentTimeMillis());
 		
 		UserDao dao = UserDao.getInstance();
@@ -48,7 +52,7 @@ public class signUpAction extends HttpServlet {
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 			dao.createUser(user);
 		}
-		request.getRequestDispatcher("index").forward(request, response);
+		 out.println("<script>alert('회원가입이 완료되었습니다.');location.href='index';</script>");
 	}
 
 	/**
