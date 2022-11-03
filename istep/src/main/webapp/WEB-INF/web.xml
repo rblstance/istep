@@ -93,6 +93,22 @@
 		<servlet-name>logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>makeChatForm</servlet-name>
+		<servlet-class>chat.MakeChatFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>makeChatForm</servlet-name>
+		<url-pattern>/makeChatForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>printId</servlet-name>
+		<servlet-class>chat.PrintIdAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>printId</servlet-name>
+		<url-pattern>/printId</url-pattern>
+	</servlet-mapping>
 	
 	<!-- jsp -->
 	<servlet>
@@ -167,5 +183,13 @@
 	<servlet-mapping>
 		<servlet-name>deleteForm</servlet-name>
 		<url-pattern>/deleteForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>chatForm</servlet-name>
+		<jsp-file>/makeChatForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>chatForm</servlet-name>
+		<url-pattern>/chatForm</url-pattern>
 	</servlet-mapping>
 </web-app>

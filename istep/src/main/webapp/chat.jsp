@@ -14,10 +14,11 @@
 </head>
 <body>
 <%
-String user_id = (String)session.getAttribute("log");
+String id = "";
+////////
 MemberDao mDao = MemberDao.getInstance();
 ChatDao cDao = ChatDao.getInstance();
-ArrayList<String> list = mDao.getCodeByUser_id(user_id);
+ArrayList<String> list = mDao.getCodeByUser_id(id);
 ArrayList<ChatDto> chatList = null;
 ChatDto chat = null;
 try {
@@ -32,7 +33,7 @@ try {
 %>
 <%
 UserDao uDao = UserDao.getInstance();
-UserDto user = uDao.getUserById(user_id);
+UserDto user = uDao.getUserById(id);
 
 //MemberDto 
 //<ArrayList> 
@@ -42,7 +43,7 @@ UserDto user = uDao.getUserById(user_id);
 		<div>
 			<ul>
 				<li><a href="makeChatForm.jsp">채팅방 생성</a></li>
-				<li><a href="">채팅방 검색</a></li>
+				<li><a href="myChatList.jsp">채팅방 검색</a></li>
 				<li><a href=""></a></li>
 				<li><a href=""></a></li>
 			</ul>

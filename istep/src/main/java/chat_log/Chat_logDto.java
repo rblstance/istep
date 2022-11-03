@@ -39,9 +39,9 @@ public class Chat_logDto {
 		return c_code;
 	}
 
-	public void setC_code(String c_code) {
-		this.c_code = c_code;
-	}
+//	public void setC_code(String c_code) {
+//		this.c_code = c_code;
+//	}
 
 	public String getContent() {
 		return content;

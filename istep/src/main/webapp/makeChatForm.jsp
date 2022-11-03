@@ -5,20 +5,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="resources/makeChatForm.css">
 </head>
-<body>
 <%
+
 UserDao dao = UserDao.getInstance();
-UserDto member = null;
-String user = (String)session.getAttribute("log");
+UserDto user = null;
+String id = "";
+///////////
+dao.getUserById(id);
 %>
 	<jsp:include page="header.jsp"/>
     <section>
     	<div>
-            <form method="post" action="">
+            <form method="post" action="makeChatForm">
             	<input type="hidden" name="code" id="code" value="">
-				<input type="hidden" name="host_id" id="host_id" value="<%=user%>">
+				<%//<input type="hidden" name="host_id" id="host_id" value="<%=%>"> %>
 				<table>
                 	<tbody>
                 		<tr>
@@ -37,41 +38,31 @@ String user = (String)session.getAttribute("log");
             </form>
         </div>
 
-        <div class="popup" id="popup" style="display: none; position: fixed;">
-            <div class="popup_box">
-                <div style="height: 10px; width: 375px; float: top;"></div>
-                <input type="button" onclick="closePop()" value="상단 닫는 버튼 아이콘,,">
-                <div class="popup_content">
-                    <label>아이디 검색</label><br><input type="text" name="user_id" id="user_id"><br>
-                    <input type="button" value="검색" onclick="">
-                    <%//if %>
-                    <div>
-                    	
-                    </div>
-                    <%
-                    // 이거를 onclick했을 때만 작동하도록
-                    //member = dao.getUserById("user_id");
-                    //if(user != null){
-                    	// 검색 결과 보여주기
-                    	// 아이디 검색 결과 옆에 추가 버튼
-                    //} else {
-                    	// 존재하지 않는 아이디입니다.
-                    //}
-                    %>
-                    <div name="s_result">
-                    	여기 검색 결과를 노출합시다
-	                    입력 안 했을 때는 노출하지 맙시다~
+        <div class="popup_content">
+                	<form method="post" action="printId">
+                		<input type="text" name="user_id" id="user_id" value=<%=request.getAttribute("#user_id")%>><br>
+	                    <input type="submit" value="검색" class="search_member" id="search_member" onclick="printId">
+                	</form>
+                    <div name="s_result" id="s_result">
+                    	<%
+                    	if(request.getAttribute("result") != null){
+                    	UserDto s_user = (UserDto)request.getAttribute("result");
+                    	if(s_user != null){
+                    	%>
+                    	<span>이름 <%=s_user.getName() %></span>
+                    	<span>닉네임 <%=s_user.getNickname() %></span>
 	                    <input type="button" value="추가"><br>
+	                    <%} else { %>
+	                    없는 아이디입니다.
+	                    <%} %>
+	                    <%} %>
                     </div>
+                    <%if(request.getAttribute("insterted") != null){ %>
+                    	
+                    <%} %>
                     추가하면 여기 쭈르륵 추가된 사람 나오고 <input type="button" value="누르면 지워짐">
                 </div>
-                <div class="close_button" style="float: bottom; margin-top: 200px;">
-                    <a href="javascript:closePop()">닫기</a>
-                </div>
-            </div>
-        </div>
     </section>
 	<jsp:include page="footer.jsp"/>
-	<script src="resources/makeChatForm.js"></script>
 </body>
 </html>

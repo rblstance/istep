@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import util.DBManager;
+
 public class Chat_logDao {
 
 	private String url;
@@ -32,7 +34,17 @@ public class Chat_logDao {
 	}
 	
 	// CREATE
-	
+	public void createChat_log(Chat_logDto log) {
+		String sql = "INSERT INTO chat_log VALUES(?,?,?,?,?)";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			//this.pstmt.setInt(); //번호매기깅 1부터...........
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// READ ALL LOG
 	//public ArrayList<Chat_>
 	// READ ONE LOG
