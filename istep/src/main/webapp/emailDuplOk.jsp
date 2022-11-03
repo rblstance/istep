@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이메일 중복 확인 결과</title>
 </head>
 <body>
 	<h3>* 이메일 중복 확인 결과 *</h3>
@@ -19,7 +19,7 @@
 		out.println("<p>사용 가능한 이메일입니다.</p>");
 		out.println("<a href='javascript:apply(\"" + email + "\")'>[적용]</a>");
 	} else {
-		out.println("<p style='color: red'>해당 아이디는 사용하실 수 없습니다.</p>");
+		out.println("<p style='color: red'>해당 이메일은 사용하실 수 없습니다.</p>");
 	} //if end
 	%>
 

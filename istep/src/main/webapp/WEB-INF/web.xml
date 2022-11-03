@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee; http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 	<display-name>istep</display-name>
 	<welcome-file-list>
@@ -20,7 +20,7 @@
 		<servlet-name>signUp</servlet-name>
 		<url-pattern>/signUp</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>BoardWrite</servlet-name>
 		<servlet-class>board.BoardWriteAction</servlet-class>
 	</servlet>
@@ -77,14 +77,6 @@
 		<url-pattern>/loadLecture</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>Login</servlet-name>
-		<servlet-class>user.LoginAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>
 	<servlet>
 		<servlet-name>logout</servlet-name>
 		<servlet-class>user.logoutAction</servlet-class>

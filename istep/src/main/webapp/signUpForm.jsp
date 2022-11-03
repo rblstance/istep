@@ -11,20 +11,20 @@
 </head>
 <body>
 	<h1>회원가입</h1>  
-	<form name="regForm" method="post" action="signUp">
+	<form name="signup" method="post" action="signUp">
 		<table border=1>
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="id" id="id" size="15" readonly required>
-					<input type="button" value="ID중복확인" onclick="idCheck()"></td>
+				<input type="button" value="ID중복확인" onclick="idCheck()"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password" id="password" size="15" onkeyup="isSame()" required/>
+				<td><input type="password" name="password" id="password" size="15" onkeyup="return isSame();" required/>&nbsp;&nbsp;<font id="space"></font></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="password" name="passwordCheck" id="passwordCheck" size="15" size="15" onkeyup="isSame()" required/>&nbsp;&nbsp;<font id="same"></font></td>
+				<td><input type="password" name="passwordCheck" id="passwordCheck" size="15" size="15" onkeyup="return isSame();" required/>&nbsp;&nbsp;<font id="same"></font></td>
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -36,18 +36,17 @@
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="phone" id="phone" size="15"></td>
+				<td><input type="text" name="phone" id="phone" size="15" required></td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><input type="text" name="birth" id="birth" size="15"></td>
+				<td><input type="text" name="birth" id="birth" size="15" maxlength="8"></td>
 			</tr>
 			<tr>
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" id="email" size="30"
-					readonly> <input type="button" value="Email 중복확인"
-					onclick="emailCheck()"></td>
+					readonly required> <input type="button" value="Email 중복확인"	onclick="emailCheck()"></td>
 			</tr>
 			<tr>
 				<th>등급[A:학생, B:강사]</th>
