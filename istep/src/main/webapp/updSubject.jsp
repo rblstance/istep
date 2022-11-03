@@ -1,3 +1,5 @@
+<%@page import="subject.SubjectDto"%>
+<%@page import="subject.SubjectDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,12 +8,21 @@
 
 </head>
 <body>
+<%
+request.setCharacterEncoding("UTF-8");
+
+int code = Integer.parseInt(request.getParameter("code"));
+SubjectDao sbjDao = SubjectDao.getInstance();
+SubjectDto sbj = sbjDao.getSubjectByCode(code);
+System.out.println(sbj.getName());
+%>
 	<jsp:include page="header.jsp"/>
     <section>
     	<form method="POST" action="updSubject">
-    		<p>과목명 : </p> <input type="text" name="subject" />
-    		<p>강사 : </p> <input type="text" name="teacher" placeholder=",로 여러명 추가"/>		
-    		<p>과목설명 : </p> <textarea name="explain"></textarea>
+    		<input type="hidden" name="code" value="<%=code %>" />
+    		<p>과목명 : </p> <input type="text" name="subject" value="<%=sbj.getName()%>" />
+    		<p>강사 : </p> <input type="text" name="teacher" value="<%=sbj.getTeacher()%>"/>		
+    		<p>과목설명 : </p> <textarea name="explain"><%=sbj.getExplain()%></textarea>
     		<p>과목분야 :</p>
     		<select name="kind">
     			<option>JAVA</option>

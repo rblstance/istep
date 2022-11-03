@@ -133,7 +133,7 @@ public class SubjectDao {
 	
 	// 3. Update
 	public void updSubject(SubjectDto subject){
-		String sql = "UPDATE subject name=?, teacher=?, explain=?, kind=? WHERE code=?";
+		String sql = "UPDATE subject SET `name`=?, `teacher`=?, `explain`=?, `kind`=? WHERE `code`=?";
 		
 		int code = subject.getCode();
 		String name = subject.getName();
@@ -143,11 +143,11 @@ public class SubjectDao {
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			this.pstmt.setInt(1, code);
-			this.pstmt.setString(2, name);
-			this.pstmt.setString(3, teacher);
-			this.pstmt.setString(4, explain);
-			this.pstmt.setString(5, kind);
+			this.pstmt.setString(1, name);
+			this.pstmt.setString(2, teacher);
+			this.pstmt.setString(3, explain);
+			this.pstmt.setString(4, kind);
+			this.pstmt.setInt(5, code);
 			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,11 +163,17 @@ public class SubjectDao {
 	
 	// 4. Delete
 	public void delSubject(int code){
+		String nocheck = "SET foreign_key_checks = 0";
 		String sql = "DELETE FROM subject WHERE code=?";
+		String check = "SET foreign_key_checks = 1";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(nocheck);
+			this.pstmt.execute();
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setInt(1, code);
+			this.pstmt.execute();
+			this.pstmt = this.conn.prepareStatement(check);
 			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

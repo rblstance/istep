@@ -334,4 +334,31 @@ public class UserDao {
 		}
 		return result;
 	}
+	
+	public String getGrade(String id) {
+		String result = "";
+		String sql = "SELECT `grade` FROM `user` WHERE `id`=?";
+
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			this.rs = this.pstmt.executeQuery();
+
+			if (this.rs.next()) {
+				result = this.rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

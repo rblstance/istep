@@ -26,14 +26,14 @@ if(code!=null){
 	LectureDao lecDao = LectureDao.getInstance();
 	LectureDto lecture = lecDao.getLectureByCode(code);
 }
-System.out.println(code);
+System.out.println(grade);
 %>
 	<jsp:include page="header.jsp"/>
 		<section>
 			<input type="hidden" class="code" value="<%=code %>" name="code" />
 		  	<div id="player"></div>
-		  	<%if(grade == "C") {%>
-		  		<input type="button" value="강의 추가" onclick="location.href='addLection'"/> 
+		  	<%if(grade.equals("C")) {%>
+		  		<input type="button" value="강의 추가" onclick="location.href='addLectrue'"/> 
 		  	<%} %>
 		  	<div></div>
   		</section>
