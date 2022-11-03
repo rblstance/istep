@@ -1,3 +1,7 @@
+<%@page import="lecture.LectureDto"%>
+<%@page import="lecture.LectureDao"%>
+<%@page import="user.UserDto"%>
+<%@page import="user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,17 +14,30 @@
 </head>
 <body>
 <%
+String log = (String)session.getAttribute("log");
+String grade = "";
+if(log!=null){
+	UserDao userDao = UserDao.getInstance();
+	UserDto user = userDao.getUserById(log);
+	grade = user.getGrade();
+}
 String code = request.getParameter("code");
-String thumbnail = request.getParameter("img");
-String title = request.getParameter("title");
-String author = request.getParameter("author");
-String datetime = request.getParameter("datetime");
+if(code!=null){
+	LectureDao lecDao = LectureDao.getInstance();
+	LectureDto lecture = lecDao.getLectureByCode(code);
+}
 System.out.println(code);
 %>
 	<jsp:include page="header.jsp"/>
-	<input type="hidden" class="code" value="<%=code %>" />
-  	<div id="player"></div>
-    <script src="resources/lectureView.js"></script>
+		<section>
+			<input type="hidden" class="code" value="<%=code %>" name="code" />
+		  	<div id="player"></div>
+		  	<%if(grade == "C") {%>
+		  		<input type="button" value="강의 추가" onclick="location.href='addLection'"/> 
+		  	<%} %>
+		  	<div></div>
+  		</section>
      <jsp:include page="footer.jsp"/>
+    <script src="resources/lectureView.js"></script>
 </body>
 </html>
