@@ -108,7 +108,6 @@
 		<servlet-name>loadLecture</servlet-name>
 		<url-pattern>/loadLecture</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>logout</servlet-name>
 		<servlet-class>user.logoutAction</servlet-class>
@@ -166,6 +165,14 @@
 	<servlet-mapping>
 		<servlet-name>loginForm</servlet-name>
 		<url-pattern>/loginForm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>signUpForm</servlet-name>
+		<jsp-file>/signUpForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>signUpForm</servlet-name>
+		<url-pattern>/signUpForm</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>mypage</servlet-name>
