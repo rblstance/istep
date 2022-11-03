@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import user.UserDao;
 import util.DBManager;
 
 public class BoardDao {
@@ -69,7 +70,6 @@ public class BoardDao {
 		}
 	}
 
-	
 	public int noGenerator() {
 		String sql = "SELECT MAX(`no`) FROM board;";
 		int no = 0;
@@ -165,10 +165,89 @@ public class BoardDao {
 				// TODO: handle exception
 			}
 		}
-		
-		
+
 		return board;
 	}
+	// read userId
+	public String getNickBoard(String user_id) {
+		String name = null;
+		UserDao dao = UserDao.getInstance();
+		String sql = "SELECT nickname FROM user WHERE `id` = ?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, user_id);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(this.rs.next()) {
+				name = this.rs.getString("nickname");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return name;
+	}
 	
+	
+	//update
+	public void updateBoard(BoardDto board) {
+		
+		String sql = "update board set title = ?, content = ? where `no` =?;";
+		
+		int no = board.getNo();
+		String title = board.getTitle();
+		String content = board.getContent();
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			//this.pstmt.setString(2, "id"); // 유저 정보 가져오는 방법 필요
+			this.pstmt.setString(1, title);
+			this.pstmt.setString(2, content);
+			this.pstmt.setInt(3, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+	}
+	//delete
+	public void DeleteBoard(int no) {
+		String sql = "Delete from board where `no` = ?;";
+
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+	}
 	
 }

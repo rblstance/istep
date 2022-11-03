@@ -19,12 +19,10 @@
 	<jsp:include page="header.jsp"/>
     <section>
         보드 페이지
-    </section>
+   
     <% 
     BoardDao dao = BoardDao.getInstance(); 
     ArrayList<BoardDto> list = dao.getBoardAll();
-    UserDao user = UserDao.getInstance();
-    ArrayList<UserDto> uList = user.getUserAll();
     %>
     <div class="table_board">
     <table border="1" width="800" height="100">
@@ -42,7 +40,7 @@
     		<tr>
     			<td><%=board.getNo() %></td>
     			<td><a href="boardView.jsp?no=<%=board.getNo()%>"><%=board.getTitle() %></a></td>
-    			<td><%=user.getUserById(board.getUser_id()).getNickname() %></td>
+    			<td><%=dao.getNickBoard(board.getUser_id()) %></td>
     			<td><%=board.getRegdate() %></td>
     			<td><%=board.getCheck() %></td>
     		</tr>
@@ -53,7 +51,8 @@
     <div>
     <button onclick="location.href='boardWriteForm.jsp'">글쓰기</button>
     </div>
-    </div>
+ 	</section>
+    
 	<jsp:include page="footer.jsp"/>
 </body>
 
