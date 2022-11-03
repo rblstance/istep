@@ -37,6 +37,22 @@
 		<url-pattern>/BoardWrite</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>BoardUpdate</servlet-name>
+		<servlet-class>board.BoardUpdateAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardUpdate</servlet-name>
+		<url-pattern>/BoardUpdate</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BoardDelete</servlet-name>
+		<servlet-class>board.BoardDeleteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardDelete</servlet-name>
+		<url-pattern>/BoardDelete</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>addSubject</servlet-name>
 		<servlet-class>subject.addSubjectAction</servlet-class>
 	</servlet>

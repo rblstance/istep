@@ -1,4 +1,3 @@
-
 <%@page import="board.BoardDto"%>
 <%@page import="board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,10 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<body>
 	<jsp:include page="header.jsp"/>
     <section>
-        
     <%
     BoardDao dao = BoardDao.getInstance();
     BoardDto board = null;
@@ -28,22 +25,19 @@
     %>
     
     <div>
-    	<form>
-    		<div><input type="text" value="<%=board.getTitle() %>" readonly ></div>
-    		<div><textarea rows="20" readonly><%=board.getContent() %></textarea></div>
-    	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
-            <input type="button" onclick="location.href='boardUpdateForm.jsp?no=<%=board.getNo() %>'" value="글수정">
-    	</form>
-    	<form method="post" action="BoardDelete">
+    	<form method="post" action="BoardUpdate">
     		<input type="hidden" name="no" value="<%=board.getNo() %>">
-            <input type="submit" value="글삭제">
-    	</form>
+    		<div><input type="text" name="title" value="<%=board.getTitle() %>"></div>
+    		<div><textarea name="content" rows="20"><%=board.getContent() %></textarea></div>
+    	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
+            <input type="submit"  value="수정완료" >
     		
+    	</form>
     </div>
     
     </section>
     
+    
 	<jsp:include page="footer.jsp"/>
-</body>
 </body>
 </html>

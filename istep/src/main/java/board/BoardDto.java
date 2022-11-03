@@ -22,6 +22,13 @@ public class BoardDto {
 		this.regdate = regdate;
 		this.check = check;
 	}
+	public BoardDto(int no,String title, String content) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+
+	}
 	
 	public int getNo() {
 		return no;

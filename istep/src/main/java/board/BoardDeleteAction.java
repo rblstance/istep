@@ -1,7 +1,6 @@
 package board;
 
 import java.io.IOException;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardWriteAction
+ * Servlet implementation class BoardDeleteAction
  */
-@WebServlet("/BoardWriteAction")
-public class BoardWriteAction extends HttpServlet {
+@WebServlet("/BoardDeleteAction")
+public class BoardDeleteAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriteAction() {
+    public BoardDeleteAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,21 +26,13 @@ public class BoardWriteAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Date now = new Date(System.currentTimeMillis());
-		
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		BoardDao dao = BoardDao.getInstance();
-		int no = dao.noGenerator();
-		String title = request.getParameter("title");
-		String id = "manager"; // 나중에 꼭 수정해야됨
-		String content = request.getParameter("content");
-		Date regdate = now;
-		int check = 0;
-		
-		BoardDto board = new BoardDto(no, id, title, content, regdate, check);
-		dao.createBoard(board);
+		int no = Integer.parseInt(request.getParameter("no"));
+		dao.DeleteBoard(no);
 		
 		request.getRequestDispatcher("board.jsp").forward(request, response);
-
 	}
 
 	/**

@@ -9,15 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"/>
+    <section>
 	<h1>글 작성</h1>
 	<div>
 		<form name="writeForm" method="post" action="BoardWrite">
-			<input type="text" name="title" required>
-			<textarea name="content" row="20" required></textarea>
+			<div><input type="text" name="title" required></div>
+			<div><textarea name="content" row="20" required></textarea></div>
 			<input type="submit"  value="작성" >
 		</form>
 	</div>
-
+    </section>
+    
+	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>
