@@ -1,4 +1,6 @@
 
+<%@page import="user.UserDto"%>
+<%@page import="user.UserDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="board.BoardDto"%>
 <%@page import="board.BoardDao"%>
@@ -9,9 +11,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="resources/board.css">
 <title>Insert title here</title>
 </head>
-<body>
+
 <body>
 	<jsp:include page="header.jsp"/>
     <section>
@@ -20,14 +23,18 @@
     <% 
     BoardDao dao = BoardDao.getInstance(); 
     ArrayList<BoardDto> list = dao.getBoardAll();
+    UserDao user = UserDao.getInstance();
+    ArrayList<UserDto> uList = user.getUserAll();
     %>
-    <table border="1" width="700" height="100">
+    <div class="table_board">
+    <table border="1" width="800" height="100">
     	<thead>
     		<tr>
     			<th width="50">번호</th>
     			<th width="400">제목</th>
+    			<th width="100">작성자</th>
     			<th width="200">게시일</th>
-    			<th width="50">해결여dd부</th>
+    			<th width="50">해결여부</th>
     		</tr>
     	</thead>
     	<tbody>
@@ -35,6 +42,7 @@
     		<tr>
     			<td><%=board.getNo() %></td>
     			<td><a href="boardView.jsp?no=<%=board.getNo()%>"><%=board.getTitle() %></a></td>
+    			<td><%=user.getUserById(board.getUser_id()).getNickname() %></td>
     			<td><%=board.getRegdate() %></td>
     			<td><%=board.getCheck() %></td>
     		</tr>
@@ -42,8 +50,11 @@
 
     	</tbody>
     </table>
+    <div>
     <button onclick="location.href='boardWriteForm.jsp'">글쓰기</button>
+    </div>
+    </div>
 	<jsp:include page="footer.jsp"/>
 </body>
-</body>
+
 </html>

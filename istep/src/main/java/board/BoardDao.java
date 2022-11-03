@@ -2,10 +2,10 @@ package board;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import util.DBManager;
@@ -38,7 +38,7 @@ public class BoardDao {
 	//CRED
 	//create
 	public void createBoard(BoardDto board) {
-		String sql = "insert into board vlaues(?,?,?,?,?,?);";
+		String sql = "insert into board values(?,?,?,?,?,?);";
 		int no = noGenerator();
 		
 		try {
@@ -49,8 +49,8 @@ public class BoardDao {
 			this.pstmt.setString(3, board.getTitle());
 			this.pstmt.setString(4, board.getContent());
 			
-			Timestamp now = new Timestamp(System.currentTimeMillis());
-			this.pstmt.setTimestamp(5, now);
+			Date now = new Date(System.currentTimeMillis());
+			this.pstmt.setDate(5, now);
 			this.pstmt.setInt(6, board.getCheck());
 			
 			this.pstmt.execute();
@@ -68,6 +68,7 @@ public class BoardDao {
 			}
 		}
 	}
+
 	
 	public int noGenerator() {
 		String sql = "SELECT MAX(`no`) FROM board;";
@@ -109,7 +110,7 @@ public class BoardDao {
 				String user_id = this.rs.getString(2);
 				String title = this.rs.getString(3);
 				String content = this.rs.getString(4);
-				Timestamp regdate = this.rs.getTimestamp(5);
+				Date regdate = this.rs.getDate(5);
 				int check = this.rs.getInt(6);
 				
 				BoardDto board = new BoardDto(no, user_id, title, content, regdate, check);
@@ -146,7 +147,7 @@ public class BoardDao {
 				String user_id = this.rs.getString(2);
 				String title = this.rs.getString(3);
 				String content = this.rs.getString(4);
-				Timestamp regdate = this.rs.getTimestamp(5);
+				Date regdate = this.rs.getDate(5);
 				int check = this.rs.getInt(6);
 				
 				board = new BoardDto(no, user_id,title,content,regdate,check);

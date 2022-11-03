@@ -1,7 +1,9 @@
 package board;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,20 +30,20 @@ public class BoardWriteAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Timestamp now = new Timestamp(System.currentTimeMillis());
-		BoardDao dao = BoardDao.getInstance();
+		Date now = new Date(System.currentTimeMillis());
 		
+		BoardDao dao = BoardDao.getInstance();
 		int no = dao.noGenerator();
 		String title = request.getParameter("title");
-		String id = "id"; // 나중에 꼭 수정해야됨
+		String id = "manager"; // 나중에 꼭 수정해야됨
 		String content = request.getParameter("content");
-		Timestamp regdate = now;
+		Date regdate = now;
 		int check = 0;
 		
 		BoardDto board = new BoardDto(no, id, title, content, regdate, check);
 		dao.createBoard(board);
 		
-		request.getRequestDispatcher("index").forward(request, response);
+		request.getRequestDispatcher("board.jsp").forward(request, response);
 
 	}
 
