@@ -13,12 +13,12 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
-		<servlet-name>SignUp</servlet-name>
-		<servlet-class>user.SignUpAction</servlet-class>
+		<servlet-name>signUp</servlet-name>
+		<servlet-class>user.signUpAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>SignUp</servlet-name>
-		<url-pattern>/SignUp</url-pattern>
+		<servlet-name>signUp</servlet-name>
+		<url-pattern>/signUp</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>addSubject</servlet-name>
@@ -37,14 +37,21 @@
 		<url-pattern>/delSubject</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>Login</servlet-name>
-		<servlet-class>user.LoginAction</servlet-class>
+		<servlet-name>login</servlet-name>
+		<servlet-class>user.loginAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
+		<servlet-name>login</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>delete</servlet-name>
+		<servlet-class>user.deleteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delete</servlet-name>
+		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>sendSbjCode</servlet-name>
 		<servlet-class>subject.sendSbjCode</servlet-class>
@@ -53,6 +60,15 @@
 		<servlet-name>sendSbjCode</servlet-name>
 		<url-pattern>/sendSbjCode</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>user.logoutAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
 	<!-- jsp -->
 	<servlet>
 		<servlet-name>index</servlet-name>
@@ -102,12 +118,13 @@
 		<servlet-name>subject</servlet-name>
 		<url-pattern>/subject</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
-		<servlet-name>logout</servlet-name>
-		<jsp-file>/logout.jsp</jsp-file>
+		<servlet-name>deleteForm</servlet-name>
+		<jsp-file>/deleteForm.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>logout</servlet-name>
-		<url-pattern>/logout</url-pattern>
+		<servlet-name>deleteForm</servlet-name>
+		<url-pattern>/deleteForm</url-pattern>
 	</servlet-mapping>
 </web-app>

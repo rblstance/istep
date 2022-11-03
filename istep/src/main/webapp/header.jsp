@@ -13,9 +13,7 @@
     <title>ISTEP</title>
 </head>
 <body>
-	<%
-	String log = (String)session.getAttribute("log");
-	%>
+	<%String log = (String)session.getAttribute("log"); %>
     <header>
         <h1><a href="index">iStep</a></h1>
     </header>
