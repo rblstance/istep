@@ -39,6 +39,7 @@ public class signUpAction extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		String passwordCheck = request.getParameter("passwordCheck");
 		String name = request.getParameter("name");
 		String nickname = request.getParameter("nickname");
 		String phone = request.getParameter("phone");
@@ -46,13 +47,15 @@ public class signUpAction extends HttpServlet {
 		String registrations = "";
 		String email = request.getParameter("email");
 		String grade = request.getParameter("grade");
-		Date regdate = now; 
+		Date regdate = now;
 		
-		if(id != null && password != null && name != null && phone != null && email != null && grade != null && regdate !=null) {
+		if(id != "" && password != "" && name != "" && phone != "" && email != "" && grade != "" && password == passwordCheck) {
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 			dao.createUser(user);
+			out.println("<script>alert('회원가입이 완료되었습니다.');location.href='index';</script>");
+		}else {
+			out.println("<script>alert('회원가입이 실패했습니다.');location.href='signUpForm';</script>");
 		}
-		 out.println("<script>alert('회원가입이 완료되었습니다.');location.href='index';</script>");
 	}
 
 	/**
