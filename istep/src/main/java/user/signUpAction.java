@@ -49,7 +49,7 @@ public class signUpAction extends HttpServlet {
 		String grade = request.getParameter("grade");
 		Date regdate = now;
 		
-		if(id != "" && password != "" && name != "" && phone != "" && email != "" && grade != "" && password == passwordCheck) {
+		if(id != "" && password != "" && name != "" && phone != "" && email != "" && grade != "") {
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
 			dao.createUser(user);
 			out.println("<script>alert('회원가입이 완료되었습니다.');location.href='index';</script>");

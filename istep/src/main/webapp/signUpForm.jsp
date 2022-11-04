@@ -16,7 +16,7 @@
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="id" id="id" size="15" readonly>
-				<button type="button" value="ID중복확인" onclick="idCheck()"></button></td>
+				<button type="button" onclick="idCheck()">ID중복확인</button></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -46,7 +46,7 @@
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" id="email" size="30"
-					readonly> <input type="button" value="Email 중복확인"	onclick="emailCheck()"></td>
+					readonly> <button type="button" onclick="emailCheck()">이메일 중복확인</button></td>
 			</tr>
 			<tr>
 				<th>등급[A:학생, B:강사]</th>
@@ -57,8 +57,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<button type="button" value="회원가입" /></button>
-				<button type="button" onclick="location.href='index'" value="취소" /></button>
+				<button type="button" onclick="joinform_check();">회원가입</button>
+				<button type="button" onclick="location.href='index'">취소</button>
 				</td>
 			</tr>
 		</table>
