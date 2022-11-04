@@ -22,20 +22,32 @@ if(log!=null){
 	grade = user.getGrade();
 }
 String code = request.getParameter("code");
-if(code!=null){
-	LectureDao lecDao = LectureDao.getInstance();
-	LectureDto lecture = lecDao.getLectureByCode(code);
-}
-System.out.println(grade);
+String sbjCode = request.getParameter("sbjCode");
+String url = request.getParameter("url");
+String title = request.getParameter("title");
+String thumbnail = request.getParameter("thumbnail");
+String author = request.getParameter("author");
+String playTime = request.getParameter("time");
+String regDate = request.getParameter("regDate");
 %>
 	<jsp:include page="header.jsp"/>
 		<section>
-			<input type="hidden" class="code" value="<%=code%>" name="code" />
-		  	<div id="player"></div>
-		  	<%if(grade.equals("C")) {%>
-		  		<input type="button" value="강의 추가" onclick="location.href='addLectrue'"/> 
-		  	<%} %>
-		  	<div></div>
+			<form method="POST" action="addLecture">
+				<input type="hidden" value="<%=code%>" name="code" class="code" />
+				<input type="hidden" value="<%=sbjCode%>" name="sbjCode" />
+			  	<input type="hidden" value="<%=thumbnail%>" name="thumbnail" />
+				<input type="hidden" value="<%=url%>" name="url" />
+			  	<input type="hidden" name="playTime"  value="<%=playTime%>" />
+			  	<div id="player"></div>
+			  	<div>
+			  	<input type="text" name="title" value="<%=title%>" readonly />
+			  	<input type="text" name="author"  value="<%=author%>" readonly />
+			  	<input type="text" name="regDate" value="<%=regDate%>" readonly />
+			  	<%if(grade.equals("C")) {%>
+			  		<input type="submit" value="강의 추가"/> 
+			  	<%} %>
+			  	</div>
+		  	</form>
   		</section>
      <jsp:include page="footer.jsp"/>
     <script src="resources/lectureView.js"></script>

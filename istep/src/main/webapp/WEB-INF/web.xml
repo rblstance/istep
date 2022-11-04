@@ -21,6 +21,15 @@
 		<url-pattern>/access</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>pass</servlet-name>
+		<servlet-class>util.passRequestAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pass</servlet-name>
+		<url-pattern>/pass</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>signUp</servlet-name>
 		<servlet-class>user.signUpAction</servlet-class>
 	</servlet>
@@ -108,6 +117,7 @@
 		<servlet-name>sendSbjCode</servlet-name>
 		<url-pattern>/sendSbjCode</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>loadLecture</servlet-name>
 		<servlet-class>lecture.loadLectureAction</servlet-class>
@@ -116,6 +126,15 @@
 		<servlet-name>loadLecture</servlet-name>
 		<url-pattern>/loadLecture</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>addLecture</servlet-name>
+		<servlet-class>lecture.addLectureAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addLecture</servlet-name>
+		<url-pattern>/addLecture</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>logout</servlet-name>
 		<servlet-class>user.logoutAction</servlet-class>

@@ -35,20 +35,51 @@ public class LectureDao {
 		return instance;
 	}
 	
-	
-	// ALL Read
-	public ArrayList<LectureDto> getLectureList(){
+	// 1.create
+	public ArrayList<LectureDto> addLecture(LectureDto lec){
 		ArrayList<LectureDto> lectureList = new ArrayList<>();
-		String sql = "SELECT * FROM lecture";
+		String sql = "INSERT INTO lecture VALUES(?,?,?,?,?,?,?)";
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, lec.getCode());
+			this.pstmt.setInt(2, lec.getSbjCode());
+			this.pstmt.setString(3, lec.getName());
+			this.pstmt.setString(4, lec.getThumbnail());
+			this.pstmt.setString(5, lec.getUrl());
+			this.pstmt.setInt(6, lec.getTime());
+			this.pstmt.setTimestamp(7, lec.getRegDate());
+			this.pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+		return lectureList;
+	}
+	
+	
+	// ALL Read
+	public ArrayList<LectureDto> getLectureListBySbjCode(int sbjCode){
+		ArrayList<LectureDto> lectureList = new ArrayList<>();
+		String sql = "SELECT * FROM `lecture` WHERE `sbj_code`=?";
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, sbjCode);
 			this.rs = this.pstmt.executeQuery();
 			
 			while(this.rs.next()) {
 				String code = this.rs.getString(1);
-				int sbjCode = this.rs.getInt(2);
 				String name = this.rs.getString(3);
 				String thumbnail = this.rs.getString(4);
 				String url = this.rs.getString(5);

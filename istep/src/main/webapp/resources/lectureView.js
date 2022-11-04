@@ -1,4 +1,3 @@
-const video = document.body.querySelector(".video");
 const tag = document.createElement('script');
 const code = document.body.querySelector('.code');
 
@@ -21,7 +20,6 @@ function onPlayerReady(event) {
 let done = false;
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
     done = true;
     }
 }

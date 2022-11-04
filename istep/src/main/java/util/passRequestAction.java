@@ -1,4 +1,4 @@
-package lecture;
+package util;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class loadLectureAction
+ * Servlet implementation class passRequestAction
  */
-//@WebServlet("/loadLectureAction")
-public class loadLectureAction extends HttpServlet {
+@WebServlet("/passRequestAction")
+public class passRequestAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loadLectureAction() {
+    public passRequestAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +27,9 @@ public class loadLectureAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		String sel = request.getParameter("sbjCode");
-		String code = request.getParameter("code");
-		if(sel!=null && code!=null) {
-			request.getRequestDispatcher("lectureView.jsp").forward(request, response);
-		}
+		String page = request.getParameter("page");
+		System.out.println(page);
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

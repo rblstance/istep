@@ -45,7 +45,6 @@
     	</form>
     </div>
     <div>
-    	
     	<table>
     	<%for(AnswerDto answer : aboard){ %>
     	<tr>
