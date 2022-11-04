@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import answer.AnswerDao;
+
 /**
  * Servlet implementation class BoardDeleteAction
  */
@@ -29,7 +31,10 @@ public class BoardDeleteAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		BoardDao dao = BoardDao.getInstance();
+		AnswerDao ans = AnswerDao.getInstance();
+		
 		int no = Integer.parseInt(request.getParameter("no"));
+		ans.DeleteAnswerAll(no);
 		dao.DeleteBoard(no);
 		
 		request.getRequestDispatcher("board.jsp").forward(request, response);

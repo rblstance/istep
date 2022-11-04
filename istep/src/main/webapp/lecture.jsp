@@ -12,8 +12,9 @@
 <%
 String sbjParam = request.getParameter("code");
 ArrayList<LectureDto> lecList = null;
+int sbjCode = 0;
 if(sbjParam!=null){
-	int sbjCode = Integer.parseInt(sbjParam);
+	sbjCode = Integer.parseInt(sbjParam);
 	LectureDao lecDao = LectureDao.getInstance();
 	lecList = lecDao.getLectureListBySbjCode(sbjCode);
 }
@@ -33,6 +34,9 @@ if(sbjParam!=null){
 			</form>
 		</article>
 		<%} %>
+    
+	<jsp:include page="board.jsp"/>
+    
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>

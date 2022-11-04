@@ -46,6 +46,14 @@
 		<url-pattern>/AnswerWrite</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>AnswerDelete</servlet-name>
+		<servlet-class>answer.AnswerDeleteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnswerDelete</servlet-name>
+		<url-pattern>/AnswerDelete</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BoardWrite</servlet-name>
 		<servlet-class>board.BoardWriteAction</servlet-class>
 	</servlet>
