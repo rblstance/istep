@@ -11,7 +11,6 @@
 <body>
 	<%
     String sbjParam = request.getParameter("code");
-    int code = Integer.parseInt(sbjParam);
 	%>
 	<jsp:include page="header.jsp"/>
     <section>

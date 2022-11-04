@@ -22,6 +22,7 @@
     BoardDto board = null;
     AnswerDao ans = AnswerDao.getInstance();
     ArrayList<AnswerDto> aboard = null;
+    String sbjParam = request.getParameter("code");
     
     request.setCharacterEncoding("utf-8");
     if(request.getParameter("no")!=null){
@@ -37,7 +38,7 @@
     	<form>
     		<div><input type="text" value="<%=board.getTitle() %>" readonly ></div>
     		<div><textarea rows="20" readonly><%=board.getContent() %></textarea></div>
-    	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
+    	    <input type="button" onclick="location.href='lecture.jsp?<%=sbjParam %>'" value="글목록">
             <input type="button" onclick="location.href='boardUpdateForm.jsp?no=<%=board.getNo() %>'" value="글수정">
     	</form>
     	<form method="post" action="BoardDelete">

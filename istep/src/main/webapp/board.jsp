@@ -17,12 +17,11 @@
 
 <body>
     <% 
-    BoardDao dao = BoardDao.getInstance(); 
-    ArrayList<BoardDto> list = dao.getBoardAll();
-    // ArrayList<BoardDto> list = dao.getBoard_sbjAll(int code) 를 사용해서  코드 값에 개시물만 가져 올 수 있지만 sbj_code를 가져올 
-    // 방법을 잘 모르겠음
     String sbjParam = request.getParameter("code");
     int code = Integer.parseInt(sbjParam);
+    BoardDao dao = BoardDao.getInstance(); 
+    ArrayList<BoardDto> list = dao.getBoard_sbjAll(code);
+
     %>
     
     <div class="table_board">
@@ -53,8 +52,8 @@
     	</tbody>
     </table>
     <div>
-
-    <button onclick="location.href='boardWriteForm.jsp'">글쓰기</button>
+    <input type="hidden" name="code" value=<%=sbjParam %>>
+    <button onclick="location.href='boardWriteForm.jsp?code=<%=code%>'">글쓰기</button>
     </div>
 	</div>
     
