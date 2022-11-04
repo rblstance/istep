@@ -1,9 +1,5 @@
-<%@page import="member.MemberDto"%>
-<%@page import="member.MemberDao"%>
 <%@page import="chat.ChatDao"%>
 <%@page import="chat.ChatDto"%>
-<%@page import="user.UserDto"%>
-<%@page import="user.UserDao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,19 +13,8 @@
 String log = (String)session.getAttribute("log");
 
 if(log != null){
-	MemberDao mDao = MemberDao.getInstance();
 	ChatDao cDao = ChatDao.getInstance();
-	ArrayList<String> list = mDao.getCodeByUser_id(log);
-	ArrayList<ChatDto> chatList = null;
-	ChatDto chat = null;
-	try {
-		for(int i=0; i<list.size(); i++){
-			chat = cDao.getChatByCode(list.get(i));
-			chatList.add(chat);
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	}%>
+	ArrayList<ChatDto> chatList = cDao.getChatById(log);%>
 
 	<jsp:include page="header.jsp" />
 	<section>
@@ -59,7 +44,7 @@ if(log != null){
 						<td><%=c.getHost_id() %></td>
 					</tr>
 					<tr>
-						<td><input type="button" value="입장" onclick=""></td>
+						<td><a href="chatView?code=<%=c.getCode()%>">입장하기</a></td>
 					</tr>
 					<%} %>
 				</tbody>
