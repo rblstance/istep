@@ -45,6 +45,7 @@ public class Chat_logDao {
 			this.pstmt.setString(2, log.getC_code());
 			this.pstmt.setString(3, log.getContent());
 			this.pstmt.setTimestamp(4, log.getRegdate());
+			this.pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

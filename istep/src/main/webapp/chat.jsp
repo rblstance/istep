@@ -44,7 +44,7 @@ if(log != null){
 						<td><%=c.getHost_id() %></td>
 					</tr>
 					<tr>
-						<td><a href="chatView?code=<%=c.getCode()%>">입장하기</a></td>
+						<td><a href="chatView?c_code=<%=c.getCode()%>">입장하기</a></td>
 					</tr>
 					<%} %>
 				</tbody>

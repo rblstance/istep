@@ -18,6 +18,14 @@ public class Chat_logDto {
 		this.content = content;
 		this.regdate = regdate;
 	}
+	
+	public Chat_logDto(String user_id, String c_code, String content, Timestamp regdate) {
+		super();
+		this.user_id = user_id;
+		this.c_code = c_code;
+		this.content = content;
+		this.regdate = regdate;
+	}
 
 	public int getNo() {
 		return no;

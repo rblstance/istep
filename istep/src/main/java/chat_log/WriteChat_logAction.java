@@ -1,16 +1,20 @@
 package chat_log;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.sql.Timestamp;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class WriteChat_logAction
  */
-@WebServlet("/WriteChat_logAction")
+//@WebServlet("/WriteChat_logAction")
 public class WriteChat_logAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +30,20 @@ public class WriteChat_logAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("log");
+		String c_code = request.getParameter("c_code");
+		String content = request.getParameter("content");
+		Timestamp regdate = new Timestamp(System.currentTimeMillis());
+		
+		Chat_logDao dao = Chat_logDao.getInstance();
+		Chat_logDto chat_log = new Chat_logDto(user_id, c_code, content, regdate);
+		dao.createChat_log(chat_log);
+		
+		request.getRequestDispatcher("chat").forward(request, response);
 	}
 
 	/**

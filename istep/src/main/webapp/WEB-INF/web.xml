@@ -163,12 +163,12 @@
     <url-pattern>/printId</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>WriteChat_log</servlet-name>
-    <servlet-class>chat.WriteChat_logAction</servlet-class>
+    <servlet-name>writeChat_log</servlet-name>
+    <servlet-class>chat_log.WriteChat_logAction</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WriteChat_log</servlet-name>
-    <url-pattern>/WriteChat_log</url-pattern>
+    <servlet-name>writeChat_log</servlet-name>
+    <url-pattern>/writeChat_log</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>UpdateMemberAction</servlet-name>

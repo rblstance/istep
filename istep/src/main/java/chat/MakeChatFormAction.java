@@ -1,11 +1,16 @@
 package chat;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.MemberDao;
 
 /**
  * Servlet implementation class MakeChatForm
@@ -29,6 +34,20 @@ public class MakeChatFormAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		ChatDao dao = ChatDao.getInstance();
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("log");
+		String c_code = dao.createCode(user_id);
+		String name = request.getParameter("name");
+		
+		ChatDto chat = new ChatDto(user_id, c_code, name);
+		dao.createChat(chat);
+		
+		MemberDao mDao = MemberDao.getInstance();
+		String[] memList = request.getParameter("memList").split("/");
+		for(int i=0; i<memList.length; i++) {
+			mDao.createMember(memList[i], c_code);
+		}
 		
 		request.getRequestDispatcher("chat").forward(request, response);
 	}
