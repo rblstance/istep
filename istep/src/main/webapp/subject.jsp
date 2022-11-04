@@ -1,3 +1,7 @@
+<%@page import="lecture.LectureDto"%>
+<%@page import="lecture.LectureDao"%>
+<%@page import="registrations.RegistrationsDao"%>
+<%@page import="registrations.RegistrationsVo"%>
 <%@page import="subject.SubjectDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="subject.SubjectDao"%>
@@ -9,19 +13,21 @@
 </head>
 <body>
 <%
-SubjectDao sbjDao = SubjectDao.getInstance();
-ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
+String id = (String)session.getAttribute("log");
+RegistrationsDao regDao = RegistrationsDao.getInstance();
+LectureDao lecDao = LectureDao.getInstance();
+ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 %>
 	<jsp:include page="header.jsp"/>
     <section>
-        <%for(SubjectDto sbj : sbjList) {%>
-        <div>
-        	<p><%=sbj.getKind()%>
-        	<h2><a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName()%></a></h2>
-        	<p><%=sbj.getTeacher()%></p>
-        	<p><%=sbj.getExplain() %></p>
-        </div>
-        <%} %>
+        <%for(RegistrationsVo reg : regList) {
+			SubjectDao sbjDao = SubjectDao.getInstance();
+			SubjectDto sbj = sbjDao.getSubjectByCode(reg.getSbj_code());%>
+			<input type="hidden" value="<%=sbj.getCode() %>" />
+			<p><a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName() %></a></p>
+			<input type="text" value="<%=sbj.getTeacher()%>" readonly/>
+			<input type="text" value="<%=sbj.getKind() %>" readonly/>
+		<%} %>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>
