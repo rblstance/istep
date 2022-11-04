@@ -3,7 +3,7 @@ function blankCheck(f) {
 
 	
 	console.log(email);
-	if(email.length < 5){
+	if(email.length < 1){
 		alert("이메일을 입력해주세요");
 		return false;
 	}
