@@ -30,7 +30,7 @@ public class MakeChatFormAction extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		
-		request.getRequestDispatcher("board").forward(request, response);
+		request.getRequestDispatcher("chat").forward(request, response);
 	}
 
 	/**

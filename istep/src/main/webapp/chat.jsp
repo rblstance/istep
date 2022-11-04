@@ -14,37 +14,30 @@
 </head>
 <body>
 <%
-String id = "";
-////////
-MemberDao mDao = MemberDao.getInstance();
-ChatDao cDao = ChatDao.getInstance();
-ArrayList<String> list = mDao.getCodeByUser_id(id);
-ArrayList<ChatDto> chatList = null;
-ChatDto chat = null;
-try {
-	for(int i=0; i<list.size(); i++){
-		chat = cDao.getChatByCode(list.get(i));
-		chatList.add(chat);
-	}
-} catch (Exception e) {
-	e.printStackTrace();
-}
+String log = (String)session.getAttribute("log");
 
-%>
-<%
-UserDao uDao = UserDao.getInstance();
-UserDto user = uDao.getUserById(id);
+if(log != null){
+	MemberDao mDao = MemberDao.getInstance();
+	ChatDao cDao = ChatDao.getInstance();
+	ArrayList<String> list = mDao.getCodeByUser_id(log);
+	ArrayList<ChatDto> chatList = null;
+	ChatDto chat = null;
+	try {
+		for(int i=0; i<list.size(); i++){
+			chat = cDao.getChatByCode(list.get(i));
+			chatList.add(chat);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}%>
 
-//MemberDto 
-//<ArrayList> 
-%>
 	<jsp:include page="header.jsp" />
 	<section>
 		<div>
 			<ul>
 				<li><a href="makeChatForm.jsp">채팅방 생성</a></li>
-				<li><a href="myChatList.jsp">채팅방 검색</a></li>
-				<li><a href=""></a></li>
+				<li><a href="myChatList.jsp">내 채팅방</a></li>
+				<li><a href="">채팅방 검색</a></li>
 				<li><a href=""></a></li>
 			</ul>
 		</div>
@@ -76,9 +69,10 @@ UserDto user = uDao.getUserById(id);
 		<div>
 			가입한 채팅방이 없습니다.
 		</div>
-		<%
-		}%>
+		<%}%>
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>
+<%} else
+	response.sendRedirect("login"); %>
 </html>
