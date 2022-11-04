@@ -29,6 +29,14 @@
 		<url-pattern>/signUp</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>AnswerWrite</servlet-name>
+		<servlet-class>answer.AnswerWriteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnswerWrite</servlet-name>
+		<url-pattern>/AnswerWrite</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BoardWrite</servlet-name>
 		<servlet-class>board.BoardWriteAction</servlet-class>
 	</servlet>

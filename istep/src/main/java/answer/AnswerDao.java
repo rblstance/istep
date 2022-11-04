@@ -19,10 +19,13 @@ public class AnswerDao {
 	private ResultSet rs;
 	
 	private AnswerDao() {
-		this.url = "mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
+		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
 
+		this.conn = null;
+		this.pstmt = null;
+		this.rs = null;
 		this.conn = null;
 		this.pstmt = null;
 		this.rs = null;
@@ -34,7 +37,7 @@ public class AnswerDao {
 		return instance;
 	}
 	
-	//CRED
+	//CRUD
 	// 댓글 만들기
 	public void createAnswer(AnswerDto answer) {
 		String sql = "insert into answer values(?,?,?,?,?);";
@@ -66,7 +69,7 @@ public class AnswerDao {
 		}
 	}
 	public int noAnswerGenerator() {
-		String sql = "SELECT MAX(`code`) FROM board;";
+		String sql = "SELECT MAX(`code`) FROM answer;";
 		int no = 0;
 		
 		try {
@@ -92,20 +95,96 @@ public class AnswerDao {
 	}
 	//ReadAll
 	// 2022-11-03 진행중 멈춤
-	public ArrayList<AnswerDto> getAnswerAll(int b_num){
+	public ArrayList<AnswerDto> getAnswerAll(){
 		ArrayList<AnswerDto> list = new ArrayList<AnswerDto>();
-		String sql = "select * from answer order by `code` desc where b_num=?";
+		String sql = "select * from answer order by `code`;";
 		
 		try {
 			this.conn =DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
-			this.pstmt.setInt(1, b_num);
 			this.rs = this.pstmt.executeQuery();
 			
-			
-			
+			while(this.rs.next()) {
+				int code = this.rs.getInt(1);
+				int b_num = this.rs.getInt(2);
+				String user_id = this.rs.getString(3);
+				String content = this.rs.getString(4);
+				Date regdate = this.rs.getDate(5);
+				
+				AnswerDto answer = new AnswerDto(code,b_num,user_id,content,regdate);
+				list.add(answer);
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: handle exception
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+		return list;
+	}
+	public ArrayList<AnswerDto> getViewAnswerAll(int no){
+		ArrayList<AnswerDto> list = new ArrayList<AnswerDto>();
+		String sql = "select * from answer where b_num=? order by `code`;";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.rs = this.pstmt.executeQuery();
+			
+			while(this.rs.next()) {
+				int code = this.rs.getInt(1);
+				int b_num = this.rs.getInt(2);
+				String user_id = this.rs.getString(3);
+				String content = this.rs.getString(4);
+				Date regdate = this.rs.getDate(5);
+				
+				AnswerDto answer = new AnswerDto(code,b_num,user_id,content,regdate);
+				list.add(answer);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return list;
+	}
+	//update
+	public void updateAnswer(AnswerDto answer) {
+		String sql = "update answer set content=? where `code`=?;";
+		int code = answer.getCode();
+		String content = answer.getContent();
+		
+		try {
+			this.conn =DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, content);
+			this.pstmt.setInt(2, code);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
 		}
 		
 	}

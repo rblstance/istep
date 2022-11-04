@@ -133,6 +133,46 @@ public class BoardDao {
 		}
 		return list;
 	}
+	// Read 각 서브젝트 내용만 읽기
+	public ArrayList<BoardDto> getBoard_sbjAll(int code){
+		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
+		String sql = "SELECT * FROM board where `sbj_code` = ? ORDER BY `no` desc";
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, code);
+			this.rs = this.pstmt.executeQuery();
+			
+			while(this.rs.next()) {
+				int no = this.rs.getInt(1);
+				String user_id = this.rs.getString(2);
+				String title = this.rs.getString(3);
+				String content = this.rs.getString(4);
+				Date regdate = this.rs.getDate(5);
+				int check = this.rs.getInt(6);
+				int sbj_code = this.rs.getInt(7);
+				
+				BoardDto board = new BoardDto(no, user_id, title, content, regdate, check, sbj_code);
+				list.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+		
+		return list;
+	}
+	
 	// Read one
 	public BoardDto getBoardByNo(int no) {
 		BoardDto board = null;
