@@ -1,3 +1,8 @@
+<%@page import="lecture.LectureDto"%>
+<%@page import="lecture.LectureDao"%>
+<%@page import="subject.SubjectDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="subject.SubjectDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +13,41 @@
 <body>
 	<%
 	String log = (String)session.getAttribute("log");
+	SubjectDao sbjDao = SubjectDao.getInstance();
+	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
+	String videoId = "";
+	for(int i=1;i<=sbjList.size();i++){
+		int sbjCode = sbjList.get(sbjList.size()-i).getCode();
+		LectureDao lecDao = LectureDao.getInstance();
+		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
+		if(lecList.size()>0){
+			videoId = lecList.get(0).getCode();
+			break;
+		}
+			
+	}
 	%>
 	<jsp:include page="header.jsp"/>
     <section>
-    
+    <div class="recommen_video">
+		<iframe id="mainVideo" width="424" height="238" src="https://www.youtube.com/embed/<%=videoId%>?mute=1&autoplay=1"></iframe>
+    </div>
+    <div class="sbj_box">
+    	<%for(SubjectDto sbj : sbjList) {%>
+        <div>
+        	<p><%=sbj.getKind()%>
+        	<h2><a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName()%></a></h2>
+        	<p><%=sbj.getTeacher()%></p>
+        	<p><%=sbj.getExplain() %></p>
+        	<form method="POST" action="registration">
+	        	<input type="hidden" value="<%=sbj.getCode()%>" name="sbj_code" />
+	        	<input type="submit" value="수강신청" />
+        	</form>
+        </div>
+        <%} %>
+    </div>
     </section>
 	<jsp:include page="footer.jsp"/>
+    <script src="resources/index.js"></script>
 </body>
 </html>

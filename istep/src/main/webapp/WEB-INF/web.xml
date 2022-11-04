@@ -169,7 +169,16 @@
     <servlet-name>UpdateMemberAction</servlet-name>
     <url-pattern>/UpdateMemberAction</url-pattern>
   </servlet-mapping>
-   
+	<servlet>
+		<servlet-name>registration</servlet-name>
+		<servlet-class>registrations.registAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registration</servlet-name>
+		<url-pattern>/registration</url-pattern>
+	</servlet-mapping>
+
+  <!-- jsp -->   
   <servlet>
     <servlet-name>index</servlet-name>
     <jsp-file>/index.jsp</jsp-file>
@@ -273,14 +282,6 @@
   <servlet-mapping>
     <servlet-name>chatForm</servlet-name>
     <url-pattern>/chatForm</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>myChatList</servlet-name>
-    <jsp-file>/myChatList.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>myChatList</servlet-name>
-    <url-pattern>/myChatList</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>chatView</servlet-name>
