@@ -9,7 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
+
+<servlet>
     <servlet-name>access</servlet-name>
     <servlet-class>util.AccessAction</servlet-class>
   </servlet>
@@ -40,6 +41,14 @@
   <servlet-mapping>
     <servlet-name>AnswerWrite</servlet-name>
     <url-pattern>/AnswerWrite</url-pattern>
+	<servlet>
+		<servlet-name>AnswerDelete</servlet-name>
+		<servlet-class>answer.AnswerDeleteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnswerDelete</servlet-name>
+		<url-pattern>/AnswerDelete</url-pattern>
+	</servlet-mapping>
   </servlet-mapping>
   <servlet>
     <servlet-name>BoardWrite</servlet-name>
@@ -178,7 +187,9 @@
 		<url-pattern>/registration</url-pattern>
 	</servlet-mapping>
 
-  <!-- jsp -->   
+
+	
+	<!-- jsp -->   
   <servlet>
     <servlet-name>index</servlet-name>
     <jsp-file>/index.jsp</jsp-file>

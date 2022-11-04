@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AnswerUpdateAction
+ * Servlet implementation class AnswerDeleteAction
  */
-@WebServlet("/AnswerUpdateAction")
-public class AnswerUpdateAction extends HttpServlet {
+@WebServlet("/AnswerDeleteAction")
+public class AnswerDeleteAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AnswerUpdateAction() {
+    public AnswerDeleteAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +28,11 @@ public class AnswerUpdateAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		AnswerDao Dao = AnswerDao.getInstance();
+		AnswerDao dao = AnswerDao.getInstance();
+		int no = Integer.parseInt(request.getParameter("noAns"));
+		dao.DeleteAnswer(no);
 		
-		
+		request.getRequestDispatcher("boardView.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,6 +40,8 @@ public class AnswerUpdateAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

@@ -186,6 +186,47 @@ public class AnswerDao {
 				// TODO: handle exception
 			}
 		}
-		
 	}
+	public void DeleteAnswer(int no) {
+		String sql = "DELETE FROM answer WHERE `code`=?;";
+		
+		try {
+			this.conn=DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+	}
+	public void DeleteAnswerAll(int no) {
+		String sql = "DELETE FROM answer WHERE `b_num`=?";
+		
+		try {
+			this.conn=DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}
+		}
+	}
+	
 }

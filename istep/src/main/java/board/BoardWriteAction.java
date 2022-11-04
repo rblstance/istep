@@ -36,8 +36,10 @@ public class BoardWriteAction extends HttpServlet {
 		String content = request.getParameter("content");
 		Date regdate = now;
 		int check = 0;
+		String sbjParam = request.getParameter("code");
+		int sbj_code = Integer.parseInt(request.getParameter(sbjParam));
 		
-		BoardDto board = new BoardDto(no, id, title, content, regdate, check);
+		BoardDto board = new BoardDto(no, id, title, content, regdate, check, sbj_code);
 		dao.createBoard(board);
 		
 		request.getRequestDispatcher("board.jsp").forward(request, response);
