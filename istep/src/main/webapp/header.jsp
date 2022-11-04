@@ -28,6 +28,7 @@
            	<li><a href="access?page=mypage">마이페이지</a></li>
            	<%if(log == null) {%>
            	<li><a href="loginForm">로그인</a></li> 	
+           	<li><a href="signUpForm">회원가입</a></li> 	
            	<%}else{%>
            	<li><a href="logout">로그아웃</a></li> 
            	<% }%>

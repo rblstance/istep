@@ -23,15 +23,11 @@ function isSame() {
 		else {
 			document.getElementById('same').innerHTML = '비밀번호가 일치하지 않음';
 			document.getElementById('same').style.color = 'red';
-			checkPw.focus();
-
 		}
 	}
 	if (pw.search(" ") != -1) {
-		document.getElementById('space').innerHTML = '공백을 섞을 수 없습니다.';
+		document.getElementById('space').innerHTML = '공백을 넣을 수 없습니다.';
 		document.getElementById('space').style.color = 'red';
-		pw.focus();
-
 	} else {
 		document.getElementById('space').innerHTML = "";
 	}
@@ -58,7 +54,11 @@ function joinform_check() {
 		pw.focus();
 		return false;
 	};
-
+	if (pw.value.search(" ") != -1) {
+		alert("비밀번호에 공백을 넣을 수 없습니다.");
+		pw.focus();
+		return false;
+	}
 	//비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
 	let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 
