@@ -2,6 +2,7 @@ package lecture;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,20 +34,30 @@ public class addLectureAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String code = request.getParameter("code");
-		int sbjCode = Integer.parseInt(request.getParameter("sbjCode"));
+		String sbjCodeParam = request.getParameter("sbjCode");
 		String name = request.getParameter("title");
-		String thumbnail = request.getParameter("subject");
-		String url = request.getParameter("subject");
-//		int time = request.getParameter("subject");
-//		Timestamp regDate = request.getParameter("subject");
-		
-//		if(name!=null && teacher!=null && explain!=null && kind!=null) {
-//			SubjectDao dao = SubjectDao.getInstance();
-//			dao.addSubject(name, teacher, explain, kind);
-//			response.sendRedirect("subjectM.jsp");
-//		}else {
-//			response.sendRedirect("addSubject.jsp");			
-//		}
+		String thumbnail = request.getParameter("thumbnail");
+		String url = request.getParameter("url");
+		String timeParam = request.getParameter("playTime");
+		String regParam = request.getParameter("regDate");
+		System.out.printf("%s,%s,%s,%s,%s,%s,%s",code, sbjCodeParam, name, thumbnail, url, timeParam, regParam);
+		if(code!=null && sbjCodeParam!=null && name!=null && thumbnail!=null && url!=null
+				&& timeParam!=null && regParam!=null) {
+			int sbjCode = Integer.parseInt(sbjCodeParam);
+			int time = Integer.parseInt(timeParam);
+			String[] regTemp = regParam.split("-");
+			int[] regData = new int[regTemp.length];
+			for(int i=0;i<regTemp.length;i++) {
+				regData[i] = Integer.parseInt(regTemp[i]);
+			}
+			Timestamp regDate = new Timestamp(regData[0], regData[1], regData[2], 0, 0, 0, 0);
+			LectureDao dao = LectureDao.getInstance();
+			LectureDto lecture = new LectureDto(code, sbjCode, name, thumbnail, url, time, regDate);
+			dao.addLecture(lecture);
+			response.sendRedirect("lectureM");
+		}else {
+			request.getRequestDispatcher("loadLecture").forward(request, response);			
+		}
 	}
 
 	/**

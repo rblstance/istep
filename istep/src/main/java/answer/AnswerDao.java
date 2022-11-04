@@ -92,21 +92,21 @@ public class AnswerDao {
 	}
 	//ReadAll
 	// 2022-11-03 진행중 멈춤
-	public ArrayList<AnswerDto> getAnswerAll(int b_num){
-		ArrayList<AnswerDto> list = new ArrayList<AnswerDto>();
-		String sql = "select * from answer order by `code` desc where b_num=?";
-		
-		try {
-			this.conn =DBManager.getConnection(this.url, this.user, this.password);
-			this.pstmt = this.conn.prepareStatement(sql);
-			this.pstmt.setInt(1, b_num);
-			this.rs = this.pstmt.executeQuery();
-			
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
+//	public ArrayList<AnswerDto> getAnswerAll(int b_num){
+//		ArrayList<AnswerDto> list = new ArrayList<AnswerDto>();
+//		String sql = "select * from answer order by `code` desc where b_num=?";
+//		
+//		try {
+//			this.conn =DBManager.getConnection(this.url, this.user, this.password);
+//			this.pstmt = this.conn.prepareStatement(sql);
+//			this.pstmt.setInt(1, b_num);
+//			this.rs = this.pstmt.executeQuery();
+//			
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		
+//	}
 }

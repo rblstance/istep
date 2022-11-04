@@ -26,7 +26,7 @@
     if(request.getParameter("no")!=null){
     	int no = Integer.parseInt(request.getParameter("no"));
     	board = dao.getBoardByNo(no);
-    	aboard = ans.get
+    	//aboard = ans.get
     }
 
     %>
@@ -45,7 +45,6 @@
     </div>
     <div>
     	<form>
-    		<div><input type="text" value="<%= %>"</div>
     	</form>
     </div>
     
