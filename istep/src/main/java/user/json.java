@@ -3,9 +3,11 @@ package user;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -117,10 +119,17 @@ public class json extends HttpServlet {
 				String email = (String) resObj.get("email");
 				String name = (String) resObj.get("name");
 				String nickName = (String) resObj.get("nickname");
+				String phone = (String)resObj.get("mobile");
+				String birth = (String)resObj.get("birthday");
+				Timestamp now = new Timestamp(System.currentTimeMillis());
+				String password = access_token.substring(0, 8);
 				
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
 				UserDao dao = UserDao.getInstance();
-				//UserDto user = new UserDto(id, password, name, nickname, phone, birth, email , grade);
-				System.out.println(naverCode + "/" + email + "/" + name + "/" + nickName);
+				UserDto user = new UserDto(naverCode, password, name, nickName, phone, birth, email , "A", now);
+				dao.createUser(user);
+				out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
 				br.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -135,7 +144,8 @@ public class json extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 
