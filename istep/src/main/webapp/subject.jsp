@@ -6,31 +6,33 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="subject.SubjectDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 </head>
 <body>
-<%
+	<%
 String id = (String)session.getAttribute("log");
 RegistrationsDao regDao = RegistrationsDao.getInstance();
 LectureDao lecDao = LectureDao.getInstance();
 ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 %>
-	<jsp:include page="header.jsp"/>
-    <section>
-        <%for(RegistrationsVo reg : regList) {
+	<jsp:include page="header.jsp" />
+	<section>
+		<%for(RegistrationsVo reg : regList) {
 			SubjectDao sbjDao = SubjectDao.getInstance();
 			SubjectDto sbj = sbjDao.getSubjectByCode(reg.getSbj_code());%>
-			<input type="hidden" value="<%=sbj.getCode() %>" />
-			<p><a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName() %></a></p>
-			<input type="text" value="<%=sbj.getTeacher()%>" readonly/>
-			<input type="text" value="<%=sbj.getKind() %>" readonly/>
+		<input type="hidden" value="<%=sbj.getCode() %>" />
+		<p>
+			<a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName() %></a>
+		</p>
+		<input type="text" value="<%=sbj.getTeacher()%>" readonly /> <input
+			type="text" value="<%=sbj.getKind() %>" readonly />
 		<%} %>
 		<%if(regList==null) %>
 		<p>신청하신 과목이 없습니다.</p>
-    </section>
-	<jsp:include page="footer.jsp"/>
+	</section>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -1,9 +1,11 @@
 @charset "UTF-8";
+
 * {
 	margin: 0;
 	padding: 0;
 	font-family: 'Noto Sans KR', sans-serif;
 }
-.table_board{
-	margin-left : 20%;
+
+.table_board {
+	margin-left: 20%;
 }

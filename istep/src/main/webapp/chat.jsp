@@ -9,7 +9,7 @@
 <head>
 </head>
 <body>
-<%
+	<%
 String log = (String)session.getAttribute("log");
 
 if(log != null){
@@ -27,7 +27,7 @@ if(log != null){
 			</ul>
 		</div>
 		<div>
-		<%if(chatList != null){%>
+			<%if(chatList != null){%>
 			<table>
 				<tbody>
 					<%for(ChatDto c : chatList){ %>
@@ -51,9 +51,7 @@ if(log != null){
 			</table>
 		</div>
 		<%} else {%>
-		<div>
-			가입한 채팅방이 없습니다.
-		</div>
+		<div>가입한 채팅방이 없습니다.</div>
 		<%}%>
 	</section>
 	<jsp:include page="footer.jsp" />
