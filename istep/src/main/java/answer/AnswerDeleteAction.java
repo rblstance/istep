@@ -32,7 +32,7 @@ public class AnswerDeleteAction extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("noAns"));
 		dao.DeleteAnswer(no);
 		
-		request.getRequestDispatcher("boardView.jsp").forward(request, response);
+		request.getRequestDispatcher("board.jsp").forward(request, response);
 	}
 
 	/**

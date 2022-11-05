@@ -34,10 +34,12 @@ public class BoardWriteAction extends HttpServlet {
 		String title = request.getParameter("title");
 		String id = "manager"; // 나중에 꼭 수정해야됨
 		String content = request.getParameter("content");
+		
 		Date regdate = now;
 		int check = 0;
 		String sbjParam = request.getParameter("code");
-		int sbj_code = Integer.parseInt(request.getParameter(sbjParam));
+		System.out.println(title + "/" + content + "/" + sbjParam);
+		int sbj_code = Integer.parseInt(sbjParam);
 		
 		BoardDto board = new BoardDto(no, id, title, content, regdate, check, sbj_code);
 		dao.createBoard(board);
