@@ -35,7 +35,7 @@ public class AnswerWriteAction extends HttpServlet {
 		AnswerDao dao = AnswerDao.getInstance();
 		int code = dao.noAnswerGenerator();
 		int b_num = Integer.parseInt(request.getParameter("no"));
-		String user_id = "manager"; // 나중에 아이디 받아야됨
+		String user_id = request.getParameter("id");
 		String content = request.getParameter("content");
 		Date regdate = now;
 		

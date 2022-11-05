@@ -33,14 +33,15 @@ public class BoardUpdateAction extends HttpServlet {
 	    int no = Integer.parseInt(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String code = request.getParameter("sbj_code");
+
 //		BoardDto board = dao.getBoardByNo(no);
 //		board.setTitle(title);
 //		board.setContent(content);
 		BoardDto board = new BoardDto(no,title,content);
 		dao.updateBoard(board);
 		
-		request.getRequestDispatcher("board.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("lecture.jsp?code="+code).forward(request, response);
 	}
 
 	/**

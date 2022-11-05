@@ -29,6 +29,7 @@ public class AnswerDeleteAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		AnswerDao dao = AnswerDao.getInstance();
+		int boardNo = Integer.parseInt(request.getParameter("no"));
 		int no = Integer.parseInt(request.getParameter("noAns"));
 		dao.DeleteAnswer(no);
 		
