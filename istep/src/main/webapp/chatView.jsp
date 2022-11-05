@@ -14,7 +14,6 @@
 	String c_code = request.getParameter("c_code");
 	Chat_logDao dao = Chat_logDao.getInstance();
 	ArrayList<Chat_logDto> list = dao.getAllChat_logByC_code(c_code);
-	System.out.println(list);
 	%>
 	<jsp:include page="header.jsp"/>
     <section>

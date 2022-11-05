@@ -11,11 +11,14 @@
 	<%
 	String log = (String)session.getAttribute("log");
 	UserDao dao = UserDao.getInstance();
-	String memList = log;
+	String memList = "";
 	%>
+	sessionStorage.setItem("<%=memList %>", log);
+	let data = sessionStorage.getItem("<%=memList %>");
+	
 	<jsp:include page="header.jsp"/>
     <section>
-    	<form id="chatForm">
+    	<form id="chatForm" method="POST" action="makeChatForm">
     		<fieldset>
 	    		<label for="chatName">채팅방 이름</label><br><input type="text" name="chatName" id="chatName"><br>
     		</fieldset>
@@ -24,6 +27,7 @@
     	<fieldset form="chatForm">
     		<form method="post" action="printId">
 	    		<label for="userName">유저 검색</label><br><input type="text" name="user_id" id="user_id" value=<%=request.getAttribute("#user_id")%>>
+	    		<input type="hidden" value="<%=memList%>" name="memList" id="memList">
 	    		<input type="submit" value="검색" id="search_member"><br>
     		</form>
     	</fieldset>
@@ -37,13 +41,13 @@
 					if (s_user == dao.getUserById(log)) {}
 					else {
 						memList += "/" + s_user.getId();%>
-					추가된 멤버
 					<span id="new_id">아이디 <%=s_user.getId()%></span>
 					<span>이름 <%=s_user.getName()%></span>
 					<span>닉네임 <%=s_user.getNickname()%></span>
 					<input type="hidden" value="<%=s_user.getName()%>" id="new_id">
 					<input type="hidden" value="<%=memList%>" id="memList">
-					<%}
+					<br> 추가
+					<% System.out.println(memList);}
 					}
 				} %>
     	</fieldset>
@@ -53,6 +57,6 @@
     	</fieldset>
     </section>
 	<jsp:include page="footer.jsp"/>
-	<script src="resources/searchMember.js?ver=5"></script>
+	<script src="resources/searchMember.js?ver=4"></script>
 </body>
 </html>

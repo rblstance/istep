@@ -101,7 +101,6 @@ public class MemberDao {
 			
 			while(this.rs.next()) {
 				String c_code = this.rs.getString(1);
-				
 				list.add(c_code);
 			}
 		} catch (Exception e) {

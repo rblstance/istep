@@ -21,7 +21,7 @@ if(log != null){
 		<div>
 			<ul>
 				<li><a href="makeChatForm.jsp">채팅방 생성</a></li>
-				<li><a href="myChatList.jsp">내 채팅방</a></li>
+				<li><a href="myChatList.jsp">내 채팅방 관리</a></li>
 				<li><a href="">채팅방 검색</a></li>
 				<li><a href=""></a></li>
 			</ul>
@@ -43,10 +43,17 @@ if(log != null){
 						<td>호스트</td>
 						<td><%=c.getHost_id() %></td>
 					</tr>
+					<% if(c.getHost_id().equals(log)){ %>
 					<tr>
+						<td><a href="chatMng?c_code=<%=c.getCode()%>">관리하기</a></td>
 						<td><a href="chatView?c_code=<%=c.getCode()%>">입장하기</a></td>
 					</tr>
-					<%} %>
+					<%} else { %>
+					<tr>
+						<td><a href="chatView?c_code=<%=c.getCode()%>">입장하기</a></td>
+						<td><a href="#">탈퇴하기</a></td>
+					</tr>
+					<%}} %>
 				</tbody>
 			</table>
 		</div>
