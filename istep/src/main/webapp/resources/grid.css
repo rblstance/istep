@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Open+Sans:wght@400;600&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+	height: 150vh;
+	display: grid;
+	grid-template-columns: 100px 1fr 100px;
+	grid-template-rows: 120px 20px 20px 100px 1fr 150px;
+	grid-template-areas: "header header  header" "cust    cust     cust" "nav    nav     nav"
+		"aside  aside   aside" "section section section"
+		"footer footer  footer";
+}
+
+header {
+	grid-area: header;
+	text-align: center;
+}
+
+.customer {
+	grid-area: cust;
+}
+
+nav {
+	grid-area: nav;
+}
+
+aside {
+	grid-area: aside;
+}
+
+section {
+	grid-area: section;
+}
+
+footer {
+	grid-area: footer;
+	font-size: 0.8em;
+}
+
+ul {
+	display: flex;
+	justify-content: space-around;
+	list-style: none;
+}
+
+a {
+	color: inherit;
+}

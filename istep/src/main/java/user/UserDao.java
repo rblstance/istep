@@ -1,10 +1,10 @@
 package user;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import util.DBManager;
@@ -35,10 +35,10 @@ public class UserDao {
 	public static UserDao getInstance() {
 		return instance;
 	}
-
+	
 	// Create 계정 생성 
 	public void createUser(UserDto user) {
-		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
 
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
@@ -49,10 +49,9 @@ public class UserDao {
 			this.pstmt.setString(4, user.getNickname());
 			this.pstmt.setString(5, user.getPhone());
 			this.pstmt.setString(6, user.getBirth());
-			this.pstmt.setString(7, user.getRegistrations());
-			this.pstmt.setString(8, user.getEmail());
-			this.pstmt.setString(9, user.getGrade());
-			this.pstmt.setDate(10, user.getRegdate());;
+			this.pstmt.setString(7, user.getEmail());
+			this.pstmt.setString(8, user.getGrade());
+			this.pstmt.setTimestamp(9, user.getRegdate());;
 
 			this.pstmt.execute();
 
@@ -85,12 +84,11 @@ public class UserDao {
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
 				String birth = this.rs.getString(6);
-				String registrations = this.rs.getString(7);
-				String email = this.rs.getString(8);
-				String grade = this.rs.getString(9);
-				Date regdate = this.rs.getDate(10);
+				String email = this.rs.getString(7);
+				String grade = this.rs.getString(8);
+				Timestamp regdate = this.rs.getTimestamp(9);
 
-				UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
+				UserDto user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
 				list.add(user);
 			}
 		} catch (Exception e) {
@@ -152,12 +150,11 @@ public class UserDao {
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
 				String birth = this.rs.getString(6);
-				String registrations = this.rs.getString(7);
-				String email = this.rs.getString(8);
-				String grade = this.rs.getString(9);
-				Date regdate = this.rs.getDate(10);
+				String email = this.rs.getString(7);
+				String grade = this.rs.getString(8);
+				Timestamp regdate = this.rs.getTimestamp(9);
 
-				user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
+				user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -260,7 +257,7 @@ public class UserDao {
 	
 	// Update 정보수정
 	public void updateUserInfo(UserDto user) {
-		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,registrations=?,email=?,grade=? where `id` = ?;";
+		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,email=?,grade=? where `id` = ?;";
 
 		String id = user.getId();
 		String password = user.getPassword();
@@ -268,7 +265,6 @@ public class UserDao {
 		String nickname = user.getNickname();
 		String phone = user.getPhone();
 		String birth = user.getBirth();
-		String registrations = user.getRegistrations();
 		String email = user.getEmail();
 		String grade = user.getGrade();
 		
@@ -278,12 +274,11 @@ public class UserDao {
 			this.pstmt.setString(1, password);
 			this.pstmt.setString(2, name);
 			this.pstmt.setString(3, nickname);
-			this.pstmt.setString(5, phone);
-			this.pstmt.setString(6, birth);
-			this.pstmt.setString(7, registrations);
-			this.pstmt.setString(8, email);
-			this.pstmt.setString(9, grade);
-			this.pstmt.setString(10, id);
+			this.pstmt.setString(4, phone);
+			this.pstmt.setString(5, birth);
+			this.pstmt.setString(6, email);
+			this.pstmt.setString(7, grade);
+			this.pstmt.setString(8, id);
 			
 			this.pstmt.execute();
 		} catch (Exception e) {

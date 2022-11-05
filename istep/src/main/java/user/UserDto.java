@@ -1,6 +1,7 @@
 package user;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class UserDto {
 	private String id;
@@ -9,13 +10,12 @@ public class UserDto {
 	private String nickname;
 	private String phone;
 	private String birth;
-	private String registrations;
 	private String email;
 	private String grade;
-	private Date regdate;
-
-	public UserDto(String id, String password, String name, String nickname, String phone, String birth, String registrations,
-			 String email, String grade, Date regdate) {
+	private Timestamp regdate;
+	
+	// 수정할때 regdate 값 필요없어서
+	public UserDto(String id, String password, String name, String nickname, String phone, String birth, String email, String grade) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -23,7 +23,18 @@ public class UserDto {
 		this.nickname = nickname;
 		this.phone = phone;
 		this.birth = birth;
-		this.registrations = registrations;
+		this.email = email;
+		this.grade = grade;
+	}
+	
+	public UserDto(String id, String password, String name, String nickname, String phone, String birth, String email, String grade, Timestamp regdate) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.nickname = nickname;
+		this.phone = phone;
+		this.birth = birth;
 		this.email = email;
 		this.grade = grade;
 		this.regdate = regdate;
@@ -65,13 +76,7 @@ public class UserDto {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getRegistrations() {
-		return registrations;
-	}
 
-	public void setRegistrations(String registrations) {
-		this.registrations = registrations;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -84,10 +89,10 @@ public class UserDto {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public Date getRegdate() {
+	public Timestamp getRegdate() {
 		return regdate;
 	}
 
