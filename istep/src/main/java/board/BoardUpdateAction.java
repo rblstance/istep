@@ -39,8 +39,8 @@ public class BoardUpdateAction extends HttpServlet {
 		BoardDto board = new BoardDto(no,title,content);
 		dao.updateBoard(board);
 		
-		request.getRequestDispatcher("lecture.jsp?code="+board.getSbj_code()).forward(request, response);
-
+		request.getRequestDispatcher("board.jsp").forward(request, response);
+		
 	}
 
 	/**
