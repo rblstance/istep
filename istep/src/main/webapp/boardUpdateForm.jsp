@@ -28,7 +28,7 @@
     		<input type="hidden" name="no" value="<%=board.getNo() %>">
     		<div><input type="text" name="title" value="<%=board.getTitle() %>"></div>
     		<div><textarea name="content" rows="20"><%=board.getContent() %></textarea></div>
-    	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
+    	    <input type="button" onclick="location.href='lecture.jsp?code=<%=board.getSbj_code() %>'" value="글목록">
             <input type="submit"  value="수정완료" >
     		
     	</form>

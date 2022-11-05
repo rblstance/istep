@@ -44,7 +44,7 @@ public class BoardWriteAction extends HttpServlet {
 		BoardDto board = new BoardDto(no, id, title, content, regdate, check, sbj_code);
 		dao.createBoard(board);
 		
-		request.getRequestDispatcher("board.jsp").forward(request, response);
+		request.getRequestDispatcher("lecture.jsp").forward(request, response);
 
 	}
 

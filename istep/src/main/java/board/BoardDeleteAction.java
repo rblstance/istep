@@ -32,12 +32,12 @@ public class BoardDeleteAction extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		BoardDao dao = BoardDao.getInstance();
 		AnswerDao ans = AnswerDao.getInstance();
-		
+
 		int no = Integer.parseInt(request.getParameter("no"));
 		ans.DeleteAnswerAll(no);
 		dao.DeleteBoard(no);
 		
-		request.getRequestDispatcher("board.jsp").forward(request, response);
+		request.getRequestDispatcher("lecture.jsp").forward(request, response);
 	}
 
 	/**

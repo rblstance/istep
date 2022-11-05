@@ -38,7 +38,7 @@
     	<form>
     		<div><input type="text" value="<%=board.getTitle() %>" readonly ></div>
     		<div><textarea rows="20" readonly><%=board.getContent() %></textarea></div>
-    	    <input type="button" onclick="location.href='lecture.jsp?<%=sbjParam %>'" value="글목록">
+    	    <input type="button" onclick="location.href='lecture.jsp?code=<%=board.getSbj_code() %>'" value="글목록">
             <input type="button" onclick="location.href='boardUpdateForm.jsp?no=<%=board.getNo() %>'" value="글수정">
     	</form>
     	<form method="post" action="BoardDelete">
@@ -56,6 +56,7 @@
     			<td><input type="text" value="<%=answer.getRegdate() %>" readonly></td>
 
     			<td><form method="get" action="AnswerDelete">
+    			<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>>
     			<input type="hidden" name="no" value=<%=board.getNo()%>>
     			<input type="text" name="noAns" value=<%=answer.getCode()%>>
     			<td><input type="submit" value="삭제"></td>
