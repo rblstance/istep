@@ -12,7 +12,7 @@
 String token = request.getParameter("access_token");
 System.out.println(token);
 %>
-<!-- https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=f_9l7U2Ws6U7DuoYxc5s&client_secret=vvD17C3mZh&access_token=AAAAO80r1jL-SvsRRZnyg9K39syVwk6J_vz-TTuSiAO7Cf8UPpWyyAlhwighsSA-jN2XJ6iB0POwpojvcH-dHE84vTo&service_provider=NAVER -->
+<!-- https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=f_9l7U2Ws6U7DuoYxc5s&client_secret=vvD17C3mZh&access_token=AAAAO5s7MkVIxKlsuffACc5jVptN9wwt0vM1MP9N-358qKRZSDrqyb4Asc6RFgNLJHqYdgcP4_WMgNxyAK6sHgSSXq8&service_provider=NAVER -->
 	<jsp:include page="header.jsp" />
 	<section>
 		<h1>Login</h1>

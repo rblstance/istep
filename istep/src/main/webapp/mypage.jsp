@@ -12,6 +12,7 @@
 	<jsp:include page="header.jsp"/>
     <section>
         마이페이지~!
+        <input type="button" onclick="location.href='updateForm.jsp'" value="회원정보수정">
         <input type="button" onclick="location.href='deleteForm'" value="회원탈퇴">
     </section>
 	<jsp:include page="footer.jsp"/>
