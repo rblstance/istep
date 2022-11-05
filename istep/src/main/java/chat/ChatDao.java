@@ -64,21 +64,14 @@ public class ChatDao {
 	// CREATE CODE
 	public String createCode(String host_id) {
 		String code = "";
-		code += host_id.substring(0, 5);
-		code += String.valueOf(getRnum());
-
-		return code;
-	}
-	
-	public int getRnum() {
-		int code = 0;
 		try {
 			while(true) {
 				String sql = "SELECT * FROM `chat` WHERE code=?";
 				this.conn = DBManager.getConnection(this.url, this.user, this.password);
 				this.pstmt = this.conn.prepareStatement(sql);
-				int temp = (int)Math.floor(Math.random()*99999);
-				this.pstmt.setInt(1, temp);
+				int rNum = (int)Math.floor(Math.random()*99999);
+				String temp = host_id.substring(0, 5) + String.valueOf(rNum);
+				this.pstmt.setString(1, temp);
 				this.rs = this.pstmt.executeQuery();
 				
 				if(!this.rs.next()) {
@@ -88,6 +81,14 @@ public class ChatDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return code;
 	}

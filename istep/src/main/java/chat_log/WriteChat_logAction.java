@@ -37,13 +37,12 @@ public class WriteChat_logAction extends HttpServlet {
 		String user_id = (String)session.getAttribute("log");
 		String c_code = request.getParameter("c_code");
 		String content = request.getParameter("content");
-		Timestamp regdate = new Timestamp(System.currentTimeMillis());
 		
 		Chat_logDao dao = Chat_logDao.getInstance();
-		Chat_logDto chat_log = new Chat_logDto(user_id, c_code, content, regdate);
+		Chat_logDto chat_log = new Chat_logDto(user_id, c_code, content);
 		dao.createChat_log(chat_log);
 		
-		request.getRequestDispatcher("chat").forward(request, response);
+		request.getRequestDispatcher("chatView").forward(request, response);
 	}
 
 	/**

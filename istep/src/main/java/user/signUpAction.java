@@ -3,6 +3,7 @@ package user;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,24 +34,22 @@ public class signUpAction extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		Date now = new Date(System.currentTimeMillis());
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
 		UserDao dao = UserDao.getInstance();
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String passwordCheck = request.getParameter("passwordCheck");
 		String name = request.getParameter("name");
 		String nickname = request.getParameter("nickname");
 		String phone = request.getParameter("phone");
 		String birth = request.getParameter("birth");
-		String registrations = "";
 		String email = request.getParameter("email");
 		String grade = request.getParameter("grade");
-		Date regdate = now;
+		Timestamp regdate = now;
 		
 		if(id != "" && password != "" && name != "" && phone != "" && email != "" && grade != "") {
-			UserDto user = new UserDto(id, password, name, nickname, phone, birth, registrations, email, grade, regdate);
+			UserDto user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
 			dao.createUser(user);
 			out.println("<script>alert('회원가입이 완료되었습니다.');location.href='index';</script>");
 		}else {

@@ -22,12 +22,10 @@
     BoardDto board = null;
     AnswerDao ans = AnswerDao.getInstance();
     ArrayList<AnswerDto> aboard = null;
-    String sbjParam = request.getParameter("code");
     
     request.setCharacterEncoding("utf-8");
     if(request.getParameter("no")!=null){
     	int no = Integer.parseInt(request.getParameter("no"));
-    	System.out.println("no : " + no);
     	board = dao.getBoardByNo(no);
     	aboard = ans.getViewAnswerAll(no);
     }
@@ -38,7 +36,7 @@
     	<form>
     		<div><input type="text" value="<%=board.getTitle() %>" readonly ></div>
     		<div><textarea rows="20" readonly><%=board.getContent() %></textarea></div>
-    	    <input type="button" onclick="location.href='lecture.jsp?<%=sbjParam %>'" value="글목록">
+    	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
             <input type="button" onclick="location.href='boardUpdateForm.jsp?no=<%=board.getNo() %>'" value="글수정">
     	</form>
     	<form method="post" action="BoardDelete">
@@ -54,11 +52,13 @@
     			<td><input type="text" value="<%=answer.getContent()%>" readonly></td>
     			<td><input type="text" value="<%=dao.getNickBoard(answer.getUser_id()) %>" readonly></td>
     			<td><input type="text" value="<%=answer.getRegdate() %>" readonly></td>
-
-    			<td><form method="get" action="AnswerDelete">
-    			<input type="hidden" name="no" value=<%=board.getNo()%>>
-    			<input type="text" name="noAns" value=<%=answer.getCode()%>>
-    			<td><input type="submit" value="삭제"></td>
+    			<td><form method="post" action="AnswerUpdate">
+    			<input type="hidden" name="no" values=<%=answer.getCode()%>>
+    			<input type="hidden" name="content" values=<%=answer.getContent()%>>
+    			<td><input type="submit" value="수정"></td>
+    			</form></td>
+    			<td><form>
+    			
     			</form></td>
     			<!-- if문 이용해서 받은 id값이 작성한 댓글id 값이랑 같을때 수정 삭제 버튼 나오게 만들 예정 -->
     		<%} %>

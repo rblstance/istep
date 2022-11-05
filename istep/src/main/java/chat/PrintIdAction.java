@@ -51,16 +51,18 @@ public class PrintIdAction extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		response.setCharacterEncoding("utf8");
 		String param = URLDecoder.decode(request.getParameter("user_id"), "utf8");
+		String memList = URLDecoder.decode(request.getParameter("user_id"), "utf8");
 		PrintWriter out = response.getWriter();
 
 		UserDao dao = UserDao.getInstance();
 		UserDto result=null;
 		try {
 			result = dao.getUserById(param);
-			System.out.println(result);
+			result.getId();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("result", result);
 		ServletContext app = this.getServletContext();
 		RequestDispatcher dispatcher = app.getRequestDispatcher("/chatForm");

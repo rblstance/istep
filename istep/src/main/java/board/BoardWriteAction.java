@@ -32,7 +32,7 @@ public class BoardWriteAction extends HttpServlet {
 		BoardDao dao = BoardDao.getInstance();
 		int no = dao.noGenerator();
 		String title = request.getParameter("title");
-		String id = "manager"; // 나중에 꼭 수정해야됨
+		String id = request.getParameter("id");
 		String content = request.getParameter("content");
 		
 		Date regdate = now;
@@ -44,7 +44,7 @@ public class BoardWriteAction extends HttpServlet {
 		BoardDto board = new BoardDto(no, id, title, content, regdate, check, sbj_code);
 		dao.createBoard(board);
 		
-		request.getRequestDispatcher("board.jsp").forward(request, response);
+		request.getRequestDispatcher("lecture.jsp").forward(request, response);
 
 	}
 

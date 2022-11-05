@@ -1,25 +1,23 @@
 package chat;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MakeChatForm
+ * Servlet implementation class ChatManagementAction
  */
-//@WebServlet("/MakeChatForm")
-public class MakeChatFormAction extends HttpServlet {
+//@WebServlet("/ChatManagementAction")
+public class ChatManagementAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeChatFormAction() {
+    public ChatManagementAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,23 +26,8 @@ public class MakeChatFormAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		
-		ChatDao dao = ChatDao.getInstance();
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("log");
-		String c_code = dao.createCode(user_id);
-		String name = request.getParameter("chatName");
-		
-		System.out.println(name);
-		System.out.println(user_id);
-		
-		ChatDto chat = new ChatDto(name, user_id);
-		dao.createChat(chat);
-		
-		
-		request.getRequestDispatcher("chat").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
