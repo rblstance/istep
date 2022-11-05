@@ -27,6 +27,7 @@
     <div>
     	<form method="post" action="BoardUpdate">
     		<input type="hidden" name="no" value="<%=board.getNo() %>">
+    		<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>>
     		<div><input type="text" name="title" value="<%=board.getTitle() %>"></div>
     		<div><textarea name="content" rows="20"><%=board.getContent() %></textarea></div>
     	    <input type="button" onclick="location.href='board.jsp'" value="글목록">
