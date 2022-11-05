@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
 <%
@@ -14,13 +15,14 @@
 %> 
 	<jsp:include page="header.jsp"/>
     <section>     
+    	<h2>과목 전체 목록</h2>
     	<table border="1">
     		<thead>
     			<tr>
-    				<th>과목 코드</th>
+    				<th width="100px">과목 코드</th>
     				<th>과목명</th>
-    				<th>담당 강사</th>
-    				<th>분야</th>
+    				<th width="100px">담당 강사</th>
+    				<th width="100px">분야</th>
     			</tr>
     		</thead>
     		<thead>

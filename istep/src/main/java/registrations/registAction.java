@@ -38,13 +38,14 @@ public class registAction extends HttpServlet {
 		int sbjCode = Integer.parseInt(request.getParameter("sbj_code"));
 		
 		if(id==null) {
-			out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='index';</script>");
+			out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='loginForm';</script>");
 		}else{
 			RegistrationsDao registDao = RegistrationsDao.getInstance();
 			if(registDao.duplCheckBySbjCode(sbjCode)) {
 				out.print("<script>alert('이미 신청된 과목입니다.');location.href='index';</script>");
 			}else {
 				registDao.addRegistrations(id, sbjCode);
+				out.print("<script>alert('신청이 완료되었습니다.\n 신청과목은 과목페이지에서 확인하실 수 있습니다.');location.href='index';</script>");
 			}
 		}
 	}

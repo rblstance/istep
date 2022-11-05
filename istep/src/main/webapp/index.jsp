@@ -8,11 +8,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+	<link rel="stylesheet" href="resources/main.css" />
 </head>
 <body>
 	<%
-	String log = (String)session.getAttribute("log");
 	SubjectDao sbjDao = SubjectDao.getInstance();
 	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 	String videoId = "";
@@ -23,8 +22,7 @@
 		if(lecList.size()>0){
 			videoId = lecList.get(0).getCode();
 			break;
-		}
-			
+		}	
 	}
 	%>
 	<jsp:include page="header.jsp"/>
@@ -34,7 +32,7 @@
     </div>
     <div class="sbj_box">
     	<%for(SubjectDto sbj : sbjList) {%>
-        <div>
+        <div class="sbj_content">
         	<p><%=sbj.getKind()%>
         	<h2><a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName()%></a></h2>
         	<p><%=sbj.getTeacher()%></p>
@@ -48,6 +46,5 @@
     </div>
     </section>
 	<jsp:include page="footer.jsp"/>
-    <script src="resources/index.js"></script>
 </body>
 </html>

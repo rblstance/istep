@@ -28,6 +28,8 @@ ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 			<input type="text" value="<%=sbj.getTeacher()%>" readonly/>
 			<input type="text" value="<%=sbj.getKind() %>" readonly/>
 		<%} %>
+		<%if(regList==null) %>
+		<p>신청하신 과목이 없습니다.</p>
     </section>
 	<jsp:include page="footer.jsp"/>
 </body>
