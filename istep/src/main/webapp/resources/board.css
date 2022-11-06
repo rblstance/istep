@@ -7,5 +7,21 @@
 }
 
 .table_board {
-	margin-left: 20%;
+	margin: 0 30%;
+}
+table th {
+   padding: 14px 21px;
+   background: #ececec;
+
+    color: #666;
+    font-size: 12px;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #ddd;
+}
+table td {
+    padding: 14px 21px;
+    color: #666;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
