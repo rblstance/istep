@@ -21,7 +21,7 @@
 			<table border=1>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="id" value="<%=user.getId()%>"
+					<td><input type="text" name="id" value="<%=user.getId()%>" id="user_id"
 						readonly></td>
 				</tr>
 				<tr>
@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" name="nickname"
+					<td><input type="text" name="nickname" id="nickname"
 						value="<%=user.getNickname()%>"></td>
 				</tr>
 				<tr>
@@ -62,12 +62,13 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="수정하기"> <input
+					<td><input type="submit" value="수정하기" onclick="updateMem()"> <input
 						type="button" onclick="location.href='mypage'" value="뒤로가기">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	<script src="resources/chatMemeberMng.js"></script>
 </body>
 </html>

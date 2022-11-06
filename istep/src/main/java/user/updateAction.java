@@ -47,6 +47,7 @@ public class updateAction extends HttpServlet {
 
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, email , grade);
 			dao.updateUserInfo(user);
+			
 		}
 		request.getRequestDispatcher("mypage").forward(request, response);
 	}

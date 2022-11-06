@@ -70,10 +70,6 @@
 			</tr>
 		</table>
 	</form>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/#JeongSungYoung
 	<script src="resources/signUpForm.js?ver=3"></script>
 </body>
 </html>
