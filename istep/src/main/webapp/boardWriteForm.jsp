@@ -25,10 +25,10 @@
 				<input type="hidden" name="id" value=<%=id %>> <input
 					type="hidden" name="code" value=<%=sbjParam %>>
 				<div>
-					<input type="text" name="title" required>
+					<input type="text" id="title" name="title" required>
 				</div>
 				<div>
-					<textarea name="content" row="20" required></textarea>
+					<textarea name="content" id="content" row="20" required></textarea>
 				</div>
 				<input type="submit" value="작성">
 			</form>

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
 	<%
@@ -15,6 +16,8 @@
 	UserDao dao = UserDao.getInstance();
 	UserDto user = dao.getUserById(log);
 	%>
+	<jsp:include page="header.jsp" />
+	<section>
 	<h1>마이페이지</h1>
 	<div>
 		<form method="post" action="update">
@@ -69,6 +72,8 @@
 			</table>
 		</form>
 	</div>
+	</section>
+		<jsp:include page="footer.jsp" />
 	<script src="resources/chatMemeberMng.js"></script>
 </body>
 </html>

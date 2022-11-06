@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
 	<%
@@ -28,7 +29,6 @@
 			<tr>
 				<td>닉네임</td>
 				<td><%=user.getNickname() %></td>
-				<td><input type="button" value="닉네임 변경"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
