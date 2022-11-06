@@ -34,6 +34,7 @@ if(sbjParam!=null){
 			</form>
 		</article>
 		<%} %>
+		<jsp:include page="board.jsp" />
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>
