@@ -38,11 +38,11 @@ public class findIdAction extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		String id = dao.findId(name, email);
+		request.setAttribute("id", id);
 		
-		System.out.println(name+"/"+email+"/"+id);
 		if(id != null) {
 			out.println("<script>alert('"+name+"님 가입된 id는 "+id+"입니다');location.href='loginForm';</script>");
-			request.setAttribute("id", id);
+			
 		}else {
 			out.println("<script>alert('가입된 id가 없습니다');location.href='findIdForm.jsp';</script>");
 		}

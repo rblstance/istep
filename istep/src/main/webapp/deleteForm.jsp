@@ -10,7 +10,7 @@
 	<%
 	String log = (String)session.getAttribute("log");
 	%>
-	<h1>마이페이지</h1>
+	<h1>회원탈퇴</h1>
 	<h4><%=log %>님 회원탈퇴 하시겠습니까?
 	</h4>
 

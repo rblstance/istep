@@ -12,7 +12,7 @@
 <body>
 		<%
 		String clientId = "f_9l7U2Ws6U7DuoYxc5s";//애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://localhost:8080/istep/json", "UTF-8");
+		String redirectURI = URLEncoder.encode("http://localhost:8081/istep/json", "UTF-8");
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -29,7 +29,7 @@
             <a href="<%=apiURL%>"><img height="50" src="resources/btn_naver.png" /></a>
    			</div>
    			
-			<form method="POST">
+			<form method="POST" action="login">
 			<table border=1>
 				<tr>
 					<th>아이디</th>
@@ -41,10 +41,10 @@
 				</tr>
 			</table>
 			<div class="sign">
-            	<a href="login">로그인</a> / 
-            	<a href="signUpForm">회원가입</a>
+            	<input type="submit" value="로그인">
            </div>
 			<div class="sign">
+				<a href="signUpForm">회원가입</a> / 
             	<a href="findIdForm.jsp">아이디 찾기</a> / 
             	<a href="findPwForm.jsp">비밀번호 찾기</a>
            </div>
