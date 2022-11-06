@@ -10,6 +10,7 @@
 <title>회원가입</title>
 </head>
 <body>
+<jsp:include page="header.jsp" />
 	<h1>회원가입</h1>
 	<form name="signup" method="post" action="signUp">
 		<table border=1>
@@ -70,6 +71,6 @@
 		</table>
 	</form>
 
-	<script src="resources/signUpForm.js"></script>
+	<script src="resources/signUpForm.js?ver=3"></script>
 </body>
 </html>

@@ -23,14 +23,11 @@ function isSame() {
 		else {
 			document.getElementById('same').innerHTML = '비밀번호가 일치하지 않음';
 			document.getElementById('same').style.color = 'red';
-			checkPw.focus();
-
 		}
 	}
 	if (pw.search(" ") != -1) {
 		document.getElementById('space').innerHTML = '공백을 섞을 수 없습니다.';
 		document.getElementById('space').style.color = 'red';
-		pw.focus();
 
 	} else {
 		document.getElementById('space').innerHTML = "";
@@ -93,5 +90,33 @@ function joinform_check() {
 	}
 
 	//입력 값 전송
-	document.signup.submit(); //유효성 검사의 포인트   
+	document.signup.submit(); //유효성 검사의 포인트
+	
+	var settings = {
+        "url": "https://api-C2C776A7-4236-4340-836A-E42E1963FD0E.sendbird.com/v3/users?user_id=&nickname=",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Api-Token": "92fd33f2bd65a4ab400a443b08a95fb59de5542d",
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "data": JSON.stringify({
+          "user_id": id.value,
+          "nickname": nickname.value,
+          "profile_url": "",
+          "profile_file": "",
+          "issue_access_token": "false",
+          "metadata": {
+            "name": name.value,
+            "email": email.value,
+            "password": pw.value,
+            "phone" : phone.value
+          }
+        }),
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
 }
