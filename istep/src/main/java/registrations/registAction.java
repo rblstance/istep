@@ -41,11 +41,11 @@ public class registAction extends HttpServlet {
 			out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='loginForm';</script>");
 		}else{
 			RegistrationsDao registDao = RegistrationsDao.getInstance();
-			if(registDao.duplCheckBySbjCode(sbjCode)) {
-				out.print("<script>alert('이미 신청된 과목입니다.');location.href='index';</script>");
+			if(registDao.duplCheckBySbjCode(sbjCode, id)) {
+				out.print("<script>alert('이미 신청한 과목입니다.');location.href='index';</script>");
 			}else {
 				registDao.addRegistrations(id, sbjCode);
-				out.print("<script>alert('신청이 완료되었습니다.\n 신청과목은 과목페이지에서 확인하실 수 있습니다.');location.href='index';</script>");
+				out.print("<script>alert('신청이 완료 되었습니다.');location.href='index';</script>");
 			}
 		}
 	}

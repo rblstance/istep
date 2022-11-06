@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import lecture.LectureDto;
 import util.DBManager;
 
@@ -121,14 +123,15 @@ public class RegistrationsDao {
 		return ++no;
 	}
 	
-	public boolean duplCheckBySbjCode(int sbjCode) {
+	public boolean duplCheckBySbjCode(int sbjCode, String id) {
 		boolean dupl = false;
-		String sql = "SELECT * FROM `registrations` WHERE sbj_code=?";
+		String sql = "SELECT * FROM `registrations` WHERE sbj_code=? AND user_id=?";
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setInt(1, sbjCode);
+			this.pstmt.setString(2, id);
 			this.rs = this.pstmt.executeQuery();
 			
 			if(this.rs.next()) {
@@ -146,7 +149,6 @@ public class RegistrationsDao {
 				e.printStackTrace();
 			}
 		}
-		
 		
 		return dupl;
 	}
