@@ -1,3 +1,4 @@
+<%@page import="user.UserDao"%>
 <%@page import="board.BoardDto"%>
 <%@page import="board.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,6 +14,8 @@
 	<%
     String sbjParam = request.getParameter("code");
 	String id = (String) session.getAttribute("log");
+
+	
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
