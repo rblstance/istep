@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<link rel="stylesheet" href="resources/lectureM.css" />
 </head>
 <body>
 	<%
@@ -44,11 +44,13 @@ String keyword = request.getParameter("keyword");
 		</div>
 		<div class="lectures">
 			<div class="lecture_container"></div>
-			<input type="button" class="back_btn" value="이전" onclick="backPage()" />
-			<input type="button" class="next_btn" value="다음" onclick="nextPage()" />
+			<div class="page_ctrl">
+				<input type="button" class="back_btn" value="이전" onclick="backPage()" />
+				<input type="button" class="next_btn" value="다음" onclick="nextPage()" />
+			</div>
 		</div>
 	</section>
 	<jsp:include page="footer.jsp" />
-	<script src="resources/loadLecture.js?ver=2"></script>
+	<script src="resources/loadLecture.js?ver=3"></script>
 </body>
 </html>

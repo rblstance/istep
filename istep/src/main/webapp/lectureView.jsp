@@ -26,7 +26,6 @@ String sbjCode = request.getParameter("sbjCode");
 String url = request.getParameter("url");
 String title = request.getParameter("title");
 String thumbnail = request.getParameter("thumbnail");
-String author = request.getParameter("author");
 String playTime = request.getParameter("time");
 String regDate = request.getParameter("regDate");
 %>
@@ -40,9 +39,8 @@ String regDate = request.getParameter("regDate");
 				name="playTime" value="<%=playTime%>" />
 			<div id="player"></div>
 			<div>
-				<input type="text" name="title" value="<%=title%>" readonly /> <input
-					type="text" name="author" value="<%=author%>" readonly /> <input
-					type="text" name="regDate" value="<%=regDate%>" readonly />
+				<input type="text" name="title" value="<%=title%>" readonly />  
+				<input type="text" name="regDate" value="<%=regDate%>" readonly />
 				<%if(grade.equals("C")) {%>
 				<input type="submit" value="강의 추가" />
 				<%} %>

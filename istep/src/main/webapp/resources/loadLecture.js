@@ -52,8 +52,9 @@ function getData(){
 							<input type="hidden" name="sbjCode" value="${sbjCode}" readonly/>
 							<input type="hidden" name="url" value="${url}" />
 							<input type="hidden" name="time" value="${playTime}" />
-							<input type="text" class="title" name="title" value="${title}" readonly>
+							<input type="hidden" name="title" value="${title}" readonly>
 							<input class="code" name="code" type="hidden" value="${code}" />
+							<p class="title">"${title}"</p>
 							<input type="image" class="thumbnail"  src="${thumbnail}">
 							<input type="hidden" name="thumbnail" value="${thumbnail}"/>
 							<input type="text" class="title" name="author" value=${author}"  readonly/>
