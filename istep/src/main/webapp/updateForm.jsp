@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" name="license"
+					<td><input type="text" name="email"
 						value="<%=user.getEmail()%>"></td>
 				</tr>
 				<tr>
