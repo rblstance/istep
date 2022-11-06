@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 
 <body>

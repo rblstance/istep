@@ -17,6 +17,16 @@
 		})();
 	</script>
 	<!--End of Tawk.to Script-->
-	<footer>푸터 내용~~~</footer>
+	<footer>COMPANY INFO
+회사명 : (주) istep Ent.
+주소 서울특별시 서초구 서초대로77길 54 (서초더블유타워 13,14층) <br>
+대표자 정진아
+사업자등록번호 153-88-11234
+명칭 아이스텝 코드 러닝 <br>
+학원설립ㆍ운영 등록번호 제11702호
+통신판매업신고번호 제 2016-서울서초-1204호<br>
+개인정보보호책임자 박진규(any01@any.co.kr)
+전화번호 1234-1234<br>
+Copyright by EZEN. All rights reserved.</footer>
 </body>
 </html>

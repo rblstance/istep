@@ -1,4 +1,4 @@
-package registrations;
+package user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,19 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class registrationAction
+ * Servlet implementation class findPw
  */
-@WebServlet("/registrationAction")
-public class registAction extends HttpServlet {
+//@WebServlet("/findPw")
+public class findPwAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registAction() {
+    public findPwAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +28,21 @@ public class registAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
-		String id = (String)session.getAttribute("log");
-		int sbjCode = Integer.parseInt(request.getParameter("sbj_code"));
+		UserDao dao = UserDao.getInstance();
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String pw = dao.findPassword(id, name);
+		request.setAttribute("pw", pw);
 		
-		if(id==null) {
-			out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='loginForm';</script>");
-		}else{
-			RegistrationsDao registDao = RegistrationsDao.getInstance();
-			if(registDao.duplCheckBySbjCode(sbjCode, id)) {
-				out.print("<script>alert('이미 신청한 과목입니다.');location.href='index';</script>");
-			}else {
-				registDao.addRegistrations(id, sbjCode);
-				out.print("<script>alert('신청이 완료 되었습니다.');location.href='index';</script>");
-			}
+		if(pw != null) {
+			out.println("<script>alert();location.href='index';</script>");
 		}
+	
 	}
 
 	/**

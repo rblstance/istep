@@ -42,6 +42,7 @@
 				<p><%=sbj.getExplain() %></p>
 				<form method="POST" action="registration">
 					<input type="hidden" value="<%=sbj.getCode()%>" name="sbj_code" />
+					<input type="hidden" value="<%=sbj.getCode()%>" name="sbj_code" />
 					<input type="submit" value="수강신청" />
 				</form>
 			</div>

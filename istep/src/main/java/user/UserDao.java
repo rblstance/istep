@@ -254,7 +254,62 @@ public class UserDao {
 		}
 		return result;
 	}
-	
+	// 아이디찾기
+	public String findId(String name, String pw) {
+		String id = null;
+		
+		try {
+			String sql = "SELECT `id` FROM user WHERE `name`=? and pw=?";
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, name);
+			this.pstmt.setString(2, pw);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("`id`");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return id;
+	}
+	// 비밀번호찾기
+	public String findPassword(String id,String name) {
+		String pw = null;
+		
+		String sql = "SELECT password FROM user WHERE `id` = ? and `name` = ?";
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			this.pstmt.setString(2, name);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pw = this.rs.getString("password");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return pw;
+	}
 	// Update 정보수정
 	public void updateUserInfo(UserDto user) {
 		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,email=?,grade=? where `id` = ?;";

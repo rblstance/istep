@@ -43,7 +43,11 @@ section {
 
 footer {
 	grid-area: footer;
-	font-size: 0.8em;
+	background-color: #FF884B;
+	font-size: 0.2em;
+	color: #efefef;
+	padding:20px;
+	text-align:center;
 }
 
 ul {
