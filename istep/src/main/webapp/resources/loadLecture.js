@@ -6,21 +6,19 @@ let sbjCode = $("input[name='subject']:checked").val();
 let is_end = false;
 let page = 1;
 
-function setChecked(){
-	for(let i=0; i<option.length; i++){
-		if(option[i].checked){
-			// const selSbj = 
-		}
+$(window).scroll(function() {
+	var scrT = $(window).scrollTop();
+	if (scrT == $(document).height() - $(window).height()) {
+		page++;
+		getData();
 	}
-}
-getData();
+});
 
 function getData(){
 	let keyword = "자바의 정석";
 	if(search.value!="null" && search.value!=""){
 		keyword = search.value; 
 	}
-    $('.lecture_container').empty();
     $.ajax({
         method : "GET",
         url : "https://dapi.kakao.com/v2/search/vclip",

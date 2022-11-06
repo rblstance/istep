@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="resources/subject.css" />
 </head>
 <body>
 	<%
@@ -24,12 +25,14 @@ ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 		<%for(RegistrationsVo reg : regList) {
 			SubjectDao sbjDao = SubjectDao.getInstance();
 			SubjectDto sbj = sbjDao.getSubjectByCode(reg.getSbj_code());%>
-		<input type="hidden" value="<%=sbj.getCode() %>" />
-		<p>
-			<a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName() %></a>
-		</p>
-		<input type="text" value="<%=sbj.getTeacher()%>" readonly /> <input
-			type="text" value="<%=sbj.getKind() %>" readonly />
+		<div class="group">
+			<input type="hidden" value="<%=sbj.getCode() %>" />
+			<p>
+				<a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName() %></a>
+			</p>
+			<input type="text" value="<%=sbj.getTeacher()%>" readonly /> <input
+				type="text" value="<%=sbj.getKind() %>" readonly />
+		</div>
 		<%} %>
 		<%if(regList.size()==0) {%>
 			<p>신청하신 과목이 없습니다.</p>

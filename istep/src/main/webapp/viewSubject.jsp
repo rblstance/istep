@@ -19,26 +19,31 @@ SubjectDto sbj = sbjDao.getSubjectByCode(code);
 	<jsp:include page="header.jsp" />
 	<section>
 		<form method="POST" action="updSubjectForm">
+			<h1>강의 정보</h1>
 			<input type="hidden" name="code" value="<%=code %>" />
-			<div class="col_box">
-				<p>과목명 :</p>
+			<div class="group">
+				<span class="highlight"></span>
+				<span class="bar"></span>
 				<input type="text" name="subject" value="<%=sbj.getName() %>"
 					readonly />
 			</div>
-			<div class="col_box">
-				<p>강사 :</p>
+			<div class="group">
+				<span class="highlight"></span>
+				<span class="bar"></span>
 				<input type="text" name="teacher" value="<%=sbj.getTeacher() %>"
 					readonly />
 			</div>
-			<div class="col_box" id="text_box">
-				<p>과목설명 :</p>
+			<div class="group" id="text_box">
+				<span class="highlight"></span>
+				<span class="bar"></span>
 				<textarea name="explain" readonly><%=sbj.getExplain() %></textarea>
 			</div>
-			<div class="col_box">
-				<p>과목분야 :</p>
+			<div class="group">
+				<span class="highlight"></span>
+				<span class="bar"></span>
 				<input type="text" name="kind" value="<%=sbj.getKind()%>" readonly></input>
 			</div>
-			<div class="btn_box">
+			<div class="group">
 				<input type="submit" value="과목 수정" /> <input type="button"
 					value="과목 삭제" onclick="location.href='delSubject?code=<%=code%>'" />
 				<input type="button" value="돌아가기"

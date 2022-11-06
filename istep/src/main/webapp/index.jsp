@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="resources/main.css" />
+<link rel="stylesheet" href="resources/main.css?ver=1" />
 </head>
 <body>
 	<%
@@ -27,9 +27,13 @@
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
-		<div class="recommen_video">
-			<iframe id="mainVideo" width="424" height="238"
-				src="https://www.youtube.com/embed/<%=videoId%>?mute=1&autoplay=1"></iframe>
+		<div class="frane">
+			<div class="video">
+				<div class="recommen_video">
+					<iframe id="mainVideo" width="424" height="238"
+						src="https://www.youtube.com/embed/<%=videoId%>?mute=1&autoplay=1"></iframe>
+				</div>
+			</div>
 		</div>
 		<div class="sbj_box">
 			<%for(SubjectDto sbj : sbjList) {%>

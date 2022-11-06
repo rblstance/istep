@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="resources/lectureM.css" />
+<link rel="stylesheet" href="resources/searchBox.css" />
 </head>
 <body>
 	<%
@@ -21,8 +22,7 @@ String keyword = request.getParameter("keyword");
 		<div class="search_box">
 			<form method="POST" action="lectureM.jsp">
 				<input type="hidden" id="subject" name="checkSbj" /> <input
-					type="text" placeholder="검색" id="search" name="keyword" /> <input
-					type="submit" value="검색" />
+					type="search" placeholder="검색" id="search" name="keyword" /> 
 			</form>
 		</div>
 		<div class="selSbj">
