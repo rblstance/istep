@@ -69,7 +69,6 @@
 			</tr>
 		</table>
 	</form>
-
-	<script src="resources/signUpForm.js"></script>
+	<script src="resources/signUpForm.js?ver=3"></script>
 </body>
 </html>

@@ -23,14 +23,12 @@ function isSame() {
 		else {
 			document.getElementById('same').innerHTML = '비밀번호가 일치하지 않음';
 			document.getElementById('same').style.color = 'red';
-			checkPw.focus();
-
+		
 		}
 	}
 	if (pw.search(" ") != -1) {
 		document.getElementById('space').innerHTML = '공백을 섞을 수 없습니다.';
 		document.getElementById('space').style.color = 'red';
-		pw.focus();
 
 	} else {
 		document.getElementById('space').innerHTML = "";

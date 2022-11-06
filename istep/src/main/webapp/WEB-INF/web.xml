@@ -37,6 +37,14 @@
 		<url-pattern>/signUp</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>findId</servlet-name>
+		<servlet-class>user.findIdAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findId</servlet-name>
+		<url-pattern>/findId</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>AnswerWrite</servlet-name>
 		<servlet-class>answer.AnswerWriteAction</servlet-class>
 	</servlet>
@@ -124,6 +132,14 @@
 	<servlet-mapping>
 		<servlet-name>delete</servlet-name>
 		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>update</servlet-name>
+		<servlet-class>user.updateAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>update</servlet-name>
+		<url-pattern>/update</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>sendSbjCode</servlet-name>
@@ -311,11 +327,11 @@
 		<url-pattern>/chatView</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>update</servlet-name>
+		<servlet-name>updateForm</servlet-name>
 		<jsp-file>/updateForm.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>update</servlet-name>
-		<url-pattern>/update</url-pattern>
+		<servlet-name>updateForm</servlet-name>
+		<url-pattern>/updateForm</url-pattern>
 	</servlet-mapping>
 </web-app>
