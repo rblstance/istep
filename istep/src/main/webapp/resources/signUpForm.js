@@ -92,7 +92,7 @@ function joinform_check() {
 	//입력 값 전송
 	document.signup.submit(); //유효성 검사의 포인트
 
-	var settings = {
+	let settings = {
         "url": "https://api-C2C776A7-4236-4340-836A-E42E1963FD0E.sendbird.com/v3/users?user_id=&nickname=",
         "method": "POST",
         "timeout": 0,
