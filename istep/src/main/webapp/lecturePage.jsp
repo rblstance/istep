@@ -6,7 +6,7 @@
 
 </head>
 <body>
-	<%
+<%
 String subject = request.getParameter("sbj");
 %>
 	<jsp:include page="header.jsp" />
