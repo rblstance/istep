@@ -35,23 +35,25 @@ public class findIdAction extends HttpServlet {
 		
 		UserDao dao = UserDao.getInstance();
 		String name = request.getParameter("name");
-		String pw = request.getParameter("password");
-		String id = dao.findId(name, pw);
-		request.setAttribute("id", id);
+		String email = request.getParameter("email");
 		
-		if(id == null) {
-			out.println("<script>alert('가입된 id가 없습니다');location.href='loginForm';</script>");
+		String id = dao.findId(name, email);
+		
+		System.out.println(name+"/"+email+"/"+id);
+		if(id != null) {
+			out.println("<script>alert('"+name+"님 가입된 id는 "+id+"입니다');location.href='loginForm';</script>");
+			request.setAttribute("id", id);
 		}else {
-			out.println("<script>alert('id');location.href='index';</script>");
+			out.println("<script>alert('가입된 id가 없습니다');location.href='findIdForm.jsp';</script>");
 		}
-	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

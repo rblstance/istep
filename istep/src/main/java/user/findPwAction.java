@@ -38,9 +38,11 @@ public class findPwAction extends HttpServlet {
 		String name = request.getParameter("name");
 		String pw = dao.findPassword(id, name);
 		request.setAttribute("pw", pw);
-		
+		System.out.println(name+"/"+pw+"/"+id);
 		if(pw != null) {
-			out.println("<script>alert();location.href='index';</script>");
+			out.println("<script>alert('"+name+"님 비밀번호는 "+pw+" 입니다.');location.href='loginForm';</script>");
+		}else {
+			out.println("<script>alert('입력하신 정보가 잘못되었습니다.');location.href='findPwForm.jsp';</script>");
 		}
 	
 	}
@@ -49,7 +51,8 @@ public class findPwAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

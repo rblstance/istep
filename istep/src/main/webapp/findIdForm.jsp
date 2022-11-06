@@ -14,7 +14,7 @@
 					이름 : <input type="text" name="name" placeholder="name"></input>
 				<p>
 				<p>
-					비밀번호 : <input type="password" name="password" placeholder="Password"></input>
+					이메일 : <input type="text" name="email" placeholder="email"></input>
 				<p>
 					<input type="submit" value="아이디찾기">
 			</form>

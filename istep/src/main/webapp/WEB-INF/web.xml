@@ -45,6 +45,14 @@
 		<url-pattern>/findId</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>findPw</servlet-name>
+		<servlet-class>user.findPwAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findPw</servlet-name>
+		<url-pattern>/findPw</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>AnswerWrite</servlet-name>
 		<servlet-class>answer.AnswerWriteAction</servlet-class>
 	</servlet>

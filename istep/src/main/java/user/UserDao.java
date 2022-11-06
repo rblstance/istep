@@ -255,19 +255,19 @@ public class UserDao {
 		return result;
 	}
 	// 아이디찾기
-	public String findId(String name, String pw) {
+	public String findId(String name, String email) {
 		String id = null;
 		
 		try {
-			String sql = "SELECT `id` FROM user WHERE `name`=? and pw=?";
+			String sql = "SELECT `id` FROM user WHERE `name`=? and email=?";
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, name);
-			this.pstmt.setString(2, pw);
+			this.pstmt.setString(2, email);
 			this.rs = this.pstmt.executeQuery();
 			
-			if(rs.next()) {
-				id = rs.getString("`id`");
+			while(rs.next()) {
+				id = this.rs.getString("id");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -286,7 +286,7 @@ public class UserDao {
 	public String findPassword(String id,String name) {
 		String pw = null;
 		
-		String sql = "SELECT password FROM user WHERE `id` = ? and `name` = ?";
+		String sql = "SELECT `password` FROM user WHERE `id` = ? and `name` = ?";
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -294,7 +294,7 @@ public class UserDao {
 			this.pstmt.setString(2, name);
 			this.rs = this.pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				pw = this.rs.getString("password");
 			}
 		} catch (Exception e) {
