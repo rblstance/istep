@@ -1,4 +1,3 @@
-
 <%@page import="lecture.LectureDto"%>
 <%@page import="lecture.LectureDao"%>
 <%@page import="user.UserDto"%>
@@ -12,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 
 <body>
@@ -21,7 +20,6 @@
     int code = Integer.parseInt(sbjParam);
     BoardDao dao = BoardDao.getInstance(); 
     ArrayList<BoardDto> list = dao.getBoard_sbjAll(code);
-
     %>
     
     <div class="table_board">

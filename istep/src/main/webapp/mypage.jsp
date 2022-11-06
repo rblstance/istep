@@ -40,7 +40,8 @@
 			</tr>
 
 		</table>
-		<input type="button" onclick="location.href='deleteForm'" value="회원탈퇴">
+		<input type="submit" onclick="location.href='updateForm'" value="회원정보수정">
+		<input type="submit" onclick="location.href='deleteForm'" value="회원탈퇴">
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>

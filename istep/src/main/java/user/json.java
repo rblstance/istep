@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -116,20 +117,31 @@ public class json extends HttpServlet {
 				System.out.println(obj);				// 왼쪽 변수 이름은 원하는 대로 정하면 된다.
 				// 단, 우측의 get()안에 들어가는 값은 와인색 상자 안의 값을 그대로 적어주어야 한다.
 				String naverCode = (String) resObj.get("id");
+				String id = naverCode.substring(0, 8);
 				String email = (String) resObj.get("email");
 				String name = (String) resObj.get("name");
 				String nickName = (String) resObj.get("nickname");
 				String phone = (String)resObj.get("mobile");
 				String birth = (String)resObj.get("birthday");
 				Timestamp now = new Timestamp(System.currentTimeMillis());
-				String password = access_token.substring(0, 8);
+				String password = "12345678";
 				
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
+				HttpSession session = request.getSession();
+			
 				UserDao dao = UserDao.getInstance();
-				UserDto user = new UserDto(naverCode, password, name, nickName, phone, birth, email , "A", now);
-				dao.createUser(user);
-				out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
+				int check = dao.duplecateId(id);
+				
+				if(check == 0) {
+					UserDto user = new UserDto(id, password, name, nickName, phone, birth, email , "A", now);
+					dao.createUser(user);
+					session.setAttribute("log", id);
+					out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
+				}else {
+					session.setAttribute("log", id);
+					out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
+				}
 				br.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -142,8 +154,7 @@ public class json extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		doGet(request, response);
