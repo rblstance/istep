@@ -6,25 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>로그인</title>
+<link rel="stylesheet" href="resources/login.css" />
 </head>
 <body>
-	<jsp:include page="header.jsp" />
-	<section>
-		<h1>Login</h1>
-		<div>
-			<form method="POST" action="login">
-				<p>
-					아이디 : <input type="text" name="id" placeholder="ID"></input>
-				<p>
-				<p>
-					비밀번호 : <input type="password" name="password"
-						placeholder="Password"></input>
-				<p>
-					<input type="submit" value="로그인">
-			</form>
-			<p><a href="findIdForm.jsp">아이디 찾기</a></p>
-			<p><a href="findPwForm.jsp">비밀번호 찾기</a></p>
-		</div>
 		<%
 		String clientId = "f_9l7U2Ws6U7DuoYxc5s";//애플리케이션 클라이언트 아이디값";
 		String redirectURI = URLEncoder.encode("http://localhost:8080/istep/json", "UTF-8");
@@ -36,8 +21,34 @@
 		apiURL += "&state=" + state;
 		session.setAttribute("state", state);
 		%>
-		<a href="<%=apiURL%>"><img height="50"
-			src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+	<jsp:include page="header.jsp" />
+	<section>
+		<h1 class="title">Login</h1>
+		
+			<div class="naver">
+            <a href="<%=apiURL%>"><img height="50" src="resources/btn_naver.png" /></a>
+   			</div>
+   			
+			<form method="POST">
+			<table border=1>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="id" placeholder="ID" size="30"></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="password" placeholder="Password" size="30"></td>
+				</tr>
+			</table>
+			<div class="sign">
+            	<a href="login">로그인</a> / 
+            	<a href="signUpForm">회원가입</a>
+           </div>
+			<div class="sign">
+            	<a href="findIdForm.jsp">아이디 찾기</a> / 
+            	<a href="findPwForm.jsp">비밀번호 찾기</a>
+           </div>
+			</form>
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>

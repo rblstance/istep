@@ -13,16 +13,8 @@
     <div class="sign-up-container">
       <form>
         <h1>Create Account</h1>
-        <div class="social-links">
-          <div>
-            <a href="#"><i class="fa fa-naver" aria-hidden="true"></i></a>
-          </div>
-        </div>
-        <span>or use your email for registration</span>
-        <div>
         	<input type="text" placeholder="ID" id="id" readonly>
-        	<button type="button" onclick="idCheck()">ID중복확인</button>
-        </div>
+        <button type="button" onclick="idCheck()">ID중복확인</button>
         <input type="password" placeholder="password" name="password" id="password" onkeyup="return isSame();" >&nbsp;&nbsp;<font
 		id="space"></font>
         <input type="password" placeholder="passwordCheck" name="passwordCheck" id="passwordCheck" onkeyup="return isSame();" >&nbsp;&nbsp;<font
