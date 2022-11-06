@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="resources/table.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -40,8 +41,10 @@
 		<div>
 			<form>
 				<div>
+					<h3>제목</h3>
 					<input type="text" value="<%=board.getTitle() %>" readonly>
 				</div>
+				<div>내용</div>
 				<div>
 					<textarea rows="20" readonly><%=board.getContent() %></textarea>
 				</div>
@@ -55,32 +58,30 @@
 				<%} %>
 			</form>
 			<%if(board.getUser_id().equals(id)) {%>
-			<form method="post" action="BoardDelete">
+			
+			<form method="post" action="BoardDelete" id="Board_delete">
 				<input type="hidden" name="no" value="<%=board.getNo() %>">
 				<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>>
-
 				<input type="submit" value="글삭제">
 			</form>
+			
 			<%} %>
 		</div>
+		<br>
 		<div>
-			<table>
+			<table id="reply">
 				<%for(AnswerDto answer : aboard){ %>
 				<tr>
 					<%if(answer.getB_num()==board.getNo()){ %>
-					<td><input type="text" value="<%=answer.getContent()%>"
-						readonly></td>
-					<td><input type="text"
-						value="<%=dao.getNickBoard(answer.getUser_id()) %>" readonly></td>
-					<td><input type="text" value="<%=answer.getRegdate() %>"
-						readonly></td>
+					<td><input type="text" value="<%=answer.getContent()%>" readonly></td>
+					<td><input type="text" value="<%=dao.getNickBoard(answer.getUser_id()) %>" readonly></td>
+					<td><input type="text" value="<%=answer.getRegdate() %>" readonly></td>
 
 					<%if(answer.getUser_id().equals(id)) {%>
 					<td><form method="post" action="AnswerDeleteAction">
-							<input type="hidden" name="sbj_code"
-								value=<%=board.getSbj_code() %>> <input type="hidden"
-								name="no" value=<%=board.getNo()%>> <input type="hidden"
-								name="noAns" value=<%=answer.getCode()%>>
+							<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>> 
+							<input type="hidden" name="no" value=<%=board.getNo()%>> 
+							<input type="hidden" name="noAns" value=<%=answer.getCode()%>>
 							<td><input type="submit" value="삭제"></td>
 							<%} %>
 						</form></td>
@@ -91,8 +92,8 @@
 				<%} %>
 			</table>
 			<form method="post" action="AnswerWrite">
-				<input type="hidden" name="id" value="<%=id %>"> <input
-					type="hidden" name="no" value="<%=board.getNo() %>">
+				<input type="hidden" name="id" value="<%=id %>"> 
+				<input type="hidden" name="no" value="<%=board.getNo() %>">
 				<!-- 로그인된 아이디 정보를 받아서 댓글을 달면 닉네임이 출력될 수 있도록 -->
 				<tr>
 					<td><input type="text" name="content" required></td>

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
 	<jsp:include page="header.jsp" />
