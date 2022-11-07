@@ -16,7 +16,7 @@
 	UserDao dao = UserDao.getInstance();
 	UserDto user = dao.getUserById(log);
 	%>
-	<h1>마이페이지</h1>
+	<h1>회원정보 수정</h1>
 	<div>
 		<form method="post" action="update">
 			<table border=1>

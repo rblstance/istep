@@ -40,7 +40,7 @@ public class loginAction extends HttpServlet {
 		int result = dao.loginCheck(id, password);
 		
 		HttpSession session = request.getSession();
-		
+		System.out.println(id+"/"+password);
 		if(result == 1) {
 			session.setAttribute("log", id);
 			 out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");

@@ -1,6 +1,7 @@
 package user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -32,7 +33,9 @@ public class updateAction extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		UserDao dao = UserDao.getInstance();
 		
 		if(request.getParameter("id") != null) {
@@ -47,9 +50,8 @@ public class updateAction extends HttpServlet {
 
 			UserDto user = new UserDto(id, password, name, nickname, phone, birth, email , grade);
 			dao.updateUserInfo(user);
-			
+			out.println("<script>alert('회원정보가 변경되었습니다.');location.href='mypage';</script>");
 		}
-		request.getRequestDispatcher("mypage").forward(request, response);
 	}
 
 	/**

@@ -16,7 +16,7 @@
 				<p>
 					이름 : <input type="text" name="name" placeholder="name"></input>
 				<p>
-					<input type="submit" value="아이디찾기">
+					<input type="submit" value="비밀번호 찾기">
 			</form>
 		</div>
 </body>

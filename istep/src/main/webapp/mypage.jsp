@@ -28,17 +28,19 @@
 			<tr>
 				<td>닉네임</td>
 				<td><%=user.getNickname() %></td>
-				<td><input type="button" value="닉네임 변경"></td>
 			</tr>
 			<tr>
-				<td>이메일</td>
-				<td><%=user.getEmail() %></td>
+				<td>전화번호</td>
+				<td><%=user.getPhone() %></td>
 			</tr>
 			<tr>
 				<td>생년월일</td>
 				<td><%=user.getBirth() %></td>
 			</tr>
-
+			<tr>
+				<td>이메일</td>
+				<td><%=user.getEmail() %></td>
+			</tr>
 		</table>
 		<input type="submit" onclick="location.href='updateForm'" value="회원정보수정">
 		<input type="submit" onclick="location.href='deleteForm'" value="회원탈퇴">

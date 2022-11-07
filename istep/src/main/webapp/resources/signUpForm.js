@@ -17,11 +17,11 @@ function isSame() {
 
 	if (pw != "" && checkPw != "") {
 		if (pw == checkPw) {
-			document.getElementById('same').innerHTML = '비밀번호가 일치함.';
+			document.getElementById('same').innerHTML = '비밀번호 일치';
 			document.getElementById('same').style.color = 'blue';
 		}
 		else {
-			document.getElementById('same').innerHTML = '비밀번호가 일치하지 않음';
+			document.getElementById('same').innerHTML = '비밀번호 불일치';
 			document.getElementById('same').style.color = 'red';
 		}
 	}
@@ -70,7 +70,11 @@ function joinform_check() {
 		pwCheck.focus();
 		return false;
 	};
-
+	if (pw.value.search(" ") != -1) {
+		alert("비밀번호에 공백을 넣을 수 없습니다.");
+		pw.focus();
+		return false;
+	};
 	if (name.value == "") {
 		alert("이름을 입력하세요.");
 		name.focus();
@@ -106,7 +110,7 @@ function joinform_check() {
           "nickname": nickname.value,
           "profile_url": "",
           "profile_file": ""
-        }),  
+        }),
       };
       
       $.ajax(settings).done(function (response) {
