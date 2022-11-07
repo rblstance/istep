@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<link rel="stylesheet" href="resources/view.css?ver=2" />
 </head>
 <body>
 	<%
@@ -18,24 +18,34 @@ System.out.println(sbj.getName());
 %>
 	<jsp:include page="header.jsp" />
 	<section>
-		<form method="POST" action="updSubject">
-			<input type="hidden" name="code" value="<%=code %>" />
-			<p>과목명 :</p>
-			<input type="text" name="subject" value="<%=sbj.getName()%>" />
-			<p>강사 :</p>
-			<input type="text" name="teacher" value="<%=sbj.getTeacher()%>" />
-			<p>과목설명 :</p>
-			<textarea name="explain"><%=sbj.getExplain()%></textarea>
-			<p>과목분야 :</p>
-			<select name="kind">
-				<option>JAVA</option>
-				<option>JavaScript</option>
-				<option>Python</option>
-				<option>C#</option>
-				<option>C++</option>
-				<option>HTML</option>
-				<option>CSS</option>
-			</select> <input type="submit" value="과목 수정" />
+		<form method="POST" action="addSubject">
+			<h1>과목 추가</h1>
+			<div class="group">
+				<input type="text" name="subject" value="<%=sbj.getName()%>" required> <span class="highlight"></span>
+				<span class="bar"></span> <label>과목명</label>
+			</div>
+			<div class="group">
+				<input type="text" name="teacher" value="<%=sbj.getTeacher()%>" required> <span class="highlight"></span>
+				<span class="bar"></span> <label>강사</label>
+			</div>
+			<div class="group">
+				<textarea name="explain"><%=sbj.getExplain()%></textarea> <span class="highlight"></span>
+				<span class="bar"></span> <label>과목설명</label>
+			</div>
+			<div class="group">
+				<span class="highlight"></span>
+				<span class="bar"></span>
+				<select name="kind">
+					<option>JAVA</option>
+					<option>JavaScript</option>
+					<option>Python</option>
+					<option>C#</option>
+					<option>C++</option>
+					<option>HTML</option>
+					<option>CSS</option>
+				</select> 
+			</div>
+			<input type="submit" value="과목 생성" />
 		</form>
 	</section>
 	<jsp:include page="footer.jsp" />

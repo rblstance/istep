@@ -106,7 +106,7 @@ function joinform_check() {
           "nickname": nickname.value,
           "profile_url": "",
           "profile_file": ""
-        }),
+        }),  
       };
       
       $.ajax(settings).done(function (response) {

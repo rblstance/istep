@@ -139,4 +139,13 @@ public class LectureDao {
 	
 		return lecture;
 	}
+	
+	public String getRegDate(Timestamp regDate) {
+		String[] temp = regDate.toString().split("-");
+		int y = Integer.parseInt(temp[0])-1900;
+		int m = Integer.parseInt(temp[1])+1;
+		int d = Integer.parseInt(temp[2].substring(0,2));
+		
+		return String.format("%d-%d-%d", y,m,d);
+	}
 }

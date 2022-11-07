@@ -4,7 +4,7 @@ const code = document.body.querySelector('.code');
 tag.src = "https://www.youtube.com/iframe_api";
 let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+ 
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
@@ -20,7 +20,7 @@ function onPlayerReady(event) {
 let done = false;
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING && !done) {
-    done = true;
+    	done = true;
     }
 }
 function stopVideo() {

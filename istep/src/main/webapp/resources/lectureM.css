@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.content input{border:none; width:100%;}
+.content input:focus{outline: none;}
+
+.title {font-size:16px; height:5vh; overflow: hidden;}
+
+.lecture_container{display: grid; position:relative; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, auto); grid-auto-flow: rows;
+    padding:40px; max-width:1220px; margin:0 auto;}
+.content{margin:20px 10px; text-align:center;}
+.contents_box img{width:100%;}
+.contents_box .content input[type="image"]{width:100%; position:absolute;}
+
+.content{padding:10px;}
+
+.page_ctrl{display: flex; justify-content: center;}
+.page_ctrl input[type="button"]{font-size:20px; margin:20px; background-color:transparent; border:none;};
+.page_ctrl input[type="button"]:focus{cursor:pointer;}
