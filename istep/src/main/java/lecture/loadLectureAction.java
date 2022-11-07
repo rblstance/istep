@@ -32,6 +32,8 @@ public class loadLectureAction extends HttpServlet {
 		String code = request.getParameter("code");
 		if(sel!=null && code!=null) {
 			request.getRequestDispatcher("lectureView.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("lectureM.jsp");
 		}
 	}
 

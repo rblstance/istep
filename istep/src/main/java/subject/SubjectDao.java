@@ -131,6 +131,39 @@ public class SubjectDao {
 		return subject;
 	}
 	
+	public ArrayList<SubjectDto> getSubjectsByName(String name){
+		ArrayList<SubjectDto> sbjList = new ArrayList<SubjectDto>();
+		String query = "SELECT * FROM subject WHERE teacher=?";
+		
+		try {
+			this.conn = DBManager.getConnection(url, user, password);
+			this.pstmt = this.conn.prepareStatement(query);
+			this.pstmt.setString(1, name);
+			this.rs = this.pstmt.executeQuery();
+			
+			while(this.rs.next()) {
+				int code = this.rs.getInt(1);
+				String teacher = this.rs.getString(3);
+				String explain = this.rs.getString(4);
+				String kind = this.rs.getString(5);
+				SubjectDto subject = new SubjectDto(code, name, teacher, explain, kind);
+				sbjList.add(subject);
+			}
+		} catch(Exception e) {;
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return sbjList;
+	}
+	
 	// 3. Update
 	public void updSubject(SubjectDto subject){
 		String sql = "UPDATE subject SET `name`=?, `teacher`=?, `explain`=?, `kind`=? WHERE `code`=?";
@@ -188,6 +221,7 @@ public class SubjectDao {
 	}
 	
 	// Other
+	
 	
 	public int getCode() {
 		int code = 0; 

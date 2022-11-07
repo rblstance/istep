@@ -18,7 +18,8 @@ System.out.println(sbj.getName());
 %>
 	<jsp:include page="header.jsp" />
 	<section>
-		<form method="POST" action="addSubject">
+		<form method="POST" action="updSubject">
+			<input type="hidden" name="code" value="<%=code%>" />
 			<h1>과목 추가</h1>
 			<div class="group">
 				<input type="text" name="subject" value="<%=sbj.getName()%>" required> <span class="highlight"></span>
@@ -45,7 +46,7 @@ System.out.println(sbj.getName());
 					<option>CSS</option>
 				</select> 
 			</div>
-			<input type="submit" value="과목 생성" />
+			<input type="submit" value="과목 수정" />
 		</form>
 	</section>
 	<jsp:include page="footer.jsp" />

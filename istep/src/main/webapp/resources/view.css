@@ -48,7 +48,7 @@ section label{
   position:absolute;
   pointer-events:none;
   left:25px;
-  top:10px;
+  top:-20px;
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;

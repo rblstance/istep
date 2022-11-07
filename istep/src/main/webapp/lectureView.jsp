@@ -47,7 +47,7 @@ String regDate = request.getParameter("regDate");
 					<div>
 						<input type="text" name="title" value="<%=title%>" readonly />  
 						<input type="text" name="regDate" value="<%=regDate%>" readonly />
-						<%if(grade.equals("C")) {%>
+						<%if(grade.equals("C") || grade.equals("B")) {%>
 						<input type="submit" value="강의 추가" />
 						<%} %>
 					</div>
