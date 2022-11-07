@@ -40,8 +40,8 @@
 				<td><input type="text" name="nickname" id="nickname" size="15"></td>
 			</tr>
 			<tr>
-				<th>전화번호</th>
-				<td><input type="text" name="phone" id="phone" size="15"></td>
+				<th>소개</th>
+				<td><textarea></textarea></td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
@@ -60,6 +60,7 @@
 				<td><select name="grade" id="grade">
 						<option value="A">A</option>
 						<option value="B">B</option>
+						<option value="C">B</option>
 				</select></td>
 			</tr>
 			<tr>

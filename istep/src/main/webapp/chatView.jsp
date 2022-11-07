@@ -19,6 +19,7 @@
 	<jsp:include page="header.jsp" />
 	<section>
 		<span><a href="chat">뒤로가기</a></span>
+		<div></div>
 		<div>
 			<%if(list == null) { %>
 			환영합니다.
@@ -37,8 +38,8 @@
     		}%>
 		</div>
 		<div>
-			<form method="post" action="writeChat_log?c_code=<%=code%>">
-				<input type="text"> <input type="submit" value="작성">
+			<form method="post" action="WriteChat_log?c_code=<%=code%>">
+				<input type="text" style="width:80vw; item-align:center;"> <input type="submit" value="작성">
 			</form>
 		</div>
 	</section>

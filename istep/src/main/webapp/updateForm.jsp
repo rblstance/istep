@@ -9,6 +9,7 @@
 <title>회원정보수정</title>
 </head>
 <body>
+<jsp:include page="header.jsp" />
 	<%
 	request.setCharacterEncoding("utf-8");
 	String log = (String) session.getAttribute("log");
@@ -51,7 +52,7 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" name="license"
+					<td><input type="text" name="email"
 						value="<%=user.getEmail()%>"></td>
 				</tr>
 				<tr>
@@ -69,6 +70,6 @@
 			</table>
 		</form>
 	</div>
-	<script src="resources/chatMemeberMng.js"></script>
+	<script src="resources/chatMemberMng.js?ver=9"></script>
 </body>
 </html>
