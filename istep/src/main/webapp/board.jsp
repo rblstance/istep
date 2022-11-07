@@ -20,6 +20,7 @@
     int code = Integer.parseInt(sbjParam);
     BoardDao dao = BoardDao.getInstance(); 
     ArrayList<BoardDto> list = dao.getBoard_sbjAll(code);
+    String id = (String) session.getAttribute("log");
     %>
     
     <div class="table_board">
@@ -42,7 +43,11 @@
     			<td><a href="boardView.jsp?no=<%=board.getNo()%>"><%=board.getTitle() %></a></td>
     			<td><%=dao.getNickBoard(board.getUser_id()) %></td>
     			<td><%=board.getRegdate() %></td>
-    			<td><%=board.getCheck() %></td>
+    			<td><%if(board.getCheck()==0){ %>
+    				X
+    				<%} else if(board.getCheck()==1){%>
+    				O<%}%></td>
+    			
     		</tr>
     		<%} %>
     	<%} %>
@@ -50,8 +55,10 @@
     	</tbody>
     </table>
     <div>
+    <%if(id!=null){ %>
     <input type="hidden" name="code" value=<%=sbjParam %>>
     <button onclick="location.href='boardWriteForm.jsp?code=<%=code%>'">글쓰기</button>
+    <%} %>
     </div>
 	</div>
     

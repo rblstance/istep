@@ -269,10 +269,31 @@ public class BoardDao {
 			}
 		}
 	}
+	public void updateBoardCheck(int num) {
+		String sql = "update board set `check` = 1 where `no` =?;";
+		int no = num;
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		}
+	}
 	//delete
 	public void DeleteBoard(int no) {
 		String sql = "Delete from board where `no` = ?;";
-
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);

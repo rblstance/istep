@@ -37,6 +37,7 @@
     	board = dao.getBoardByNo(no);
     	aboard = ans.getViewAnswerAll(no);
     }
+    int check = 1;
 
     %>
 
@@ -79,6 +80,7 @@
 					<td><input type="text" value="<%=dao.getNickBoard(answer.getUser_id()) %>" readonly></td>
 					<td><input type="text" value="<%=answer.getRegdate() %>" readonly></td>
 
+
 					<%if(answer.getUser_id().equals(id)) {%>
 					<td><form method="post" action="AnswerDeleteAction">
 							<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>> 
@@ -87,21 +89,30 @@
 							<td><input type="submit" value="삭제"></td>
 							<%} %>
 						</form></td>
-					<!-- if문 이용해서 받은 id값이 작성한 댓글id 값이랑 같을때 수정 삭제 버튼 나오게 만들 예정 -->
+
 					<%} %>
 
 				</tr>
 				<%} %>
 			</table>
+				<%if(id!=null){ %>
 			<form method="post" action="AnswerWrite">
 				<input type="hidden" name="id" value="<%=id %>"> 
 				<input type="hidden" name="no" value="<%=board.getNo() %>">
+					<% System.out.print("보드번호"+board.getNo());%>
+
 				<!-- 로그인된 아이디 정보를 받아서 댓글을 달면 닉네임이 출력될 수 있도록 -->
 				<tr>
 					<td><input type="text" name="content" required></td>
+						<%if(udao.getGrade(id).equals("C")){
+						System.out.print("이프문 작동확인"+board.getNo());
+						dao.updateBoardCheck(board.getNo());
+					}
+						%>
 					<td><input type="submit" value="작성"></td>
 				</tr>
 			</form>
+				<%} %>
 
 		</div>
 
