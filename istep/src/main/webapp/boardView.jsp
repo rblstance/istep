@@ -1,4 +1,5 @@
 
+<%@page import="user.UserDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="answer.AnswerDto"%>
 <%@page import="answer.AnswerDao"%>
@@ -26,6 +27,7 @@
     AnswerDao ans = AnswerDao.getInstance();
     ArrayList<AnswerDto> aboard = null;
     String sbjParam = request.getParameter("code");
+	UserDao udao = UserDao.getInstance();
     
     
     request.setCharacterEncoding("utf-8");
@@ -42,11 +44,11 @@
 			<form>
 				<div>
 					<h3>제목</h3>
-					<input type="text" value="<%=board.getTitle() %>" readonly>
+					<input type="text" id="title" value="<%=board.getTitle() %>" readonly>
 				</div>
 				<div>내용</div>
 				<div>
-					<textarea rows="20" readonly><%=board.getContent() %></textarea>
+					<textarea rows="20" id="content" readonly><%=board.getContent() %></textarea>
 				</div>
 				<input type="button"
 					onclick="location.href='lecture.jsp?code=<%=board.getSbj_code() %>'"
@@ -57,7 +59,7 @@
 					value="글수정">
 				<%} %>
 			</form>
-			<%if(board.getUser_id().equals(id)) {%>
+			<%if(board.getUser_id().equals(id) || udao.getGrade(id).equals("C")) {%>
 			
 			<form method="post" action="BoardDelete" id="Board_delete">
 				<input type="hidden" name="no" value="<%=board.getNo() %>">

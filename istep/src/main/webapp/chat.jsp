@@ -14,7 +14,7 @@
 	request.setCharacterEncoding("utf-8");
 	String log = (String)session.getAttribute("log");
 	if(log==null)
-		out.print("<script>alert('로그인이 필요한 서비스 입니다.');location.href='loginForm';</script>");
+		out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='loginForm';</script>");
 	if(log != null){
 		ChatDao cDao = ChatDao.getInstance();
 		ArrayList<ChatDto> chatList = cDao.getChatById(log);
@@ -30,7 +30,7 @@
         </div>
 		<div style="position:absolute; left: 40%; width: 500px; height: 300px; display:flex; flex-direction: row; margin: 0px auto;">
 			<%if(chatList != null){%>
-			<table  style="display:flex; flex-direction: row;margin: 0px auto;">
+			<table  style="display:flex; flex-direction: row; margin: 0px auto;">
 				<tbody>
 					<%for(ChatDto c : chatList){ %>
 					<tr>
