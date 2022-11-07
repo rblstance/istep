@@ -6,14 +6,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="resoureces/chat.css" />
 </head>
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("log");
-	String code = request.getParameter("code");
+	String c_code = request.getParameter("c_code");
 	Chat_logDao dao = Chat_logDao.getInstance();
-	ArrayList<Chat_logDto> list = dao.getAllChat_logByC_code("code");
+	ArrayList<Chat_logDto> list = dao.getAllChat_logByC_code(c_code);
 	System.out.println(list);
 	%>
 	<jsp:include page="header.jsp" />
@@ -24,22 +25,18 @@
 			<%if(list == null) { %>
 			환영합니다.
 			<%} else {
-    			for(Chat_logDto log : list){ 
-    			System.out.println(log.getUser_id());
-    			System.out.println(log.getC_code());
-    			System.out.println(log.getContent());
-    			System.out.println(log.getRegdate());
-    			%>
-			<div>
-				<span><%=log.getUser_id() %></span> <span><%=log.getRegdate() %></span>
+    			for(Chat_logDto log : list){%>
+			<div class = "container">
+				<span><%=log.getUser_id() %></span> 
 				<span><%=log.getContent() %></span>
+				<span><%=log.getRegdate() %></span>
 			</div>
 			<%}
     		}%>
 		</div>
 		<div>
-			<form method="post" action="WriteChat_log?c_code=<%=code%>">
-				<input type="text" style="width:80vw; item-align:center;"> <input type="submit" value="작성">
+			<form method="post" action="WriteChat_log?c_code=<%=c_code%>">
+				<input type="text" name="content"> <input type="submit" value="작성">
 			</form>
 		</div>
 	</section>

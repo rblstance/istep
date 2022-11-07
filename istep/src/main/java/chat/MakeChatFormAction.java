@@ -1,8 +1,6 @@
-package chat_log;
+package chat;
 
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class WriteChat_logAction
+ * Servlet implementation class MakeChatForm
  */
-//@WebServlet("/WriteChat_logAction")
-public class WriteChat_logAction extends HttpServlet {
+//@WebServlet("/MakeChatForm")
+public class MakeChatFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WriteChat_logAction() {
+    public MakeChatFormAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +28,23 @@ public class WriteChat_logAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
+		ChatDao dao = ChatDao.getInstance();
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("log");
-		String c_code = request.getParameter("c_code");
-		String content = request.getParameter("content");
+		String c_code = dao.createCode(user_id);
+		String name = request.getParameter("chatName");
 		
-		Chat_logDao dao = Chat_logDao.getInstance();
-		Chat_logDto chat_log = new Chat_logDto(user_id, c_code, content);
-		dao.createChat_log(chat_log);
+		System.out.println(name);
+		System.out.println(user_id);
 		
-		request.getRequestDispatcher("chatView?c_Code"+c_code).forward(request, response);
+		ChatDto chat = new ChatDto(name, user_id);
+		dao.createChat(chat);
+		
+		
+		request.getRequestDispatcher("chat").forward(request, response);
 	}
 
 	/**

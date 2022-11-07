@@ -199,7 +199,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>WriteChat_log</servlet-name>
-		<servlet-class>chat.WriteChat_logAction</servlet-class>
+		<servlet-class>chat_log.WriteChat_logAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WriteChat_log</servlet-name>
