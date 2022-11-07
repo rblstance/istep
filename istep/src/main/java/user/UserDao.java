@@ -132,6 +132,34 @@ public class UserDao {
 			}
 		}
 		return name;
+	}	// id를 받아서 유저 이름만 출력
+
+	public String getUserGrade(String id) {
+		String grade = null;
+		
+		String sql = "SELECT grade FROM user WHERE `id` = ?";
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			this.rs = this.pstmt.executeQuery();
+			
+			if(this.rs.next()) {
+				grade = this.rs.getString("grade");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.rs.close();
+				this.pstmt.close();
+				this.conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return grade;
 	}
 	// id를 받아서 유저 한명 정보 출력
 	public UserDto getUserById(String id) {

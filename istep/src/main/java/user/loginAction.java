@@ -38,12 +38,14 @@ public class loginAction extends HttpServlet {
 		
 		UserDao dao = UserDao.getInstance();
 		int result = dao.loginCheck(id, password);
-		
+		String grade = dao.getUserGrade(id);
+
 		HttpSession session = request.getSession();
-		System.out.println(id+"/"+password);
+		
 		if(result == 1) {
 			session.setAttribute("log", id);
-			 out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
+			session.setAttribute("grade", grade);
+			out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
 			//request.getRequestDispatcher("index").forward(request, response);			
 		}else {
 			session.removeAttribute("log");

@@ -5,19 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<link rel="stylesheet" href="resources/login.css" />
 </head>
 <body>
+<jsp:include page="header.jsp" />
+<section>
 	<h1>비밀번호 찾기</h1>
-		<div>
 			<form method="POST" action="findPw">
-				<p>
-					아이디 : <input type="text" name="id" placeholder="ID"></input>
-				<p>
-				<p>
-					이름 : <input type="text" name="name" placeholder="name"></input>
-				<p>
+			<table border=1>
+				<tr>
+					<th>아이디</th>
+					 <td><input type="text" name="id" placeholder="id"></td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><input type="text" name="name" placeholder="name"></td>
+				</tr>
+				</table>
+				<div class="sign">
 					<input type="submit" value="비밀번호 찾기">
-			</form>
-		</div>
+				</div>
+		</form>
+		</section>
+<jsp:include page="footer.jsp" />
 </body>
 </html>

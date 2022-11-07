@@ -5,23 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
+<link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
 <jsp:include page="header.jsp" />
 	<%
 	String log = (String)session.getAttribute("log");
 	%>
-	<h1>회원탈퇴</h1>
-	<h4><%=log %>님 회원탈퇴 하시겠습니까?
-	</h4>
 
+	<section>
+	<h2>회원탈퇴</h2>
+	<h4><%=log %>님 회원탈퇴 하시겠습니까?</h4>
 	<form method="post" action="delete">
-		<p>
-			비밀번호 입력 : <input type="password" name="password">
-		</p>
-		<input type="submit" value="예" onclick="deleteMem()">
+		<table border=1>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" class="btn" value="예" onclick="deleteMem()">
+					<input type="button" class="btn" value="아니요" onclick="location.href='mypage'">
+				</td>
+			</tr>
+		</table>
 	</form>
-	<button type="button" onclick="location.href='mypage'">아니요</button>
+	</section>
 	<script src="resources/chatMemberMng.js?ver=9"></script>
 </body>
 </html>
