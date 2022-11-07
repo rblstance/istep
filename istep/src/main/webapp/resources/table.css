@@ -15,6 +15,11 @@ section {
 	margin: 0 auto;
 }
 
+.title{
+	text-align:center;
+	margin-bottom:5%;
+	font-size:30px;
+}
 
 h2 {
 	font-size: 28px;
@@ -114,6 +119,14 @@ table#reply tr td:nth-child(1){
 }
 
 input[type=button] {
+	width: 100%;
+	text-align: center;
+	background-color: transparent;
+	border: solid 1px #ccc;
+	color: F5F5F5;
+	padding: 8px 0;
+}
+input[type=submit]{
 	width: 100%;
 	text-align: center;
 	background-color: transparent;
