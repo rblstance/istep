@@ -6,10 +6,13 @@ let sbjCode = $("input[name='subject']:checked").val();
 let is_end = false;
 let page = 1;
 
+getData();
+
 $(window).scroll(function() {
 	var scrT = $(window).scrollTop();
 	if (scrT == $(document).height() - $(window).height()) {
 		page++;
+		wait(1);
 		getData();
 	}
 });
@@ -25,7 +28,7 @@ function getData(){
         data : {
             query : keyword,
             page : page,
-            size : 20
+            size : 5
         },
         headers : {
             Authorization : "KakaoAK 6a4c077fca80e32384fcf93a071c6788"
@@ -105,5 +108,12 @@ function nextPage(){
         page++;
         getData();
         $('.back_btn').show();
+    }
+}
+
+function wait(sec) {
+    let start = Date.now(), now = start;
+    while (now - start < sec * 1000) {
+        now = Date.now();
     }
 }

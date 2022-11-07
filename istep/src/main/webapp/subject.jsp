@@ -22,9 +22,10 @@ ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 %>
 	<jsp:include page="header.jsp" />
 	<section>
-		<%for(RegistrationsVo reg : regList) {
-			SubjectDao sbjDao = SubjectDao.getInstance();
-			SubjectDto sbj = sbjDao.getSubjectByCode(reg.getSbj_code());%>
+		<%if(regList.size()>0) {%>
+			<%for(RegistrationsVo reg : regList) {
+				SubjectDao sbjDao = SubjectDao.getInstance();
+				SubjectDto sbj = sbjDao.getSubjectByCode(reg.getSbj_code());%>
 		<div class="group">
 			<input type="hidden" value="<%=sbj.getCode() %>" />
 			<p>
@@ -34,7 +35,7 @@ ArrayList<RegistrationsVo> regList = regDao.getRegistrationsById(id);
 				type="text" value="<%=sbj.getKind() %>" readonly />
 		</div>
 		<%} %>
-		<%if(regList.size()==0) {%>
+		<%}else{ %>
 			<p>신청하신 과목이 없습니다.</p>
 		<%} %>
 	</section>

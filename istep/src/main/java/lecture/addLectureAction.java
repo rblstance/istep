@@ -40,7 +40,6 @@ public class addLectureAction extends HttpServlet {
 		String url = request.getParameter("url");
 		String timeParam = request.getParameter("playTime");
 		String regParam = request.getParameter("regDate");
-		System.out.printf("%s,%s,%s,%s,%s,%s,%s",code, sbjCodeParam, name, thumbnail, url, timeParam, regParam);
 		if(code!=null && sbjCodeParam!=null && name!=null && thumbnail!=null && url!=null
 				&& timeParam!=null && regParam!=null) {
 			int sbjCode = Integer.parseInt(sbjCodeParam);
