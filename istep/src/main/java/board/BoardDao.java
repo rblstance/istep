@@ -238,7 +238,6 @@ public class BoardDao {
 		return name;
 	}
 	
-	
 	//update
 	public void updateBoard(BoardDto board) {
 		
