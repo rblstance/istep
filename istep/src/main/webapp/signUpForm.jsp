@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="header.jsp" />
 	<section>
-	<h1 class="title">회원가입</h1>
+	<h2>회원가입</h2>
 	<form name="signup" method="post" action="signUp">
 		<table border=1>
 			<tr>

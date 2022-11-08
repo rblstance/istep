@@ -16,7 +16,7 @@
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
-		마이페이지~!
+		<h2>마이페이지</h2>
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -43,8 +43,8 @@
 				<td><%=user.getEmail() %></td>
 			</tr>
 		</table>
-		<input type="submit" onclick="location.href='updateForm'" value="회원정보수정">
-		<input type="submit" onclick="location.href='deleteForm'" value="회원탈퇴">
+		<input type="button" onclick="location.href='updateForm'" value="회원정보수정">
+		<input type="button" onclick="location.href='deleteForm'" value="회원탈퇴">
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>

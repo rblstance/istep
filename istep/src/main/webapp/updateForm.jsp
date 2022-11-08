@@ -19,7 +19,7 @@
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
-	<h1>마이페이지</h1>
+	<h2>회원정보수정</h2>
 	<div>
 		<form method="post" action="update">
 			<table border=1>
@@ -66,8 +66,9 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="수정하기" onclick="updateMem()"> <input
-						type="button" onclick="location.href='mypage'" value="뒤로가기">
+					<td>
+					<input type="submit" onclick="updateMem()" value="수정하기"> 
+					<input type="button" onclick="location.href='mypage'" value="뒤로가기">
 					</td>
 				</tr>
 			</table>
