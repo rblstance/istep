@@ -86,7 +86,7 @@
 							<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>> 
 							<input type="hidden" name="no" value=<%=board.getNo()%>> 
 							<input type="hidden" name="noAns" value=<%=answer.getCode()%>>
-							<td><input type="submit" value="삭제"></td>
+							<input type="submit" value="삭제">
 							<%} %>
 						</form></td>
 
