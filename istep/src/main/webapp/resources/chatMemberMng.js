@@ -1,3 +1,14 @@
+const code = document.getElementById("code");
+let grade = document.getElementsByTagName("option");
+
+for(let i=0;i<grade.length;i++){
+	console.log(code.value);
+	console.log(grade[i].value);
+	if(code.value === grade[i].value){
+		grade[i].selected = true;
+	}
+}
+
 function updateMem() {
 
 	let user_id = document.getElementById("user_id").value;

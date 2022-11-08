@@ -21,6 +21,7 @@
 	<section>
 	<h2>회원정보수정</h2>
 	<div>
+	<input type="hidden" id="code" value="<%=user.getGrade() %>" />
 		<form method="post" action="update">
 			<table border=1>
 				<tr>
@@ -63,6 +64,7 @@
 					<td><select name="grade">
 							<option value="A">A</option>
 							<option value="B">B</option>
+							<option value="C">C</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -76,6 +78,6 @@
 	</div>
 	</section>
 		<jsp:include page="footer.jsp" />
-	<script src="resources/chatMemeberMng.js"></script>
+	<script src="resources/chatMemberMng.js"></script>
 </body>
 </html>

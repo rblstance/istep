@@ -52,7 +52,7 @@ public class AccessAction extends HttpServlet {
 			if(id==null)
 				out.print("<script>alert('로그인이 필요한 서비스 입니다.');location.href='loginForm';</script>");
 			else
-				response.sendRedirect("subject   ");
+				response.sendRedirect("subject");
 		}
 	}
 
