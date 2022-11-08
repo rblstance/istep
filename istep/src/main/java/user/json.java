@@ -46,7 +46,7 @@ public class json extends HttpServlet {
 		String clientSecret = "vvD17C3mZh";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
-		String redirectURI = URLEncoder.encode("http://localhost:8081/istep/json", "UTF-8");
+		String redirectURI = URLEncoder.encode("http://localhost:8083/istep/json", "UTF-8");
 
 		String apiURL;
 		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
