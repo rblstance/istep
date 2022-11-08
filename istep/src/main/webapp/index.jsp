@@ -11,19 +11,17 @@
 <link rel="stylesheet" href="resources/main.css?ver=1" />
 </head>
 <body>
-	<%
+<%
 	SubjectDao sbjDao = SubjectDao.getInstance();
 	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 	String videoId = "";
-	for(int i=1;i<=sbjList.size();i++){
-		int sbjCode = sbjList.get(sbjList.size()-i).getCode();
-		LectureDao lecDao = LectureDao.getInstance();
-		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
-		if(lecList.size()>0){
-			videoId = lecList.get(0).getCode();
-			break;
-		}	
-	}
+	int sbjCode = sbjList.get(0).getCode();
+	LectureDao lecDao = LectureDao.getInstance();
+	ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
+	if(lecList.size()>0){
+		videoId = lecList.get(0).getCode();
+	}	
+	
 	%>
 	<jsp:include page="header.jsp" />
 	<section>

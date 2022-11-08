@@ -102,7 +102,7 @@
 					<% System.out.print("보드번호"+board.getNo());%>
 
 				<!-- 로그인된 아이디 정보를 받아서 댓글을 달면 닉네임이 출력될 수 있도록 -->
-				<tr>
+				
 					<td><input type="text" name="content" required></td>
 						<%if(udao.getGrade(id).equals("C")){
 						dao.updateBoardCheck(board.getNo());

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="resources/view.css" />
 </head>
 <body>
-	<%
+<%
 request.setCharacterEncoding("UTF-8");
 
 int code = Integer.parseInt(request.getParameter("code"));

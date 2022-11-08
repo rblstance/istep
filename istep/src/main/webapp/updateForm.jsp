@@ -14,6 +14,7 @@
 	<%
 	request.setCharacterEncoding("utf-8");
 	String log = (String) session.getAttribute("log");
+	String grade = (String) session.getAttribute("grade");
 	UserDao dao = UserDao.getInstance();
 	UserDto user = dao.getUserById(log);
 	%>

@@ -114,7 +114,7 @@ public class json extends HttpServlet {
 				Object obj = parsing.parse(res.toString());
 				JSONObject jsonObj = (JSONObject) obj;
 				JSONObject resObj = (JSONObject) jsonObj.get("response");
-				System.out.println(obj);				// 왼쪽 변수 이름은 원하는 대로 정하면 된다.
+				//System.out.println(obj);				// 왼쪽 변수 이름은 원하는 대로 정하면 된다.
 				// 단, 우측의 get()안에 들어가는 값은 와인색 상자 안의 값을 그대로 적어주어야 한다.
 				String naverCode = (String) resObj.get("id");
 				String id = naverCode.substring(0, 8);
@@ -127,7 +127,7 @@ public class json extends HttpServlet {
 				String password = "12345678";
 				
 				if(nickName == null) {
-					nickName = "";
+					nickName = "naver";
 				}
 				if(birth == null) {
 					birth = "";

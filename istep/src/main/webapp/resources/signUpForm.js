@@ -41,6 +41,7 @@ function joinform_check() {
 	let pw = document.getElementById("password");
 	let pwCheck = document.getElementById("passwordCheck");
 	let name = document.getElementById("name");
+	let nickname = document.getElementById("nickname");
 	let phone = document.getElementById("phone");
 	let email = document.getElementById("email");
 
@@ -86,6 +87,11 @@ function joinform_check() {
 	if (name.value == "") {
 		alert("이름을 입력하세요.");
 		name.focus();
+		return false;
+	}
+	if(nickname.value == ""){
+		alert("닉네임을 입력하세요.");
+		nickname.focus();
 		return false;
 	}
 	if (phone.value == "") {
