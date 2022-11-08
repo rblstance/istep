@@ -46,8 +46,8 @@ public class json extends HttpServlet {
 		String clientSecret = "vvD17C3mZh";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
-		String redirectURI = URLEncoder.encode("http://localhost:8081/istep/json", "UTF-8");
-
+		String redirectURI = URLEncoder.encode("http://localhost:8083/istep/json", "UTF-8");
+		//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=f_9l7U2Ws6U7DuoYxc5s&client_secret=vvD17C3mZh&access_token=AAAAO_ZLBwkU_pl2_hXAcMwv5spc1NhaZcVZX7AXmD7R1cA4c1powJBI4DdenHvYNfowt6Ru9dqBUCSiqE_jyHiPQY0&service_provider=NAVER
 		String apiURL;
 		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 		apiURL += "client_id=" + clientId;
@@ -126,6 +126,12 @@ public class json extends HttpServlet {
 				Timestamp now = new Timestamp(System.currentTimeMillis());
 				String password = "12345678";
 				
+				if(nickName == null) {
+					nickName = "";
+				}
+				if(birth == null) {
+					birth = "";
+				}
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				HttpSession session = request.getSession();
@@ -153,6 +159,7 @@ public class json extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

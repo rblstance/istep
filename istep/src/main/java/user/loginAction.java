@@ -39,7 +39,8 @@ public class loginAction extends HttpServlet {
 		UserDao dao = UserDao.getInstance();
 		int result = dao.loginCheck(id, password);
 		String grade = dao.getUserGrade(id);
-
+		
+		System.out.println(id+"/"+password);
 		HttpSession session = request.getSession();
 		
 		if(result == 1) {

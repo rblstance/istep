@@ -31,6 +31,7 @@
 		</table>
 	</form>
 	</section>
+	<jsp:include page="footer.jsp" />
 	<script src="resources/chatMemberMng.js?ver=9"></script>
 </body>
 </html>
