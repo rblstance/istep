@@ -105,7 +105,6 @@
 				<tr>
 					<td><input type="text" name="content" required></td>
 						<%if(udao.getGrade(id).equals("C")){
-						System.out.print("이프문 작동확인"+board.getNo());
 						dao.updateBoardCheck(board.getNo());
 					}
 						%>
