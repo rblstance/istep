@@ -8,12 +8,13 @@
 <link rel="stylesheet" href="resources/view.css?ver=2" />
 </head>
 <body>
-	<%
+<%
 request.setCharacterEncoding("UTF-8");
 
 int code = Integer.parseInt(request.getParameter("code"));
 SubjectDao sbjDao = SubjectDao.getInstance();
 SubjectDto sbj = sbjDao.getSubjectByCode(code);
+String sub = sbj.getKind();
 System.out.println(sbj.getName());
 %>
 	<jsp:include page="header.jsp" />
@@ -37,13 +38,13 @@ System.out.println(sbj.getName());
 				<span class="highlight"></span>
 				<span class="bar"></span>
 				<select name="kind">
-					<option>JAVA</option>
-					<option>JavaScript</option>
-					<option>Python</option>
-					<option>C#</option>
-					<option>C++</option>
-					<option>HTML</option>
-					<option>CSS</option>
+					<option value="JavaScript">JavaScript</option>
+					<option value="JAVA">JAVA</option>
+					<option value="Python">Python</option>
+					<option value="C#">C#</option>
+					<option value="C++">C++</option>
+					<option value="HTML">HTML</option>
+					<option value="CSS">CSS</option>
 				</select> 
 			</div>
 			<input type="submit" value="과목 수정" />

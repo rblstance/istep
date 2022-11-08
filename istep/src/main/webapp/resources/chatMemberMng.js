@@ -49,7 +49,7 @@ function deleteMem() {
 function searchMember() {
 
 	var user_id = document.getElementById('user_id').value;
-
+	console.log(user_id);
 	var settings = {
 		"url": "https://api-C2C776A7-4236-4340-836A-E42E1963FD0E.sendbird.com/v3/users/" + user_id,
 		"method": "GET",
@@ -61,6 +61,13 @@ function searchMember() {
 		success: function() {
 			var confirmflag = confirm(user_id + '님을 채팅에 초대하시겠습니까?');
 			if (confirmflag) {
+				function apply(user_id) {
+					//2) 중복확인 id를 부모창에 적용
+					//부모창 opener
+					opener.document.makeChat.invite.value = user_id;
+					window.close(); //창닫기
+				}//apply () end
+				apply(user_id);
 				console.log('추가됨');
 			} else {
 				console.log('추가 안 됨');
@@ -74,7 +81,6 @@ function searchMember() {
 	$.ajax(settings).done(function(response) {
 		console.log(response);
 	});
-	location.href="chatView";
 }
 
 function makeChannel() {
@@ -83,7 +89,7 @@ function makeChannel() {
 	var custom_type = $('input[name=custom_type]:checked').val();
 	var data = document.getElementById("data").value;
 	var access_code = document.getElementById("access_code").value;
-	
+
 	var settings = {
 		"url": "https://api-C2C776A7-4236-4340-836A-E42E1963FD0E.sendbird.com/v3/group_channels",
 		"method": "POST",
@@ -106,5 +112,5 @@ function makeChannel() {
 	$.ajax(settings).done(function(response) {
 		console.log(response);
 	});
-	location.href="chat";
+	location.href = "chat";
 }

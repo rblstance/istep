@@ -9,8 +9,7 @@
 <body>
 	<div>
 		<h3>*아이디 중복확인*</h3>
-		<form method="post" action="idDuplOk.jsp"
-			onsubmit="return blankCheck(this)">
+		<form method="post" action="idDuplOk.jsp" onsubmit="return blankCheck(this)">
 			아이디 : <input type="text" name="id" maxlength="10" autofocus>
 			<input type="submit" value="중복확인">
 		</form>

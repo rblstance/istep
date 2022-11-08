@@ -26,25 +26,33 @@ String log = (String) session.getAttribute("log");
 				<tr>
 					<th>채팅방 타입</th>
 					<td  style="width:800px"  style="position:flex;">
-						<input type="radio" name="custom_type" value="스터디룸" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">스터디룸</span>
-						<input type="radio" name="custom_type" value="1:1 대화" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">1:1 대화</span>
-						<input type="radio" name="custom_type" value="자유 대화" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">자유 대화</span>
+						<input type="radio" id="custom_type" value="스터디룸" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">스터디룸</span>
+						<input type="radio" id="custom_type" value="1:1 대화" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">1:1 대화</span>
+						<input type="radio" id="custom_type" value="자유 대화" style="vertical-align: -1px;margin-right: 4px;"/><span style="margin-right: 50px;">자유 대화</span>
 					</td>
 				</tr>
+				<tr>
+                	<td>멤버 초대</td>
+                	<td><input type="button" value="아이디 조회" name="user_id" id="user_id" onclick="searchMem()"></td>
+                	<td><input type="hidden" name="invite" id="invite">
+					<td class="container">
+					</td>
+                </tr>
 				<tr>
 					<th>접속코드</th>
 					<td><input type="text" name="access_code" id="access_code" style="width:600px"></td>
 				</tr>
 				<tr style="align-items: stretch;">
 					<td colspan="2">
+						<input type="hidden" value="<%=log%>" id="host_id">
 						<button type="button" onclick="makeChannel()" style="width: 100px;">채팅방 생성</button>
 						<button type="button" onclick="location.href='chat'" style="width: 100px;">취소</button>
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" value="<%=log%>" id="users">
 		</form>
 	</section>
 	<script src="resources/chatMemberMng.js?ver=1"></script>
+	<script src="resources/makeChat.js?ver=2"></script>
 </body>
 </html>

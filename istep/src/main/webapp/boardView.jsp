@@ -86,7 +86,7 @@
 							<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>> 
 							<input type="hidden" name="no" value=<%=board.getNo()%>> 
 							<input type="hidden" name="noAns" value=<%=answer.getCode()%>>
-							<td><input type="submit" value="삭제"></td>
+							<input type="submit" value="삭제">
 							<%} %>
 						</form></td>
 
@@ -102,7 +102,7 @@
 					<% System.out.print("보드번호"+board.getNo());%>
 
 				<!-- 로그인된 아이디 정보를 받아서 댓글을 달면 닉네임이 출력될 수 있도록 -->
-				<tr>
+				
 					<td><input type="text" name="content" required></td>
 						<%if(udao.getGrade(id).equals("C")){
 						dao.updateBoardCheck(board.getNo());
