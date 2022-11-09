@@ -65,7 +65,6 @@
 					<td><select name="grade">
 							<option value="A">A</option>
 							<option value="B">B</option>
-							<option value="C">C</option>
 					</select></td>
 				</tr>
 				<tr>
