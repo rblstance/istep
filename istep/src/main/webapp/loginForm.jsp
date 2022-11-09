@@ -33,7 +33,7 @@
 			<table border=1>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="id" placeholder="ID" size="30"></td>
+					<td><input type="text" name="id" placeholder="ID" size="30" id="user_id"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -41,7 +41,7 @@
 				</tr>
 			</table>
 			<div class="sign">
-            	<input type="submit" value="로그인">
+            	<input type="submit" value="로그인" >
            </div>
 			<div class="sign">
 				<a href="signUpForm">회원가입</a> / 
@@ -51,5 +51,6 @@
 			</form>
 	</section>
 	<jsp:include page="footer.jsp" />
+	<script src="resources/"></script>
 </body>
 </html>

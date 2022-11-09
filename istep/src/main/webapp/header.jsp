@@ -40,10 +40,11 @@
 			<%if(log == null) {%>
 			<li><a href="loginForm">로그인</a></li>
 			<%}else{%>
-			<li><a href="logout">로그아웃</a></li>
+			<li><a href="logout" >로그아웃</a></li>
 			<% }%>
 		</ul>
 	</nav>
 </body>
 <script src="resources/chat.js?ver=4"></script>
+<script src="resources/chatMemberMng.js?ver=4"></script>
 </html>
