@@ -13,11 +13,12 @@
 	<%
 	request.setCharacterEncoding("utf-8");
 	String log = (String)session.getAttribute("log");
-	if(log==null)
+	if(log==null){
 		out.print("<script>alert('로그인이 필요한 서비스입니다.');location.href='loginForm';</script>");
-	if(log != null){
+	}if(log != null){
 		ChatDao cDao = ChatDao.getInstance();
 		ArrayList<ChatDto> chatList = cDao.getChatById(log);
+	}
 	%>
 	<section>
 		<span><a href="chatForm">채팅방 생성하기</a></span>

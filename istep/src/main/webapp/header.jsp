@@ -28,7 +28,7 @@
 	<nav>
 		<ul>
 			<li><a href="guide">서비스 안내</a></li>
-			<li><a href="subject">과목</a></li>
+			<li><a href="access?page=subject">과목</a></li>
 			<li><a href="chat" onclick="viewChats()">채팅</a></li>
 			<%if(grade.equals("B")){ %>
 			<li><a href="lectureM">강의 관리</a></li>

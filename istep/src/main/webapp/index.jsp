@@ -16,7 +16,7 @@
 	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 	String videoId = "";
 	for(int i=0;i<=sbjList.size();i++){
-		int sbjCode = sbjList.get(i).getCode();
+		int sbjCode = sbjList.get(sbjList.size()-1).getCode();
 		LectureDao lecDao = LectureDao.getInstance();
 		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
 		if(lecList.size()>0){
