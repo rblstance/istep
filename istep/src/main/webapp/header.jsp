@@ -1,58 +1,49 @@
-<%@page import="lecture.LectureDto"%>
-<%@page import="lecture.LectureDao"%>
-<%@page import="subject.SubjectDto"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="subject.SubjectDao"%>
+<%@page import="user.UserDto"%>
+<%@page import="user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="resources/main.css?ver=1" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="resources/grid.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<title>ISTEP</title>
 </head>
 <body>
-<%
-	SubjectDao sbjDao = SubjectDao.getInstance();
-	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
-	String videoId = "";
-	for(int i=0;i<=sbjList.size();i++){
-		int sbjCode = sbjList.get(i).getCode();
-		LectureDao lecDao = LectureDao.getInstance();
-		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
-		if(lecList.size()>0){
-			videoId = lecList.get(0).getCode();
-			break;
-		}	
+	<%
+	String log = (String)session.getAttribute("log"); 
+	String grade = "";
+	if(session.getAttribute("grade")!=null){
+		grade = (String)session.getAttribute("grade");
 	}
 	%>
-	<jsp:include page="header.jsp" />
-	<section>
-		<div class="frane">
-			<div class="video">
-				<div class="recommen_video">
-					<iframe id="mainVideo" width="424" height="238"
-						src="https://www.youtube.com/embed/<%=videoId%>?mute=1&autoplay=1"></iframe>
-				</div>
-			</div>
-		</div>
-		<div class="sbj_box">
-			<%for(SubjectDto sbj : sbjList) {%>
-			<div class="sbj_content">
-				<p><%=sbj.getKind()%>
-				<h2>
-					<a href="lecture.jsp?code=<%=sbj.getCode()%>"><%=sbj.getName()%></a>
-				</h2>
-				<p><%=sbj.getTeacher()%></p>
-				<p><%=sbj.getExplain() %></p>
-				<form method="POST" action="registration">
-					<input type="hidden" value="<%=sbj.getCode()%>" name="sbj_code" />
-					<input type="hidden" value="<%=sbj.getCode()%>" name="sbj_code" />
-					<input type="submit" value="수강신청" />
-				</form>
-			</div>
+	<header>
+		<h1>
+			<a href="index">iStep</a>
+		</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="guide">서비스 안내</a></li>
+			<li><a href="subject">과목</a></li>
+			<li><a href="chat" onclick="viewChats()">채팅</a></li>
+			<%if(grade.equals("B")){ %>
+			<li><a href="lectureM">강의 관리</a></li>
+			<%}if(grade.equals("C")) {%>
+			<li><a href="subjectM">과목 관리</a></li>
+			<!-- 회원등급이 관리자(C)일 때 보이는 메뉴 -->
 			<%} %>
-		</div>
-	</section>
-	<jsp:include page="footer.jsp" />
+			<li><a href="access?page=mypage">마이페이지</a></li>
+			<%if(log == null) {%>
+			<li><a href="loginForm">로그인</a></li>
+			<%}else{%>
+			<li><a href="logout">로그아웃</a></li>
+			<% }%>
+		</ul>
+	</nav>
 </body>
+<script src="resources/chat.js?ver=4"></script>
 </html>

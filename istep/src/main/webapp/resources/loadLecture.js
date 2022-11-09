@@ -1,20 +1,40 @@
 const container = document.body.querySelector(".lecture_container");
 const search = document.body.querySelector("#keyword");
 let option = document.getElementsByTagName('selSbj');
+let code = document.getElementById('codeArg');
+let loadCode = document.getElementById('loadCode');
 let sbjCode = $("input[name='subject']:checked").val();
- $('.back_btn').hide();
 let is_end = false;
 let page = 1;
+let firstLoad = false;
 
 getData();
 
+checkKind();
+
+function checkKind(){
+	let radio = $("input[type=radio]");
+	radio[0].checked = true;
+	console.log(loadCode.value);
+	for(let i=0;i<radio.length;i++){
+		if(radio[i].id===loadCode.value){
+			radio[i].checked = true;
+		}
+	}
+	
+}
+
+
 $(window).scroll(function() {
-	var scrT = $(window).scrollTop();
-	if (scrT == $(document).height() - $(window).height()) {
-		page++;
+	let scrollTop = $(window).scrollTop();
+    let innerHeight = $(window).innerHeight();
+    let scrollHeight = $('body').prop('scrollHeight');
+	
+    if (scrollTop + innerHeight >= scrollHeight-5) {
+        page++;
 		wait(1);
 		getData();
-	}
+    }
 });
 
 function getData(){
@@ -47,6 +67,7 @@ function getData(){
 			
             
             if(url.split('.')[1]==='youtube'){
+				firstLoad = true;
                 $('.lecture_container').append(
 					`<article class="content">
 						<form class="sendLecture" method="post" action="loadLecture">
@@ -66,20 +87,12 @@ function getData(){
 				);
             }
         });
-	 		is_end = response.meta.is_end;
-	        if(is_end === true)
-	            $('.next_btn').hide();
-	        if(page === 1){
-	            $('.back_btn').hide();
-	            $('.next_btn').show();
-	        }
     });
 }
 
 function getSbjCode(_event){
 	sbjCode = _event.target.value;
-	console.log(sbjCode);
-	getData();
+	code.value = _event.target.value;
 }	
 
 function calPlayTime(time){

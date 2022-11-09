@@ -15,13 +15,15 @@
 	SubjectDao sbjDao = SubjectDao.getInstance();
 	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 	String videoId = "";
-	int sbjCode = sbjList.get(0).getCode();
-	LectureDao lecDao = LectureDao.getInstance();
-	ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
-	if(lecList.size()>0){
-		videoId = lecList.get(0).getCode();
-	}	
-	
+	for(int i=0;i<=sbjList.size();i++){
+		int sbjCode = sbjList.get(i).getCode();
+		LectureDao lecDao = LectureDao.getInstance();
+		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
+		if(lecList.size()>0){
+			videoId = lecList.get(0).getCode();
+			break;
+		}	
+	}
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
