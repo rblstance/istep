@@ -13,7 +13,6 @@
 </head>
 <body>
 	<%
-
 	request.setCharacterEncoding("utf-8");
 	String log = (String)session.getAttribute("log");
 	UserDao dao = UserDao.getInstance();
@@ -25,6 +24,7 @@
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
+		<input type="hidden" value="<%=log%>" id="log">
 		<h2>마이페이지</h2>
 		<table>
 			<tr>
@@ -55,16 +55,21 @@
 			<tr>
 				<td>수강과목</td>
 				<td>
-				/
 			<%for(RegistrationsVo board : list){%>
 				<a href="lecture.jsp?code=<%=board.getSbj_code()%>"><%=sub.getSubjectByCode(board.getSbj_code()).getName() %></a> /
 			<%} %>
 				</td>
 			</tr>
+			<tr>
+				<td>채팅</td>
+				<td class = "container"></td>
+			</tr>
+			
 		</table>
 		<input type="button" onclick="location.href='updateForm'" value="회원정보수정">
 		<input type="button" onclick="location.href='deleteForm'" value="회원탈퇴">
 	</section>
 	<jsp:include page="footer.jsp" />
+	<script src="resources/chat.js"></script>
 </body>
 </html>

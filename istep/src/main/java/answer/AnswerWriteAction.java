@@ -41,7 +41,8 @@ public class AnswerWriteAction extends HttpServlet {
 		
 		AnswerDto ans = new AnswerDto(code, b_num, user_id, content, regdate);
 		dao.createAnswer(ans);
-		
+		response.flushBuffer();
+		response.resetBuffer();
 		request.getRequestDispatcher("boardView.jsp").forward(request, response);
 	}
 
