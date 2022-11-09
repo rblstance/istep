@@ -22,15 +22,13 @@ function viewAllChats() {
 			const is_public = e.is_public;
 
 			$('.container').append(
-				`<article>
-                    <div>
-                        <span class="name"><strong>${name}</strong></span>
-                        <span class="custom_type">${custom_type}</span>
-                        <span class="member_count">${member_count}명</span>
-                        <span class="is_public">${is_public}</span>
-						<span><a href="${channel_url}">입장하기</a></span></a>
-                    </div>
-                </article>`
+				`<div>
+                    <span class="name"><strong>${name}</strong></span>
+                    <span class="custom_type">${custom_type}</span>
+                    <span class="member_count">${member_count}명</span>
+                    <span class="is_public">${is_public}</span>
+					<span><a href="${channel_url}">입장하기</a></span></a>
+				</div>`
 			);
 		});
 	});
@@ -63,15 +61,13 @@ function viewMyChats(log) {
 			const is_public = e.is_public;
 
 			$('.container').append(
-				`<article>
-                    <div>
-                        <span class="name"><strong>${name}</strong></span>
-                        <span class="custom_type">${custom_type}</span>
-                        <span class="member_count">${member_count}명</span>
-                        <span class="is_public">${is_public}</span>
-						<span><a href="${channel_url}">입장하기</a></span></a>
-                    </div>
-                </article>`
+				`<div>
+                    <span class="name"><strong>${name}</strong></span>
+                    <span class="custom_type">${custom_type}</span>
+                    <span class="member_count">${member_count}명</span>
+                    <span class="is_public">${is_public}</span>
+					<span><a href="${channel_url}">입장하기</a></span></a>
+                   </div>`
 			);
 		});
 	});

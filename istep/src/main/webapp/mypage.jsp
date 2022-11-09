@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="resources/table.css" />
 </head>
 <body>
-// 
 	<%
 	request.setCharacterEncoding("utf-8");
 	String log = (String)session.getAttribute("log");
