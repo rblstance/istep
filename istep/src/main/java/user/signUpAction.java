@@ -33,7 +33,6 @@ public class signUpAction extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
 		UserDao dao = UserDao.getInstance();
