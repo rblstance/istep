@@ -1,3 +1,5 @@
+
+
 function viewChats() {
 	var settings = {
 		"url": "https://api-C2C776A7-4236-4340-836A-E42E1963FD0E.sendbird.com/v3/group_channels",

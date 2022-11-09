@@ -20,14 +20,7 @@
 		ArrayList<ChatDto> chatList = cDao.getChatById(log);
 	%>
 	<section>
-		<div>
-            <form method="post" action="makeChatForm">
-				<input type="hidden" id="user_id" value="<%=log%>">
-                <input type="hidden" name="c_code" id="c_code" value="">
-                <label for="name">채팅방 생성</label><br><input type="text" name="chatName" id="chatName"><br>
-                <input type="submit"value="생성하기">
-            </form>
-        </div>
+		<span><a href="chatForm">채팅방 생성하기</a></span>
 		<div>
 			<%if(chatList != null){%>
 			<table>
