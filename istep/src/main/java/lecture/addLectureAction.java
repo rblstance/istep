@@ -1,6 +1,7 @@
 package lecture;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.sql.Date;
 
@@ -32,6 +33,8 @@ public class addLectureAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		String code = request.getParameter("code");
 		String sbjCodeParam = request.getParameter("sbjCode");
@@ -40,6 +43,7 @@ public class addLectureAction extends HttpServlet {
 		String url = request.getParameter("url");
 		String timeParam = request.getParameter("playTime");
 		String regParam = request.getParameter("regDate");
+		System.out.printf("%s/%s/%s/%s/%s/%s/%s",code, sbjCodeParam, name, thumbnail, url, timeParam, regParam);
 		if(code!=null && sbjCodeParam!=null && name!=null && thumbnail!=null && url!=null
 				&& timeParam!=null && regParam!=null) {
 			int sbjCode = Integer.parseInt(sbjCodeParam);
@@ -53,8 +57,10 @@ public class addLectureAction extends HttpServlet {
 			LectureDao dao = LectureDao.getInstance();
 			LectureDto lecture = new LectureDto(code, sbjCode, name, thumbnail, url, time, regDate);
 			dao.addLecture(lecture);
+			out.println("<script>alert('강의가 추가되었습니다.');</script>");
 			response.sendRedirect("lectureM");
 		}else {
+			out.println("<script>alert('오류 발생! 다시시도해 주십시오.');</script>");
 			request.getRequestDispatcher("loadLecture").forward(request, response);			
 		}
 	}

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import util.DBManager;
 
 public class UserDao {
-	
+	private AES256 aes256;
 	private String url;
 	private String user;
 	private String password;
@@ -23,7 +23,8 @@ public class UserDao {
 		this.url = "jdbc:mysql://database-1.c7ckrqjyxglw.ap-northeast-2.rds.amazonaws.com:3306/istep";
 		this.user = "admin";
 		this.password = "H77LtnHvcj6uYsgEv3ZT";
-
+		
+		this.aes256 = new AES256();
 		this.conn = null;
 		this.pstmt = null;
 		this.rs = null;
@@ -41,10 +42,11 @@ public class UserDao {
 		String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
 
 		try {
+			
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, user.getId());
-			this.pstmt.setString(2, user.getPassword());
+			this.pstmt.setString(2, aes256.encrypt(user.getPassword()));
 			this.pstmt.setString(3, user.getName());
 			this.pstmt.setString(4, user.getNickname());
 			this.pstmt.setString(5, user.getPhone());
@@ -52,7 +54,6 @@ public class UserDao {
 			this.pstmt.setString(7, user.getEmail());
 			this.pstmt.setString(8, user.getGrade());
 			this.pstmt.setTimestamp(9, user.getRegdate());;
-
 			this.pstmt.execute();
 
 		} catch (Exception e) {
@@ -79,7 +80,7 @@ public class UserDao {
 
 			while (this.rs.next()) {
 				String id = this.rs.getString(1);
-				String password = this.rs.getString(2);
+				String pw = this.rs.getString(2);
 				String name = this.rs.getString(3);
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
@@ -87,7 +88,7 @@ public class UserDao {
 				String email = this.rs.getString(7);
 				String grade = this.rs.getString(8);
 				Timestamp regdate = this.rs.getTimestamp(9);
-
+				String password = aes256.decrypt(pw);
 				UserDto user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
 				list.add(user);
 			}
@@ -173,7 +174,7 @@ public class UserDao {
 			this.rs = this.pstmt.executeQuery();
 
 			if (this.rs.next()) {
-				String password = this.rs.getString(2);
+				String pw = this.rs.getString(2);
 				String name = this.rs.getString(3);
 				String nickname = this.rs.getString(4);
 				String phone = this.rs.getString(5);
@@ -181,7 +182,7 @@ public class UserDao {
 				String email = this.rs.getString(7);
 				String grade = this.rs.getString(8);
 				Timestamp regdate = this.rs.getTimestamp(9);
-
+				String password = aes256.decrypt(pw);
 				user = new UserDto(id, password, name, nickname, phone, birth, email, grade, regdate);
 			}
 		} catch (Exception e) {
@@ -224,6 +225,7 @@ public class UserDao {
 		}
 		return cnt;
 	}
+
 	// 이메일 중복확인
 	public int duplecateEmail(String email) {
 		int cnt = 0;
@@ -252,7 +254,7 @@ public class UserDao {
 		return cnt;
 	}
 	// id, pw 값을 받아서 맞으면 로그인 가능
-	public int loginCheck(String id, String password) {
+	public int loginCheck(String id, String pw) {
 		int result = 0;
 		String sql = "SELECT `password` FROM user WHERE `id` =?";
 
@@ -261,7 +263,7 @@ public class UserDao {
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, id);
 			this.rs = this.pstmt.executeQuery();
-
+			String password = aes256.encrypt(pw);
 			if (this.rs.next()) {
 				if (password.equals(rs.getString("password"))) {
 					result = 1;
@@ -321,9 +323,11 @@ public class UserDao {
 			this.pstmt.setString(1, id);
 			this.pstmt.setString(2, name);
 			this.rs = this.pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				pw = this.rs.getString("password");
+				String password = aes256.decrypt(pw);
+				return password;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -343,7 +347,7 @@ public class UserDao {
 		String sql = "update user set `password`=?,`name`=?,nickname=?,phone=?,birth=?,email=?,grade=? where `id` = ?;";
 
 		String id = user.getId();
-		String password = user.getPassword();
+		String pw = user.getPassword();
 		String name = user.getName();
 		String nickname = user.getNickname();
 		String phone = user.getPhone();
@@ -352,6 +356,7 @@ public class UserDao {
 		String grade = user.getGrade();
 		
 		try {
+			String password = aes256.encrypt(pw);
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, password);
@@ -377,7 +382,7 @@ public class UserDao {
 	}
 	
 	// delete 정보삭제
-	public int deleteuser(String id, String password) {
+	public int deleteuser(String id, String pw) {
 		int result = 0;
 		String sql = "SELECT `password` FROM user WHERE `id`=?";
 
@@ -385,9 +390,9 @@ public class UserDao {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, id);
-			
 			this.rs = this.pstmt.executeQuery();
-
+			String password = aes256.encrypt(pw);
+			
 			if (this.rs.next()) {
 				if (password.equals(rs.getString("password"))) {
 					String delsql = "DELETE FROM user WHERE id=?";

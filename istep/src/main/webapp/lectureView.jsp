@@ -29,6 +29,7 @@ String title = request.getParameter("title");
 String thumbnail = request.getParameter("thumbnail");
 String playTime = request.getParameter("time");
 String regDate = request.getParameter("regDate");
+System.out.println(sbjCode);
 %>
 	<jsp:include page="header.jsp" />
 	<section>

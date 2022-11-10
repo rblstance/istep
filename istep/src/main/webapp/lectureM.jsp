@@ -55,6 +55,6 @@ String loadCode = request.getParameter("codeArg");
 		</div>
 	</section>
 	<jsp:include page="footer.jsp" />
-	<script src="resources/loadLecture.js?ver=4"></script>
+	<script src="resources/loadLecture.js?ver=7"></script>
 </body>
 </html>

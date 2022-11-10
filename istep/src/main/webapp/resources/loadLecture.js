@@ -15,10 +15,12 @@ checkKind();
 function checkKind(){
 	let radio = $("input[type=radio]");
 	radio[0].checked = true;
+	loadCode.value = radio[0].value;
 	console.log(loadCode.value);
 	for(let i=0;i<radio.length;i++){
 		if(radio[i].id===loadCode.value){
 			radio[i].checked = true;
+			loadCode.value = radio[i].value;
 		}
 	}
 	
@@ -71,7 +73,7 @@ function getData(){
                 $('.lecture_container').append(
 					`<article class="content">
 						<form class="sendLecture" method="post" action="loadLecture">
-							<input type="hidden" name="sbjCode" value="${sbjCode}" readonly/>
+							<input type="hidden" name="sbjCode" value="${loadCode.value}" readonly/>
 							<input type="hidden" name="url" value="${url}" />
 							<input type="hidden" name="time" value="${playTime}" />
 							<input type="hidden" name="title" value="${title}" readonly>

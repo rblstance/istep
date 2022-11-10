@@ -9,7 +9,7 @@ function viewAllChats() {
 			"Api-Token": "92fd33f2bd65a4ab400a443b08a95fb59de5542d",
 			"Accept": "application/json"
 		},
-	};
+	};  
 
 	$.ajax(settings).done(function(response) {
 		console.log(response);

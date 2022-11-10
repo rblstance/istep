@@ -45,6 +45,6 @@
 		</ul>
 	</nav>
 </body>
-<script src="resources/chat.js?ver=4"></script>
-<script src="resources/chatMemberMng.js?ver=4"></script>
+ <script src="resources/chat.js?ver=4"></script> 
+<!-- <script src="resources/chatMemberMng.js?ver=4"></script> -->
 </html>

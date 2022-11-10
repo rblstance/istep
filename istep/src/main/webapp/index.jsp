@@ -1,3 +1,6 @@
+<%@page import="user.AES256"%>
+<%@page import="user.UserDto"%>
+<%@page import="user.UserDao"%>
 <%@page import="lecture.LectureDto"%>
 <%@page import="lecture.LectureDao"%>
 <%@page import="subject.SubjectDto"%>
@@ -15,8 +18,8 @@
 	SubjectDao sbjDao = SubjectDao.getInstance();
 	ArrayList<SubjectDto> sbjList = sbjDao.getSubjectAll();
 	String videoId = "";
-	for(int i=0;i<=sbjList.size();i++){
-		int sbjCode = sbjList.get(sbjList.size()-1).getCode();
+	for(int i=sbjList.size()-1;i>=0;i--){
+		int sbjCode = sbjList.get(i).getCode();
 		LectureDao lecDao = LectureDao.getInstance();
 		ArrayList<LectureDto> lecList = lecDao.getLectureListBySbjCode(sbjCode);
 		if(lecList.size()>0){
@@ -25,6 +28,8 @@
 		}	
 	}
 	%>
+	
+	
 	<jsp:include page="header.jsp" />
 	<section>
 		<div class="frane">
