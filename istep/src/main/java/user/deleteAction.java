@@ -41,7 +41,7 @@ public class deleteAction extends HttpServlet {
 		
 		UserDao dao = UserDao.getInstance();
 		int check = dao.deleteuser(log, password);
-
+		System.out.println(log+"/"+password);
 		if (check == 1) {
 			session.invalidate();
 			out.println("<script>alert('회원탈퇴가 완료되었습니다.');location.href='index';</script>");

@@ -23,12 +23,12 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password" id="password" size="30" placeholder="비밀번호는 8~25자리 문자+숫자+특수문자" onkeyup="return isSame();" /></td>
+				<td><input type="password" name="password" id="password" size="30" placeholder="비밀번호는 8~20자리 문자+숫자+특수문자" onkeyup="return isSame();" /></td>
 				<td><font id="space"></font></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="password" name="passwordCheck"	id="passwordCheck" size="30" placeholder="비밀번호는 8~25자리 문자+숫자+특수문자" onkeyup="return isSame();" /></td>
+				<td><input type="password" name="passwordCheck"	id="passwordCheck" size="30" placeholder="비밀번호는 8~20자리 문자+숫자+특수문자" onkeyup="return isSame();" /></td>
 				<td><font id="same"></font></td>
 			</tr>
 			<tr>
