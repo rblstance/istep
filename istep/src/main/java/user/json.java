@@ -10,7 +10,6 @@ import java.net.URLEncoder;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,8 +45,10 @@ public class json extends HttpServlet {
 		String clientSecret = "vvD17C3mZh";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
-		String redirectURI = URLEncoder.encode("http://localhost:8083/istep/json", "UTF-8");
-		//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=f_9l7U2Ws6U7DuoYxc5s&client_secret=vvD17C3mZh&access_token=AAAAO_ZLBwkU_pl2_hXAcMwv5spc1NhaZcVZX7AXmD7R1cA4c1powJBI4DdenHvYNfowt6Ru9dqBUCSiqE_jyHiPQY0&service_provider=NAVER
+
+		String redirectURI = URLEncoder.encode("http://localhost:8080/istep/json", "UTF-8");
+
+		//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=f_9l7U2Ws6U7DuoYxc5s&client_secret=vvD17C3mZh&access_token=AAAAO_KXcpwnVHXmuEuiAwSSr1EKA9rueqeKwSmdoUKSxtzYWh7-ISwQyUZpCqOx0ZjsrP7mptsfb3IIS8qacuExo-A&service_provider=NAVER
 		String apiURL;
 		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 		apiURL += "client_id=" + clientId;
@@ -138,14 +139,17 @@ public class json extends HttpServlet {
 			
 				UserDao dao = UserDao.getInstance();
 				int check = dao.duplecateId(id);
+				String grade = dao.getUserGrade(id);
 				
 				if(check == 0) {
 					UserDto user = new UserDto(id, password, name, nickName, phone, birth, email , "A", now);
 					dao.createUser(user);
 					session.setAttribute("log", id);
+					session.setAttribute("grade", grade);
 					out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
 				}else {
 					session.setAttribute("log", id);
+					session.setAttribute("grade", grade);
 					out.println("<script>alert('로그인이 되었습니다.');location.href='index';</script>");
 				}
 				br.close();

@@ -82,36 +82,44 @@
 
 
 					<%if(answer.getUser_id().equals(id)) {%>
-					<td><form method="post" action="AnswerDeleteAction">
+					<td>
+						<form method="post" action="AnswerDeleteAction">
 							<input type="hidden" name="sbj_code" value=<%=board.getSbj_code() %>> 
 							<input type="hidden" name="no" value=<%=board.getNo()%>> 
 							<input type="hidden" name="noAns" value=<%=answer.getCode()%>>
-							<input type="submit" value="삭제">
+							<input type="submit" style="background-color:#ccc;" id="delete_answer" value="삭제">
 							<%} %>
-						</form></td>
+						</form>
+					</td>
 
 					<%} %>
 
 				</tr>
 				<%} %>
 			</table>
+			<table>
+			<tr>
 				<%if(id!=null){ %>
-			<form method="post" action="AnswerWrite">
-				<input type="hidden" name="id" value="<%=id %>"> 
-				<input type="hidden" name="no" value="<%=board.getNo() %>">
+				<td>
+					<form method="post" action="AnswerWrite">
+					<input type="hidden" name="id" value="<%=id %>"> 
+					<input type="hidden" name="no" value="<%=board.getNo() %>">
 					<% System.out.print("보드번호"+board.getNo());%>
+					
 
 				<!-- 로그인된 아이디 정보를 받아서 댓글을 달면 닉네임이 출력될 수 있도록 -->
 				
-					<td><input type="text" name="content" required></td>
+					<div><input type="text" name="content" style="width: 80%; border: solid 1px #ccc;" id="ans_content" required>
 						<%if(udao.getGrade(id).equals("C")){
 						dao.updateBoardCheck(board.getNo());
 					}
 						%>
-					<td><input type="submit" value="작성"></td>
-				</tr>
-			</form>
+					<input type="submit" id="ans_submit" style="width: 100px;"  value="작성"></div>
+					</form>
+				</td>
 				<%} %>
+			</tr>
+			</table>
 
 		</div>
 

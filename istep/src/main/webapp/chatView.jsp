@@ -11,31 +11,17 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
-	String id = (String)session.getAttribute("log");
-	String c_code = request.getParameter("c_code");
-	Chat_logDao dao = Chat_logDao.getInstance();
-	ArrayList<Chat_logDto> list = dao.getAllChat_logByC_code(c_code);
-	System.out.println(list);
+	String log = (String)session.getAttribute("log");
 	%>
 	<jsp:include page="header.jsp" />
 	<section>
 		<span><a href="chat">뒤로가기</a></span>
 		<div></div>
 		<div>
-			<%if(list == null) { %>
-			환영합니다.
-			<%} else {
-    			for(Chat_logDto log : list){%>
-			<div class = "container">
-				<span><%=log.getUser_id() %></span> 
-				<span><%=log.getContent() %></span>
-				<span><%=log.getRegdate() %></span>
-			</div>
-			<%}
-    		}%>
+			<div class = "container"></div>
 		</div>
 		<div>
-			<form method="post" action="WriteChat_log?c_code=<%=c_code%>">
+			<form method="post" action="WriteChat_l}}ssssog?c_code="">
 				<input type="text" name="content"> <input type="submit" value="작성">
 			</form>
 		</div>

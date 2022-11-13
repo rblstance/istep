@@ -34,6 +34,7 @@ public class AnswerDeleteAction extends HttpServlet {
 		dao.DeleteAnswer(no);
 		
 		request.getRequestDispatcher("boardView.jsp").forward(request, response);
+		
 	}
 
 	/**

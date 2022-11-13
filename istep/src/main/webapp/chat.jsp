@@ -22,8 +22,32 @@
 	<section>
 		<span><a href="chatForm">채팅방 생성하기</a></span>
 		<div>
-			여기 전체!!!! 채팅방
+			<%if(chatList != null){%>
+			<table>
+				<tbody>
+					<%for(ChatDto c : chatList){ %>
+					<tr>
+						<td>이름</td>
+						<td><%=c.getName() %></td>
+					</tr>
+					<tr>
+						<td>코드</td>
+						<td><%=c.getCode() %></td>
+					</tr>
+					<tr>
+						<td>호스트</td>
+						<td><%=c.getHost_id() %></td>
+					</tr>
+					<tr>
+						<td><a href="chatView?c_code=<%=c.getCode()%>">입장하기</a></td>
+					</tr>
+					<%} %>
+				</tbody>
+			</table>
 		</div>
+		<%} else {%>
+		<div>가입한 채팅방이 없습니다.</div>
+		<%}}%>
 	</section>
 </body>
 	<jsp:include page="footer.jsp" />
