@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 </head>
-<body>
+<body onload="javascript:viewAllChats()">
 	<jsp:include page="header.jsp" />
 	<%
 	request.setCharacterEncoding("utf-8");
@@ -21,9 +21,8 @@
 	}
 	%>
 	<section>
-		<span><a href="chatForm">채팅방 생성하기</a></span>
-		<div>
-			여기 전체!!!! 채팅방
+		<div><a href="chatForm">채팅방 생성하기</a></div>
+		<div class="container">
 		</div>
 	</section>
 </body>

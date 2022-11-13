@@ -35,9 +35,8 @@
     		}%>
 		</div>
 		<div>
-			<form method="post" action="WriteChat_log?c_code=<%=c_code%>">
-				<input type="text" name="content"> <input type="submit" value="작성">
-			</form>
+			<input type="text" name="content">
+			<input type="submit" value="전송">
 		</div>
 	</section>
 	<jsp:include page="footer.jsp" />
