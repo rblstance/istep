@@ -13,7 +13,7 @@ String log = (String)session.getAttribute("log");
 <jsp:include page="header.jsp" />
 	<section>
 		<h2>새 채팅</h2><br>
-		<form name="makeChat" method="post" action="makeChat">
+		<form name="makeChat" method="post" action="">
 			<table border=1>
 				<tr>
 					<th>채팅방 이름</th>

@@ -18,7 +18,7 @@
 	if(log != null){
 		ChatDao cDao = ChatDao.getInstance();
 		ArrayList<ChatDto> chatList = cDao.getChatById(log);
-	%>
+	}%>
 	<section>
 		<span><a href="chatForm">채팅방 생성하기</a></span>
 		<div>
