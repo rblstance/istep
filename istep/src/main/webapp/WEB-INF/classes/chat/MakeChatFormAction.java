@@ -34,11 +34,15 @@ public class MakeChatFormAction extends HttpServlet {
 		ChatDao dao = ChatDao.getInstance();
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("log");
-		String url = request.getParameter("channel_url");
-		String token = request.getParameter("access_code");
+		String c_code = dao.createCode(user_id);
+		String name = request.getParameter("chatName");
 		
-		ChatDto chat = new ChatDto(url, user_id, token);
+		System.out.println(name);
+		System.out.println(user_id);
+		
+		ChatDto chat = new ChatDto(name, user_id);
 		dao.createChat(chat);
+		
 		
 		request.getRequestDispatcher("chat").forward(request, response);
 	}

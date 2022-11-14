@@ -11,7 +11,7 @@
 <head>
 <link rel="stylesheet" href="resources/table.css" />
 </head>
-<body>
+<body onload="javascript:viewMyChats()">
 	<%
 	request.setCharacterEncoding("utf-8");
 	String log = (String)session.getAttribute("log");

@@ -2,47 +2,56 @@ package chat;
 
 public class ChatDto {
 
-	private String code;
-	private String name;
-	private String host_id;
+	private String url;
+	private String user_id;
+	private String token;
+	private String message;
 	
-	public ChatDto(String code, String name, String host_id) {
+	public ChatDto(String url, String user_id, String token, String message) {
 		super();
-		this.code = code;
-		this.name = name;
-		this.host_id = host_id;
+		this.url = url;
+		this.user_id = user_id;
+		this.token = token;
+		this.message = message;
 	}
 	
-	public ChatDto(String name, String host_id) {
+	public ChatDto(String url, String user_id, String token) {
 		super();
-		this.name = name;
-		this.host_id = host_id;
+		this.url = url;
+		this.user_id = user_id;
+		this.token = token;
 	}
 	
-	public String getCode() {
-		return code;
+	public String getUrl() {
+		return url;
 	}
 	
-//	public void setCode(String code) {
-//		this.code = code;
+//	public void setUrl(String url) {
+//		this.url = url;
 //	}
 	
-	public String getName() {
-		return name;
+	public String getUser_id() {
+		return user_id;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getHost_id() {
-		return host_id;
-	}
-	
-//	public void setHost_id(String host_id) {
-//		this.host_id = host_id;
+//	public void setUser_id(String user_id) {
+//		this.user_id = user_id;
 //	}
 	
+	public String getToken() {
+		return token;
+	}
 	
+//	public void setToken(String token) {
+//		this.token = token;
+//	}
+	
+	public String getMessage() {
+		return token;
+	}
+	
+	public void setMessage(String token) {
+		this.token = token;
+	}
 	
 }

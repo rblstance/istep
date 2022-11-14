@@ -190,30 +190,6 @@
 		<url-pattern>/makeChatForm</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>printId</servlet-name>
-		<servlet-class>chat.PrintIdAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>printId</servlet-name>
-		<url-pattern>/printId</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>WriteChat_log</servlet-name>
-		<servlet-class>chat_log.WriteChat_logAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WriteChat_log</servlet-name>
-		<url-pattern>/WriteChat_log</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>UpdateMemberAction</servlet-name>
-		<servlet-class>chat.UpdateMemberAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UpdateMemberAction</servlet-name>
-		<url-pattern>/UpdateMemberAction</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>registration</servlet-name>
 		<servlet-class>registrations.registAction</servlet-class>
 	</servlet>

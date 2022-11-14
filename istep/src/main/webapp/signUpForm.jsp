@@ -72,5 +72,6 @@
 	</section>
 	<jsp:include page="footer.jsp" />
 	<script src="resources/signUpForm.js?ver=1"></script>
+	<script src="resources/chatMemberMng.js?ver=4"></script>
 </body>
 </html>

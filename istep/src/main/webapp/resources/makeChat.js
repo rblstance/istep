@@ -1,8 +1,7 @@
 function makeChannel() {
-
 	var host_id = document.getElementById('host_id').value;
 	var users = [host_id];
-	 $("input[name=users]").each(function(){    
+	 $("input[name=users]").each(function(){
 	    var value = $(this).val();
 		users.push(value);
 	  });
@@ -31,8 +30,10 @@ function makeChannel() {
 			"access_code": access_code
 		}),
 	};
-
 	$.ajax(settings).done(function(response) {
 		console.log(response);
+		document.getElementById('channel_url').value = channel_url;
 	});
+	
+	document.chatform.submit();
 }

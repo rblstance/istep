@@ -1,7 +1,6 @@
 package chat;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MakeChatForm
+ * Servlet implementation class CheckChatTokenAction
  */
-//@WebServlet("/MakeChatForm")
-public class MakeChatFormAction extends HttpServlet {
+//@WebServlet("/CheckChatTokenAction")
+public class CheckChatTokenAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeChatFormAction() {
+    public CheckChatTokenAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +34,15 @@ public class MakeChatFormAction extends HttpServlet {
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("log");
 		String url = request.getParameter("channel_url");
-		String token = request.getParameter("access_code");
+		String token = dao.getToken(url, user_id);
 		
-		ChatDto chat = new ChatDto(url, user_id, token);
-		dao.createChat(chat);
+		if(token == null)
+			request.getRequestDispatcher("chat").forward(request, response);
+		else {
+			
+			request.getRequestDispatcher("chatView?url="+url).forward(request, response);
+		}
 		
-		request.getRequestDispatcher("chat").forward(request, response);
 	}
 
 	/**

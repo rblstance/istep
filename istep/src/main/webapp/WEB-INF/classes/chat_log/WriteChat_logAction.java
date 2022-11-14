@@ -1,6 +1,8 @@
-package chat;
+package chat_log;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MakeChatForm
+ * Servlet implementation class WriteChat_logAction
  */
-//@WebServlet("/MakeChatForm")
-public class MakeChatFormAction extends HttpServlet {
+//@WebServlet("/WriteChat_logAction")
+public class WriteChat_logAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeChatFormAction() {
+    public WriteChat_logAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +30,19 @@ public class MakeChatFormAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		ChatDao dao = ChatDao.getInstance();
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("log");
-		String url = request.getParameter("channel_url");
-		String token = request.getParameter("access_code");
+		String c_code = request.getParameter("c_code");
+		String content = request.getParameter("content");
 		
-		ChatDto chat = new ChatDto(url, user_id, token);
-		dao.createChat(chat);
+		Chat_logDao dao = Chat_logDao.getInstance();
+		Chat_logDto chat_log = new Chat_logDto(user_id, c_code, content);
+		dao.createChat_log(chat_log);
 		
-		request.getRequestDispatcher("chat").forward(request, response);
+		request.getRequestDispatcher("chatView?c_Code"+c_code).forward(request, response);
 	}
 
 	/**

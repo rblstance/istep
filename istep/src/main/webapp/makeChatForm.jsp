@@ -13,7 +13,7 @@ String log = (String)session.getAttribute("log");
 <jsp:include page="header.jsp" />
 	<section>
 		<h2>새 채팅</h2><br>
-		<form name="makeChat" method="post" action="chat">
+		<form name="chatform" method="post" action="makeChatForm">
 			<table border=1>
 				<tr>
 					<th>채팅방 이름</th>
@@ -44,9 +44,9 @@ String log = (String)session.getAttribute("log");
 					<td><input type="text" name="access_code" id="access_code" style="width:600px"></td>
 				</tr>
 				<tr style="align-items: stretch;">
-					<td colspan="2">
+					<td colspan="2" class="info">		
 						<input type="hidden" value="<%=log%>" id="host_id">
-						<button type="submit" onclick="makeChannel()" style="width: 100px;">채팅방 생성</button>
+						<button type="button" onclick="makeChannel()" style="width: 100px;">채팅방 생성</button>
 						<button type="button" onclick="location.href='chat'" style="width: 100px;">취소</button>
 					</td>
 				</tr>
